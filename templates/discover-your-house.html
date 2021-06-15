@@ -20,8 +20,8 @@
                 <img src="../static/images/join-house/final.webp" class="background-img">
                 <img src="../static/images/join-house/q5.webp" class="background-img" id="overlay-img">
                 <div class="text">
-                    <p>The Fairfax Council is ready to make its decision.</p>
-                    <button class="btn" onclick="slide();">Discover your house</button>
+                    <p class="council">The Fairfax Council is ready to make its decision.</p>
+                    <button class="btn" onclick="slide();">Find out your club</button>
                 </div>
             </div>
 
@@ -29,8 +29,11 @@
             <div class="slide">
                 <img src="../static/images/profile/background-{{ .House.ID }}.webp" class="background-img">
                 <div class="text">
-                    <h1>You've been recruited by the...</h1>
-                    <p>{{ .House.Name }}</p>
+                    <p class="wanted">You are wanted by the...</p>
+                    <p class="house-name">{{ .House.Name }}</p>
+
+                    <a href="/" class="home-btn">Home</a>
+
                 </div>
             </div>
         </div>

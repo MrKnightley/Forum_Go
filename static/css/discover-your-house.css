@@ -57,13 +57,32 @@ input[name=r] {
   align-items: center;
   text-align: center;
 }
-.slides .slide .text p {
+.slides .slide .text .council {
   font-family: "Crimson Text", serif;
-  font-size: 60px;
+  font-size: 70px;
   font-weight: 800;
   text-shadow: 0 0 10px black;
   letter-spacing: 2px;
   text-align: center;
+}
+.slides .slide .text .wanted {
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+.slides .slide .text .house-name {
+  font-family: "Crimson Text", serif;
+  font-size: 90px;
+  font-weight: 800;
+  text-shadow: 0 0 10px black;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.slides .slide .text a {
+  text-decoration: none;
+  color: white;
 }
 .slides .slide .text .btn {
   font-family: "Poppins", sans-serif;
