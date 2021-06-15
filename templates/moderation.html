@@ -5,11 +5,15 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css">
     <link rel="stylesheet" type="text/css" href="/static/css/moderation.css">
     <title>ADMINISTRATION BDD</title>
 </head>
 
 <body style="width:100%">
+
+    {{template "header" .Self }}
+
     <div class="tableList">
         <input type="button" value="Comments" id="comment" onclick="showComments()" />
         <input type="button" value="Posts" id="post" onclick="showPosts()" />
@@ -220,7 +224,7 @@
                     <div>State</div>
                 </th>
                 <th>
-                    <div>House</div>
+                    <div>Club</div>
                 </th>
                 <!-- <th><div>Question secrète</div></th>
                 <th><div>Réponse secrète</div></th> -->

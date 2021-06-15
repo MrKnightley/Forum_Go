@@ -23,7 +23,7 @@ div {
 }
 
 .tableList {
-  margin-top: 0.5em;
+  margin-top: 4.5em;
 }
 
 .selectOption {
@@ -33,7 +33,7 @@ div {
 .right {
   position: absolute;
   left: 85%;
-  top: 0%;
+  top: 4.75em;
   background-image: radial-gradient(circle, #ded0a0 0%, #a79666 100%);
   background-image: -webkit-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
   background-image: -moz-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
@@ -58,7 +58,7 @@ tr.tempVisi {
   display: table-row;
 }
 
-img {
+td img {
   height: 100%;
   width: 100%;
 }

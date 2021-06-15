@@ -10,6 +10,8 @@ import (
 	// "golang.org/x/crypto/bcrypt"
 )
 
+var profileTmpl = template.Must(template.ParseGlob("./templates/*"))
+
 type Data struct {
 	User     []database.User
 	Post     []database.Post
@@ -64,8 +66,10 @@ func Moderation(w http.ResponseWriter, r *http.Request, user database.User) {
 		Data = GetPostList(Data)
 		Data.Self = user
 		Data.Category = database.GetCategoriesList()
-		tmpl, _ = template.ParseFiles("./templates/moderation.html")
-		tmpl.ExecuteTemplate(w, "moderation", Data)
+		err := profileTmpl.ExecuteTemplate(w, "moderation", Data)
+		if err != nil {
+			panic(err)
+		}
 	}
 }
 func ColExist(table string, cat string) bool {
