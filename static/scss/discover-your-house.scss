@@ -54,13 +54,32 @@ input[name="r"] {
             justify-content: center;
             align-items: center;
             text-align: center;
-            p {
+            .council {
                 font-family: 'Crimson Text', serif;
-                font-size: 60px;
+                font-size: 70px;
                 font-weight: 800;
                 text-shadow: 0 0 10px rgba(0, 0, 0, 1);
                 letter-spacing: 2px;
                 text-align: center;
+            }
+            .wanted {
+                text-transform: uppercase;
+                font-family: 'Poppins', sans-serif;
+                font-size: 20px;
+                letter-spacing: 2px;
+                font-weight: 100;
+            }
+            .house-name {
+                font-family: 'Crimson Text', serif;
+                font-size: 90px;
+                font-weight: 800;
+                text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+                letter-spacing: 2px;
+                text-align: center;
+            }
+            a {
+                text-decoration: none;
+                color: white;
             }
             .btn {
                 font-family: 'Poppins', sans-serif;
