@@ -1,0 +1,158 @@
+/- - - - - - - - - - - - - - - - - Page ticket.go - - - - - - - - - - - - - - - - -\
+
+Func Ticket: (gestion de l'affichage ticket)
+    Cas Get:
+        Si une id est retrouver dans l'url je sais qu'il faut charger un ticket en particulier.
+
+        Si il y en a pas je vais chercher tout les tickets de l'user que le middleware ma donner.
+            Sauf si l'utilisateur est admin, dans ce cas la je les afficher tous, il peut les ouvrir, commenter et les passer en résolut tout comme le créateur du post.
+
+        Je charge la data avec le templates et lui sait en fonction de si il y a un ticket ou plus quel page ils dois crée.
+
+    Cas Post:
+        L'utilisateur ou un administrateur a cliquer sur le bouton résoudre d'un ticket et nous le cloturont ici.
+        Une fois cloturer nous renvoyons sur la pages des tickets.
+
+Func NewTicket: (gestion de la création d'un nouveau ticket)
+    Cas Get:
+        Je récupère l'user en question et le transmet au template pour crée le formulaire.
+        L'utilisateur accède a la page qui permet de crée un ticket.
+    Cas Post:
+        Je recupère les informations du formulaire et si les champs sont correctement remplis je crée le ticket.
+        Je redirige ensuite l'utilisateur vers la page correspondant au ticket nouvellement crée.
+
+/- - - - - - - - - - - - - - - - - Page delete.go - - - - - - - - - - - - - - - - -\
+
+Func Delete: (écoute la page moderation)
+    Cas Post:
+        Supprime la ligne de la table donner grace a l'id communiquer.
+        Si la table est users la fonction DeleteFromDatabase supprimeras tout ce qui touche a cet user en même temps.
+
+
+/- - - - - - - - - - - - - - - - - Page stats.go - - - - - - - - - - - - - - - - -\
+
+Une des pages les plus simples , elle conciste juste a récupérer les table et les triée celon plusieur date afin d'afficher les résultat d'audience pour chaque catégorie pour chaque date.
+
+/- - - - - - - - - - - - - - - - - Page profile.go - - - - - - - - - - - - - - - - -\
+
+Func ProfilePage: (gère l'utilisateur si c'est sa page)
+    Cas Get:
+        Récupère l'utilisateur correspondant a l'email ou l'username passer derrière "user="
+        Affiche ces posts et commentaire
+    Cas Post:
+        Si l'utilisateur est sur sa page il peut supprimer un  de ces post ou commentaire de sont choix.
+Func DeleteSelection:
+    Peut changer l'état de la table sélection a 2 (état égale a 'supprimer')
+
+/- - - - - - - - - - - - - - - - - Page Register.go - - - - - - - - - - - - - - - - -\
+
+Function Register: (enregistre un utilisateur)
+    Cas Get:
+        Charge juste le template contenant le formulaire d'inscription
+    Cas Post:
+        Crée un User d'après les données du formulaire,
+        Crypte le mot de passe
+        CheckNewAccount regarde si il a pas deja sont username ou email d'utiliser
+        Si ce n'est pas le cas on l'enregistre et on lui crée une session.
+
+Function RegisterSecret: (enregistre la question secrete et sa réponse en la cryptant)
+    Cas Get: 
+        renvoie sur le formulaire pour les enregistrer
+    Cas Post:
+        les enregistres
+
+
+/- - - - - - - - - - - - - - - - - Page Login.go (Correspond également a la page Logout)- - - - - - - - - - - - - - - - -\
+
+Function Login: (enregistre une session a l'utilisateur pour le laisser connecter)
+    Cas Get:
+        Charge le template pour se connecter
+    Cas Post:
+        récupère les informations du formulaire et check si le mot de passe et l'identifiant correspondent
+        CompareHashAndPassword permet de savoir si le mot de passe correspond a celui crypter en bdd
+        si c'est le cas crée une session pour enregistrer l'utilisateurs
+    
+Function Logout: (supprime le coockie de l'utilisateur pour le déconnecter)
+    Supprime également sa session
+
+
+/- - - - - - - - - - - - - - - - - Page Category.go - - - - - - - - - - - - - - - - -\
+
+Function Category: (récupère et affiche les post de la catégory)
+    Les affiches d'après l'id après le / et affiche les post en partant du plus récent.
+
+
+/- - - - - - - - - - - - - - - - - Page Post.go - - - - - - - - - - - - - - - - -\
+
+Function Post: (affiche le post)
+    Cas Get:
+        Affiche le post correspondant a l'id donner après le /
+        Affiche une erreur si le post n'existe pas
+        Affiche si le post est supprimer
+        Si le post existe et n'est pas supprimer affiche également les commentaires lui correspondant
+    Cas Post:
+        Si le post n'est pas supprimer permet de crée un commentaire a ce post si il n'est pas vide
+        Puis recharge la page pour voir sont commentaire.
+
+
+/- - - - - - - - - - - - - - - - - Page NewPost.go - - - - - - - - - - - - - - - - -\
+
+Function NewPost: (Permet de crée un nouveau post)
+    Cas Get:
+        Affiche le template pour crée un post en lui donnait l'utilisateur actuel et les catégories existante.
+    Cas Post:
+        Crée un post si les valeurs du formulaire sont accepter.
+
+
+/- - - - - - - - - - - - - - - - - Page react.go - - - - - - - - - - - - - - - - -\
+
+Function Reaction: (permet d'enregistrer le like ou dislike de l'utilisateur sur le post ou commentaire actuel)
+    Si une réaction autre que celle envoyer est deja présente la supprime et la remplace par la nouvelle.
+    Si la réaction envoyer est deja existante supprime juste la réaction de l'utilisateur.
+
+
+/- - - - - - - - - - - - - - - - - Page Moderation.go - - - - - - - - - - - - - - - - -\
+
+Function Moderation: (contient une fonction pour chaque table touchant les users)
+    Cas Get:
+        Affiche tout les post / comments / users de la base de donnée.
+        Permet de supprimer n'importe qu'elle ligne ou de modifier n'importe quel valeurs
+        Peut poser problème mais page accéssible normalement qu'au staff donc leurs prob
+        (A IMPLEMENTER) crée et supprimer d'autre catégories.
+    Cas Post:
+        Demande d'update une valeur et la traite donc, l'actualise sur la page ou renvoie une erreur si un prblème est survenu.
+        La demande de suppresion passe par Delete.go
+
+
+/- - - - - - - - - - - - - - - - - Page index.go - - - - - - - - - - - - - - - - -\
+
+Function index: (charge la page d'acceuil)
+    Rajoute également le header avec l'utilisateur si il est connecter.
+
+/- - - - - - - - - - - - - - - - - Page Account.go - - - - - - - - - - - - - - - - -\
+
+Func Account: (page account de l'user)
+    Cas Get:
+        affiche les informations de l'utilisateur.
+    Cas Post:
+        change une informations de l'utilisateur.
+
+/- - - - - - - - - - - - - - - - - Page Badge.go - - - - - - - - - - - - - - - - -\
+
+Func AddBadgeIfUnlocked:
+    Débloquer les badges de l'utilisateur quand il se connecte si il a remplis les conditions
+
+/- - - - - - - - - - - - - - - - - Page editPost.go - - - - - - - - - - - - - - - - -\
+
+Func Account: 
+    Cas Post:
+        Change les informations d'un post en ayant reçu sont id et sont nouveau contenu
+
+
+/- - - - - - - - - - - - - - - - - Page joinHouse.go - - - - - - - - - - - - - - - - -\
+
+Func JoinHouse: 
+    Cas Get:
+        Charge le questionnaire pour que l'utilisateur rejoigne une maison SI il en a pas déja rejoins une
+    Cas Post:
+        Fait rejoindre l'utilisateur la maison avec le plus de compteur dans la base de donnée

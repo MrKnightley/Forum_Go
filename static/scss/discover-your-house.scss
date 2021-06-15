@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap');
+body {
+    margin: 0 0 0 0;
+    padding: 0;
+    background: rgb(23, 24, 34);
+    font-family: 'Poppins', sans-serif;
+}
+
+.slidershow {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    &.middle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%)
+    }
+}
+
+input[name="r"] {
+    position: absolute;
+    visibility: hidden;
+}
+
+.slides {
+    width: 200vw; // 2 slides à faire défiler horizontalement
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    .slide {
+        position: relative;
+        width: 50%; // Chacune des 2 slide prend la moitié du conteneur
+        transition: 0.9s;
+        img.background-img {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
+        img#overlay-img {
+            opacity: 0.8;
+        }
+        .text {
+            position: absolute;
+            display: flex;
+            width: 80vw;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            flex-direction: column;
+            color: white;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            p {
+                font-family: 'Crimson Text', serif;
+                font-size: 60px;
+                font-weight: 800;
+                text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+                letter-spacing: 2px;
+                text-align: center;
+            }
+            .btn {
+                font-family: 'Poppins', sans-serif;
+                background: #7269c0;
+                color: white;
+                text-transform: uppercase;
+                border: none;
+                padding: 10px 55px;
+                cursor: pointer;
+                outline: inherit;
+                font-size: 10px;
+                letter-spacing: 2px;
+                border-radius: 50px;
+                transition: 0.3s ease-in-out;
+                &:hover {
+                    background: #57509b;
+                }
+            }
+        }
+    }
+    #r1 {
+        &:checked~#s1 {
+            margin-left: 0;
+        }
+    }
+    #r2 {
+        &:checked~#s1 {
+            margin-left: -100vw;
+        }
+    }
+}

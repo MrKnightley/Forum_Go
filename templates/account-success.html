@@ -1,0 +1,28 @@
+{{define "account-success" }}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/edit-account.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+    <link rel="icon" href="static/images/web_favicon.png" type="image/icon type">
+
+    <title>Your account was successfully updated</title>
+</head>
+
+<body>
+    <a href="/Profile?user={{ .Username }}" title="Profile page" id="arrow">←</a>
+    <a href="/" title="Home"><img id="cross" src="static/images/close-cross.png "></a>
+
+    <div class="container">
+        <div id="create-your-account">Your account settings were successfully changed.</div>
+    </div>
+
+</body>
+
+</html>
+
+{{end}}

@@ -1,0 +1,65 @@
+{{define "login"}}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/login.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+    <link rel="icon" href="static/images/web_favicon.png" type="image/icon type">
+
+    <title>FAIRFAX | Login</title>
+</head>
+
+<body>
+    <div class="background">
+        <img src="static/images/login/starry_sky2.jpg" id="sky2">
+        <img src="static/images/login/starry_sky.png" id="sky">
+        <img src="static/images/login/blast.png" id="blast">
+    </div>
+
+    <div class="container">
+        <a href="/" title="Home" id="arrow">←</a>
+
+        <a href="/" title="Home"><img src="static/images/main_logo.png" id="logo"></a>
+        <div id="title">Fairfax</div>
+        <p id="log-in-to-your-account">Log in to your account</p>
+
+        <form action="/login" method="POST">
+            <div class="inputWithIcon">
+
+                <input type="text" name="identifier" placeholder="Enter your username or email" size="20" required>
+                <i class="fa fa-user fa-fw" aria-hidden="true"></i>
+            </div>
+
+            <div class="inputWithIcon">
+                <input type="password" name="password" placeholder="Enter your password" required>
+                <i class="fa fa-key fa-fw" aria-hidden="true"></i>
+            </div>
+
+            <!-- Cas où le mot de passe est incorrect -->
+            {{ if . }}
+            <a href="/register" title="Register" id="no-account-found">No matching account was found.<br>Would you like to register?</a> {{ end }}
+            <!-- ~ FIN ~ -->
+
+            <div class="linkWithIcon">
+                <i class="fa fa-lock fa-fw" aria-hidden="true"></i>
+                <a href="/forgotten-password">Forgot your password?</a>
+            </div>
+            <button class="btn" type="submit">Continue</button>
+        </form>
+
+        <p>Not yet a member?</p>
+        <div class="linkWithIcon">
+            <i class="fa fa-user-circle fa-fw" aria-hidden="true"></i>
+            <a href="/register">Register here</a>
+        </div>
+    </div>
+</body>
+
+
+</html>
+
+{{end}}

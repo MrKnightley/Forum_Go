@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap");
+body {
+  margin: 0 0 0 0;
+  padding: 0;
+  background: #171822;
+  font-family: "Poppins", sans-serif;
+}
+
+.slidershow {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+.slidershow.middle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+input[name=r] {
+  position: absolute;
+  visibility: hidden;
+}
+
+.slides {
+  width: 200vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+.slides .slide {
+  position: relative;
+  width: 50%;
+  transition: 0.9s;
+}
+.slides .slide img.background-img {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+.slides .slide img#overlay-img {
+  opacity: 0.8;
+}
+.slides .slide .text {
+  position: absolute;
+  display: flex;
+  width: 80vw;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.slides .slide .text p {
+  font-family: "Crimson Text", serif;
+  font-size: 60px;
+  font-weight: 800;
+  text-shadow: 0 0 10px black;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.slides .slide .text .btn {
+  font-family: "Poppins", sans-serif;
+  background: #7269c0;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  padding: 10px 55px;
+  cursor: pointer;
+  outline: inherit;
+  font-size: 10px;
+  letter-spacing: 2px;
+  border-radius: 50px;
+  transition: 0.3s ease-in-out;
+}
+.slides .slide .text .btn:hover {
+  background: #57509b;
+}
+.slides #r1:checked ~ #s1 {
+  margin-left: 0;
+}
+.slides #r2:checked ~ #s1 {
+  margin-left: -100vw;
+}
+
+/*# sourceMappingURL=discover-your-house.css.map */

@@ -1,0 +1,50 @@
+{{ define "discover-your-house" }}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/discover-your-house.css">
+    <link rel="icon" href="../static/images/web_favicon.png" type="image/icon type">
+    <title>Your house is...</title>
+</head>
+
+<body>
+
+    <div class="slidershow middle">
+        <div class="slides">
+            <input type="radio" name="r" id="r1" checked>
+            <input type="radio" name="r" id="r2">
+
+            <div class="slide" id="s1">
+                <img src="../static/images/join-house/final.webp" class="background-img">
+                <img src="../static/images/join-house/q5.webp" class="background-img" id="overlay-img">
+                <div class="text">
+                    <p>The Fairfax Council is ready to make its decision.</p>
+                    <button class="btn" onclick="slide();">Discover your house</button>
+                </div>
+            </div>
+
+
+            <div class="slide">
+                <img src="../static/images/profile/background-{{ .House.ID }}.webp" class="background-img">
+                <div class="text">
+                    <h1>You've been recruited by the...</h1>
+                    <p>{{ .House.Name }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</body>
+
+<script>
+    function slide() {
+        document.getElementById("r2").checked = true;
+    }
+</script>
+
+</html>
+
+{{ end }}

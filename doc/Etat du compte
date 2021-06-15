@@ -1,0 +1,5 @@
+Les comptes utilisateurs peuvent avoir l'un des états suivants, tels que définis dans le fichier database/models.go :
+
+NORMAL = 0
+BANNED = 1
+DELETED = 2

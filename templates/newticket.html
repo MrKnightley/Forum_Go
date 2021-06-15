@@ -1,0 +1,35 @@
+{{ define "newticket" }}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/newticket.css">
+    <link rel="icon" href="static/images/favicon.png" type="image/icon type">
+    <title>New post</title>
+</head>
+
+<body>
+
+    {{template "header" .User }}
+    
+    <div class="inputs">
+        <form action="/newTicket" method="post" enctype="multipart/form-data">
+            <div class="title">
+                Ticket title: <br>
+                <input type="text" name="title" id="titleinput" maxlength="30" required> <br>
+            </div>
+            <div class="textarea">
+                <textarea name="content" cols="30" rows="10" required></textarea> <br>
+            </div>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+   </body>
+
+</html>
+
+{{end}}

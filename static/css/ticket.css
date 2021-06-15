@@ -1,0 +1,78 @@
+body {
+  background-color: rgba(202, 194, 183, 0.7);
+  overflow-x: hidden;
+}
+
+span + span {
+  margin-left: 10px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  position: relative;
+  max-height: 70vh;
+  margin: 0 auto;
+  width: 25%;
+  overflow-y: auto;
+  text-align: center;
+  top: 15vh;
+}
+
+#tickets {
+  margin-right: 0.33em;
+  border: 1px solid rgba(151, 145, 137, 0.7);
+  border-radius: 20px;
+  margin-top: 0.5em;
+}
+
+form, .answer {
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  position: absolute;
+  white-space: pre-wrap;
+  top: 30vh;
+  left: 4vw;
+  width: 22.5vw;
+  resize: none;
+  height: 40vh;
+}
+
+input[type=submit] {
+  margin-top: 0.5em;
+  max-width: 5vw;
+  margin-left: 10vw;
+}
+
+.resolved {
+  position: fixed;
+  margin: none;
+  top: 10vh;
+  right: 48vw;
+  max-width: auto;
+  height: auto;
+}
+
+.underTextarea {
+  position: absolute;
+  top: 70vh;
+}
+
+a {
+  text-decoration: none;
+  color: #764a4a;
+}
+
+.newTicket {
+  color: black;
+}
+
+.mine {
+  color: #7b1313;
+}
+
+/*# sourceMappingURL=ticket.css.map */

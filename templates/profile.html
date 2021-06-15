@@ -1,0 +1,294 @@
+{{define "profile"}}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/loading.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="icon" href="../static/images/web_favicon.png" type="image/icon type">
+    <title>{{.Profile.Username}}</title>
+</head>
+
+<body>
+    <div class="slidershow middle">
+        <div class="slides">
+            <input type="radio" name="r" id="r1" checked>
+            <input type="radio" name="r" id="r2">
+
+            <!-- PREMIERE SLIDE -->
+            <div class="slide" id="s1">
+                <!-- Fond neutre (aucune maison) : -->
+                {{ if eq .Profile.House.ID 0}}
+                <img src="../static/images/profile/dark_sky1.webp" class="background-img" id="sky1">
+                <img src="../static/images/profile/dark_sky2.webp" class="background-img" id="sky2">
+
+                <!-- Fond correspondant à la maison : -->
+                {{ else }}
+                <img src="../static/images/profile/background-{{ .Profile.House.ID }}.webp" class="background-img"> {{ end }}
+
+                <div class="text">
+                    <div class="header">
+                        <a href="/" class="home">
+                            <p>Home</p>
+                        </a>
+
+                        <a href="/" class="title">
+                            <h1>Fairfax</h1>
+                            <img src="../static/images/main_logo.png" id="logo" title="Home">
+                            <h1>Passport</h1>
+                        </a>
+
+                        {{if eq .User.ID .Profile.ID}}
+                        <a href="/edit-account" class="settings">
+                            <img src="../static/images/profile/settings.svg" id="wheel" title="Settings">
+                        </a>
+                        {{ end }}
+                    </div>
+
+                    <div class="main">
+                        <!-- Si le profile fait partie d'une maison : -->
+                        {{ if ne .Profile.House.ID 0}}
+                        <img src="../images/houses/house-{{ .Profile.House.ID }}.png" class="house-img"> {{ end }}
+
+                        <!-- Si le profile NE fait PAS partie d'une maison ET que le user loggé est sur sa propre page de profile : -->
+                        {{ if and (eq .Profile.House.ID 0) (eq .User.ID .Profile.ID) }}
+                        <a href="/join-house" class="join-btn">Join a club</a> {{ end }}
+
+                        <div class="identity">
+                            <img src="{{ .Profile.Avatar }}" class="avatar-img">
+                            <h1 class="username">{{ .Profile.Username }}</h1>
+                        </div>
+
+                        {{ if eq .Profile.House.ID 0}}
+                        <p class="club">Unaffiliated</p>
+                        {{ else }}
+                        <p class="club">{{ .Profile.House.Name }}</p>
+                        {{ end }}
+
+                        <div class="trophies">
+                            {{ range .Profile.Badges }}
+                            <img src="{{ .Image }}"> {{end}}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- DEUXIEME SLIDE -->
+            <div class="slide" id="s2">
+                <img src="../static/images/profile/cards.webp" class="background-img">
+                <div class="text">
+                    <h2>Activity</h2>
+                    <div class="activities">
+                        {{if eq .User.ID .Profile.ID}}
+                        <h1>Your faxes</h1>
+                        <h1>Your replies</h1>
+                        <h1>Faxes you liked</h1>
+                        <h1>Replies you liked</h1>
+                        {{ else }}
+                        <h1>Faxes by {{ .Profile.Username }}</h1>
+                        <h1>Replies by {{ .Profile.Username }}</h1>
+                        <h1>Faxes {{ .Profile.Username }} liked</h1>
+                        <h1>Replies {{ .Profile.Username }} liked</h1>
+                        {{ end }}
+                    </div>
+
+                    <div class="columns">
+                        <!-- Posts du profile : -->
+                        <div class="column" id="column-1">
+                            {{ range .Posts }}
+                            <div class="post">
+                                <!-- Si le post est publié : -->
+                                {{ if eq .State 0}}
+                                <a href="/post/{{ .ID }}">
+                                    <p class="title">{{ .Title }}</p>
+                                </a>
+
+                                <!-- Si le post a été supprimé : -->
+                                {{ else }}
+                                <div class="locked-title">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                    <p class="title">Deleted</p>
+                                </div>
+                                {{ end }}
+
+                                <p class="date">{{ .Date }}</p>
+                            </div>
+                            {{ end }}
+                        </div>
+
+                        <!-- Commentaires du profile : -->
+                        <div class="column" id="column-2">
+                            {{ range .Comments }}
+                            <div class="comment">
+                                <!-- Si le post est publié : -->
+                                {{ if eq .PostState 0}}
+                                <a href="/post/{{ .PostID }}">
+                                    <p class="title">{{ .PostTitle }}</p>
+                                </a>
+
+                                <!-- Si le post a été supprimé : -->
+                                {{ else }}
+                                <div class="locked-title">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                    <p class="title">Deleted</p>
+                                </div>
+                                {{ end }}
+
+                                <!-- Si le commentaire est publié : -->
+                                {{ if eq .State 0}}
+                                <p class="comment-content">{{ .Content }}</p>
+                                <!-- Si le commentaire a été supprimé : -->
+                                {{ else }}
+                                <!-- <p class="comment-content"><i>This reply was deleted.</i></p> -->
+                                <div class="locked-comment-content">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                    <p>Deleted</p>
+                                </div>
+                                {{ end }}
+
+                                <p class="date">{{ .Date }}</p>
+                            </div>
+                            {{ end }}
+                        </div>
+
+                        <!-- Posts likés par le profile : -->
+                        <div class="column" id="column-3">
+                            {{ range .LikedPosts }}
+                            <div class="post">
+                                <!-- Si le post est publié : -->
+                                {{ if eq .State 0}}
+                                <a href="/post/{{ .ID }}">
+                                    <p class="title">{{ .Title }}</p>
+                                </a>
+
+                                <!-- Si le post a été supprimé : -->
+                                {{ else }}
+                                <div class="locked-title">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                    <p class="title">Deleted</p>
+                                </div>
+                                {{ end }}
+
+                                <p class="date">{{ .Date }}</p>
+                            </div>
+                            {{ end }}
+                        </div>
+
+
+                        <!-- Commentaires likés par le profile : -->
+                        <div class="column" id="column-2">
+                            {{ range .LikedComments }}
+                            <div class="comment">
+                                <!-- Si le post est publié : -->
+                                {{ if eq .PostState 0}}
+                                <a href="/post/{{ .PostID }}">
+                                    <p class="title">{{ .PostTitle }}</p>
+                                </a>
+
+                                <!-- Si le post a été supprimé : -->
+                                {{ else }}
+                                <div class="locked-title">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                    <p class="title">Deleted</p>
+                                </div>
+                                {{ end }}
+
+                                <!-- Si le commentaire est publié : -->
+                                {{ if eq .State 0}}
+                                <p class="comment-content">{{ .Content }}</p>
+                                <!-- Si le commentaire a été supprimé : -->
+                                {{ else }}
+                                <!-- <p class="comment-content"><i>This reply was deleted.</i></p> -->
+                                <div class="locked-comment-content">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                    <p>Deleted</p>
+                                </div>
+                                {{ end }}
+
+                                <p class="date">{{ .Date }}</p>
+                            </div>
+                            {{ end }}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <label for="r1" class="bar"></label>
+                <label for="r2" class="bar"></label>
+            </div>
+
+        </div>
+
+
+
+        <p>========== PLACEHOLDER ==========</p>
+
+        <div>
+            {{.Profile.Username}}
+        </div>
+        <div>
+            <img src="{{.Profile.Avatar}}"> {{ range .Profile.Badges }}
+            <img src="{{ .Image }}"> {{end}}
+        </div>
+        {{if gt .Profile.State 0}}
+        <div>Cet utilisateur a désactiver sont compte ou a été banni.</button>
+            {{end}} {{if eq .User.ID .Profile.ID}}
+            <button onClick="DeleteAccountRequest({{ .User.ID }})">Delete Account</button>
+            <div class="right">
+                <button onClick=PostRequest()>Delete Selection</button>
+                <button><a href="/edit-account">Change profile information</a></button>
+            </div>
+            {{end}}
+            <div> LIST OF POST OF THIS USER :</div>
+            <table>
+                {{range .Posts}}
+                <tr>
+                    <td>
+                        {{if gt .State 0}}
+                        <div data-name='deleted'>{{.Title}} Deleted</div>
+                        {{else}}
+                        <div id={{.ID}} data-name='post'>{{.Title}}</div>
+                        {{end}}
+                    </td>
+                </tr>
+                {{end}}
+            </table>
+            <div> LIST OF COMMENTS OF THIS USER :</div>
+            <table>
+                {{range .Comments}}
+                <tr>
+                    <td>
+                        {{if gt .State 0}}
+                        <div data-name='deleted'>{{.Content}} Deleted</div>
+                        {{else}}
+                        <div id={{.ID}} data-name='comments'>{{.Content}}</div>
+                        {{end}}
+                    </td>
+                </tr>
+                {{end}}
+            </table>
+
+
+
+
+
+
+
+
+            {{template "loading" . }}
+</body>
+
+<script src="../static/js/date.js"></script>
+<script src="../static/js/profile.js"></script>
+<script src="../static/js/loading.js"></script>
+
+
+</html>
+{{end}}

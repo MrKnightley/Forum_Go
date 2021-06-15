@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spectral&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap');
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid rgb(144, 112, 112);
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: rgb(35, 35, 35);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+#arrow,
+#cross {
+    position: absolute;
+    text-decoration: none;
+    opacity: 0.9;
+}
+
+#cross {
+    top: 40px;
+    right: 50px;
+    width: 16px;
+    /* Make it white: */
+    -webkit-filter: invert(1);
+    filter: invert(1);
+}
+
+#arrow {
+    top: 30px;
+    left: 50px;
+    font-size: 200%;
+    color: white;
+    text-shadow: 0 0 4px white;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translatey(0px);
+    }
+    50% {
+        transform: translatey(-8px);
+    }
+    100% {
+        transform: translatey(0px);
+    }
+}
+
+.container {
+    justify-content: center;
+    align-items: center;
+}
+
+#create-your-account {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+    margin-top: 40px;
+}
+
+#ornament {
+    display: grid;
+    opacity: 0.3;
+    padding-top: 35px;
+    padding-bottom: 8px;
+}
+
+#diamond-shape {
+    position: absolute;
+    background: #fff;
+    height: 7px;
+    width: 7px;
+    align-items: center;
+    transform: rotate(45deg);
+    margin-left: 155px;
+    margin-top: -2px;
+}
+
+#fading-line-left,
+#fading-line-right {
+    position: absolute;
+    height: 1px;
+    width: 146px;
+}
+
+#fading-line-left {
+    background: linear-gradient(90deg, transparent 0%, rgb(255, 255, 255) 100%);
+}
+
+#fading-line-right {
+    background: linear-gradient(90deg, white 0%, transparent 100%);
+    margin-left: 170px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.label {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 2px;
+    padding-top: 20px;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.inputWithIcon {
+    position: relative;
+}
+
+.inputWithIcon i {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 30px 16px;
+    color: rgba(255, 255, 255, 0.15);
+}
+
+input {
+    padding-top: 18px;
+    padding-bottom: 18px;
+    padding-left: 55px;
+    font-size: 80%;
+    color: white;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.6);
+    background-color: rgb(45, 45, 45);
+    outline: none;
+    border-color: transparent;
+    border-top: 1px solid rgba(66, 66, 66);
+    border-bottom: 1px solid rgba(66, 66, 66);
+    border-left: 1px solid rgba(66, 66, 66);
+    border-right: 1px solid rgba(66, 66, 66);
+    border-radius: 3px;
+    margin: 10px 0px;
+    min-width: 250px;
+}
+
+input::placeholder {
+    text-transform: uppercase;
+    font-size: 85%;
+    text-shadow: none;
+}
+
+.invalid-username,
+#invalid-password,
+.http-error {
+    text-decoration: none;
+    justify-content: center;
+    font-size: 80%;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 1);
+    color: rgb(218, 0, 29);
+    padding-top: 5px;
+}
+
+.http-valid {
+    text-decoration: none;
+    justify-content: center;
+    font-size: 80%;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 1);
+    color: rgb(0, 158, 21);
+    padding-top: 5px;
+}
+
+.identifiers-taken {
+    font-size: 90%;
+}
+
+.identifiers-taken:hover,
+.http-error:hover {
+    text-decoration: underline;
+}
+
+.info {
+    justify-content: center;
+    font-size: 80%;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+    padding-top: 20px;
+}
+
+.text {
+    padding-left: 50px;
+    /* margin-top: -17px; */
+}
+
+svg {
+    position: absolute;
+    margin-top: 3px;
+}
+
+.btn {
+    text-decoration: none;
+    display: inline-block;
+    padding: 14px 10px;
+    border: none;
+    border-radius: 40px;
+    background: rgba(238, 209, 149);
+    color: black;
+    font-size: 80%;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    margin: 40px 0px;
+    transition: 0.2s ease-in-out;
+}
+
+.btn:hover {
+    background: rgb(255, 228, 175);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.linkWithIcon {
+    padding-left: 30px;
+    margin-top: -20px;
+}
+
+.linkWithIcon a {
+    text-decoration: none;
+    color: rgba(153, 144, 234);
+    font-size: 85%;
+}
+
+.linkWithIcon a:hover {
+    text-decoration: underline;
+}
+
+.linkWithIcon i {
+    opacity: 0.8;
+}
+
+@media only screen and (max-height: 840px) and (max-width:680px) {
+    .container {
+        padding-top: 60px;
+    }
+    #cross {
+        width: 11px;
+        top: 20px;
+    }
+    #arrow {
+        font-size: 140%;
+        top: 10px;
+    }
+}
+
+
+/* AJOUT POUR LA PAGE EDIT-ACCOUNT ("Your account setttings") */
+
+
+/* .avatar-img {
+    width: 50px;
+    border-radius: 100px;
+}
+
+.custom-file-upload {
+    display: inline-flex;
+    padding-top: 10px;
+    padding-left: 20px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+} */

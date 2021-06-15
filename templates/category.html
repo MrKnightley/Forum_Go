@@ -1,0 +1,167 @@
+{{ define "category" }}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/category.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/loading.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="icon" href="../static/images/web_favicon.png" type="image/icon type">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>FAIRFAX | {{.Name}}</title>
+</head>
+
+<body>
+
+    {{template "header" .User }}
+
+    <section class="wrapper">
+        <section id="top-banner">
+            <img src="../static/images/category/banner_category-{{.ID}}.webp" class="banner-img">
+        </section>
+        <div class="container">
+            <img src="../static/images/category/panel.png" class="panel-img">
+            <div class="title" id="title-{{.ID}}">{{.Name}}</div>
+        </div>
+    </section>
+
+
+    <section id="newspaper">
+
+        <div class="head">
+            <div class="headerobjectswrapper">
+                <div class="title">The Latest Faxes</div>
+            </div>
+
+            <div class="today-date">Today</div>
+        </div>
+
+        <div class="sortContainer">
+            <div class="button-container">
+                <ul>
+                    <li>
+                        <p onclick="sortByDate()" class="active">Sort By Date</p>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <p onclick="sortByComment()" class="active">Sort By Comment</p>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <p onclick="sortByLike()" class="active">Sort By Like</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="textarea-container">
+                <input type="textarea" onkeyup="filter(this.value)" placeholder="Search for a title">
+            </div>
+
+        </div>
+
+        <div class="container">
+            <div class="columns super">
+                {{range .Posts}} {{ if eq .State 0 }}
+                <!-- POST PUBLIÉ -->
+                <div class="column" data-date="{{.Date}}" data-comment="{{len .Comments}}" data-like="{{ len .Likes}}" data-content="{{.Content}} {{.Author.Username}} {{.Title}}">
+                    <div class="head"><a href="/post/{{ .ID }}"><span class="headline hl">{{ .Title }}</span></a>
+                        <a class="author" href="/Profile?user={{ .Author.Username }}">
+
+                            {{ if ne .Author.House.ID 0 }}
+                            <img class="house-img" src="{{.Author.House.Image}}" title="{{.Author.House.Name}}"> 
+                            {{ end }}
+
+                            <p><span class="headline hl-author">by <span>{{ .Author.Username }}</span></span>
+                            </p>
+
+                            <img class="avatar-img "src="{{.Author.Avatar}}" title="{{.Author.Username}}"> 
+                        </a>
+
+                    </div>
+                    <p class="content">
+                        {{ .Content }} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod
+                        non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus
+                        volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim
+                        sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam
+                        nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede.
+                        Praesent blandit odio eu enim.
+                    </p>
+                    {{ if .Image }}
+                    <figure class="figure">
+                        <img class="media" src="{{ .Image }}" alt="">
+                    </figure>
+                    {{ end }}
+                    <div class="stats">
+                        <div class="likes">
+                            <img src="../static/images/like_empty.png" title="Number of likes">
+                            <p>{{ len .Likes }}</p>
+                        </div>
+
+                        <div class="replies">
+                            <img src="../static/images/reply.png" title="Number of replies">
+                            <p> {{ len .Comments }}</p>
+                        </div>
+
+                        <div class="dislikes">
+                            <img src="../static/images/dislike_empty.png" title="Number of dislikes">
+                            <p>{{ len .Dislikes }}</p>
+                        </div>
+                    </div>
+                    {{ if ne .Author.House.ID 0 }}
+                    <p><span class="house-name__{{ .Author.House.ID }}">{{ .Author.House.Name }}</span></p>
+                    {{ end }}
+                    <p><span class="date">{{ .Date }}</span></p>
+
+                </div>
+
+                {{ else }}
+                <!-- POST SUPPRIMÉ -->
+                <div class="column locked" data-date="{{.Date}}" data-comment="{{len .Comments}}" data-like="{{ len .Likes}}">
+                    <div class="head">
+                        <div class="locked-title">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                            <span class="headline hl locked">Deleted</span>
+                        </div>
+                        <a class="author" href="/Profile?user={{ .Author.Username }}">
+
+                            {{ if ne .Author.House.ID 0 }}
+                            <img class="house-img" src="{{.Author.House.Image}}" title="{{.Author.House.Name}}"> 
+                            {{ end }}
+
+                            <p><span class="headline hl-author">by <span>{{ .Author.Username }}</span></span>
+                            </p>
+
+                            <img class="avatar-img" src="{{.Author.Avatar}}" title="{{.Author.Username}}"> 
+                 
+                        </a>
+
+                    </div>
+                    <p class="locked-content">
+                        <!-- <i class="fa fa-trash" aria-hidden="true"></i>
+                    </p>
+                    <p><span class="date">Date</span></p> -->
+                </div>
+                {{ end }} {{ end }}
+
+            </div>
+        </div>
+    </section>
+
+    {{template "loading" . }}
+
+</body>
+
+<script src="../static/js/category.js"></script>
+<script src="../static/js/content.js"></script>
+<script src="../static/js/date.js"></script>
+<script src="../static/js/loading.js"></script>
+
+</html>
+{{ end }}

@@ -1,0 +1,24 @@
+{{define "header" }}
+
+<header>
+    <a href="/" class="menu">X</a>
+    <a href="/"><img src="/static/images/main_logo.png" id="logo">
+    </a>
+    {{ if eq .Role 0 }}
+    <ul>
+        <li><a class="active" href="/login">Login</a></li>
+    </ul>
+    {{ else }}
+    <ul>
+        <li>
+            <a class="avatar" href="/Profile?user={{ .Username }}"><img class="avatar-img" src="{{ .Avatar }}"></a>
+        </li>
+        <li>
+            <a class="new-post" href="/new-post"><img class="new-post-img" src="../static/images/new-post.png"></a>
+        </li>
+        <li><a class="active" href="/logout">Logout</a></li>
+    </ul>
+    {{ end }}
+</header>
+
+{{end}}

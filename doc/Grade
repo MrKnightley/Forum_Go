@@ -1,0 +1,7 @@
+Les rôles correspondent aux grades suivants, tels que définis dans le fichier database/models.go :
+
+GUEST = 0
+MEMBER = 1
+MODERATOR = 2
+ADMIN = 3
+DEV = 4

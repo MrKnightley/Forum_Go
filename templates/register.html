@@ -1,0 +1,97 @@
+{{define "register"}}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/register.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+    <link rel="icon" href="static/images/web_favicon.png" type="image/icon type">
+
+    <title>FAIRFAX | Create your account</title>
+</head>
+
+<body>
+    <a href="/login" title="Login" id="arrow">←</a>
+    <a href="/" title="Home"><img id="cross" src="static/images/close-cross.png "></a>
+
+    <div class="container">
+        <div id="create-your-account">Create your account</div>
+        <div id="ornament">
+            <div id="fading-line-left"></div>
+            <div id="diamond-shape"></div>
+            <div id="fading-line-right"></div>
+        </div>
+
+        <form action="/register" id="form-validation" method="POST">
+
+            <div class="label">Username</div>
+            <div class="inputWithIcon">
+                <input id="username" type="text" name="username" placeholder="Choose a username" pattern="^[ a-zA-Z0-9._]{3,20}" title="Only letters, numbers, spaces, dots and underscores. Length required: 3 ~ 20" required>
+                <i class="fa fa-user fa-fw" aria-hidden="true"></i>
+            </div>
+
+            {{if .Username }}
+            <a href="/register" title="Register" class="http-error">This username is unavailable.</a> {{end }}
+
+            <div class="invalid-username" style="display:none">Must be 3 to 20 characters.</div>
+            <div class="invalid-username" style="display:none">Only letters, numbers, spaces, dots or underscores.</div>
+
+            <div class="label">Email address</div>
+            <div class="inputWithIcon">
+                <input type="email" name="email" placeholder="Enter your email address" maxlength="40" required>
+                <i class="fa fa-envelope fa-fw" aria-hidden="true"></i>
+            </div>
+
+            {{if .Email }}
+            <a href="/login" title="Login" class="http-error">This email is already registered.<br>Would you like to log in instead?</a> {{end }} {{if .Account }}
+            <a href="/login" title="Login" class="http-error">This account already exists.<br>Would you like to log in instead?</a> {{end }}
+
+            <div class="label">Password</div>
+            <div class="inputWithIcon">
+                <input id="pwd-1" name="password" type="password" placeholder="Choose a password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,30}">
+                <i class="fa fa-lock fa-fw" aria-hidden="true"></i>
+            </div>
+
+            <div class="inputWithIcon">
+                <input id="pwd-2" name="password" type="password" placeholder="Confirm your password" required>
+                <i class="fa fa-lock fa-fw" aria-hidden="true"></i>
+            </div>
+            <div id="invalid-password" style="display:none">Your passwords do not match.</div>
+
+            <div class="info">
+                <div>Your password must contain the following :</div>
+                <br>
+                <div class="requirement">
+                    <svg id="svg-1" height="13" viewBox="0 0 16 13" width="16">
+                        <path d="m5.6 8-3.2-3.2-2.4 2.4 5.6 5.6 10.4-10.4-2.4-2.4z" fill="#fff"></path>
+                    </svg>
+                    <div class="text">A minimum of 6 characters</div>
+                </div>
+
+                <div class="requirement">
+                    <svg id="svg-2" height="13" viewBox="0 0 16 13" width="16">
+                        <path d="m5.6 8-3.2-3.2-2.4 2.4 5.6 5.6 10.4-10.4-2.4-2.4z" fill="#fff"></path>
+                    </svg>
+                    <div class="text">A number and a combination of<br>uppercase and lowercase letters.</div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn">Continue</button>
+
+            <div class="linkWithIcon" style="padding-bottom:30px">
+                <i class="fa fa-key fa-fw" aria-hidden="true"></i>
+                <a href="/login">Already a member? Log in here</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+<script src="static/js/register.js"></script>
+
+</html>
+
+{{end}}

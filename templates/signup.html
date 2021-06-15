@@ -1,0 +1,43 @@
+{{define "signup"}}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+</head>
+{{ if not .ID }}
+<body>
+{{ else }}
+<body id="{{ .Problem }}">
+{{ end }}
+    <div class="container">
+        <div>
+            {{ if not .ID }}
+                <form id="form-validation" method="POST">
+                    <div>Username :</div>
+                    <input type="text" name="username" placeholder="Type your username" required>
+                    <div>Email :</div>
+                    <input type="email" name="email" placeholder="Type your email" required>
+                    <div>Password :</div>
+                    <input id="validation1" type="password" placeholder="Type your password" required>
+                    <div>Confirm password :</div>
+                    <input id="validation2" type="password" name="password" placeholder="Confirm your password" required>
+                    <button type="submit">Signup</button>
+                </form>
+            {{ else }}
+                <form method="post">
+                    <div>Question secrète :</div>
+                    <input type="text" name="question" placeholder="Type your secret question" required>
+                    <div>Réponse :</div>
+                    <input type="text" name="answer" placeholder="Type your answer" required>
+                    <input type="Integer" name="id" style="Display:none;" value="{{ .ID }}" required>
+                    <button type="submit">Signup</button>
+                </form>
+            {{ end }}
+        </div>
+    </div>
+</body>
+<script src="../static/js/signup.js"></script>
+</html>
+{{end}}

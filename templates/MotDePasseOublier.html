@@ -1,0 +1,34 @@
+{{define "motdepasseoublier"}}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            {{ if not .Username }}
+                <form method="post">
+                    <div>Rentrer votre nom d'utilisateur :</div>
+                    <input type="text" name="username" placeholder="Type your secret question" required>
+                    <button type="submit">Signup</button>
+                </form>
+            {{ else }}
+                <form method="post">
+                    <div>Rentrer votre nom d'utilisateur :</div>
+                    <input type="text" name="username" value="{{ .Username }}" readonly>
+                    <div>Réponder a votre question: {{ .SecretQuestion }} </div>
+                    <input type="text" name="answer" placeholder="Type your answer" required>
+                    <div>Nouveau Mot De Passe:</div>
+                    <input type="password" name="psw" placeholder="Type your new password" required>
+                    <button type="submit">Signup</button>
+                </form>
+            {{ end }}
+        </div>
+    </div>
+</body>
+</html>
+{{end}}

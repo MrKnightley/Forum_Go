@@ -1,0 +1,56 @@
+{{ define "envelope" }}
+
+<div class="envelope-wrapper" id="envelope-wrapper">
+    <section class="container" id="contact">
+        <form class="flip" method="POST">
+            <div class="front">
+                <img src="../static/images/stamp.png" id="stamp-img">
+
+                <p class="username">{{ .Post.Author.Username }}</p>
+                <p class="post-title">“{{ .Post.Title}}”</p>
+                <a id="flip2back" href="#lid" class="clickable">Send a reply</a>
+            </div>
+            <div id="content" class="back">
+                <div id="letter">
+                    <div class="container">
+                        <div class="flip">
+                            <div class="front"></div>
+                            <div class="back">
+                                <p class="today-date"></p>
+                                <a id="close" href="#lid" class="clickable"><img src="../static/images/close-cross.png"></a>
+                                <a onclick="closeGif()" id="close" href="#lid" class="clickable"><img src="../static/images/close-cross.png"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <form method="POST">
+                        <textarea class="required" id="comment" name="comment" placeholder="Your reply"></textarea>
+                        <input id="inputgif" type="hidden" value="Choose a gif" name="gif" required/>
+                        <div id='machin'>
+                            <input id="giflink" onclick="selectGif()" type="button" class="submit" value="Choose a gif"/>
+                            <a onclick="empty(this)" id="empty" class="clickable Invisible"><img src="../static/images/close-cross.png"></a>
+                        </div>
+                        <input type="submit" class="submit" value="Send" />
+                    </form>
+                </div>
+                <div id="top">
+                    <a id="flip" href="#contact" class="clickable">Flip</a>
+                </div>
+                <div id="lid" class="container">
+                    <div class="flip">
+                        <div class="front">
+                            <div>
+                                <p class="expeditor">FROM: <span> {{ .User.Username }}</span></p>
+                            </div>
+                            <a id="open" href="#content">
+                                <img src="../static/images/wax_seal.png" id="wax-seal">
+                            </a>
+                        </div>
+                        <div class="back"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+
+{{ end }}

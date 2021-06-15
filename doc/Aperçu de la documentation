@@ -1,0 +1,39 @@
+                                                                             /- main.go -\
+                                                    /!\ AU LANCEMENT DU SERVEUR / WHEN STARTING THE SERVER /!\
+
+                        1.
+                        Le serveur lanceras en premier une fonction Initialize elle permets de crée la database, si elle a besoin d'être modifier c'est ici qu'il faut le faire.
+                        Si les tables ne sont pas encore crée elle le seront ici.
+                        2.
+                        Le serveur lance ensuite la fonction FillCategories qui crée dans la atables categories les catégories prédéfinie.
+                        La page moderation permetras ensuite de crée et supprimer des catégories. (NOT DONE YET)
+                        3.
+                        Nous ouvront ensuite deux fichier en tant que file server , les images et le statics contenant js et css des templates.
+                        4.
+                        Ensuite tout les handleFunc correspondant a chaque page, respecter le format si nouvelle page crée car:
+                            - Request.Auth lance un coockie si il y en a un ou en crée un dans les autre cas, le coockie sert a avoir les informations d'utilisateur et de savoir 
+                              si il a accès a la page.
+                            - Request.Auth demande la fonction du handleFunc a lancer une fois qu'il a fini sont traitement ansi qu'un string correspondant au grade minimal a avoir
+                              pour accéder a la dite page.
+                        5.
+                        Nous supprimons les sessions dont le temps a été dépasser dans CleanExpiredSessions et ouvront le serveur ensuite.
+
+
+
+                                        /- - - - - - - - - - - - - - - - - DISCLAIMER - - - - - - - - - - - - - - - - - -\
+
+                        Comme la majoriter des page que nous avons crée nous avons diviser les pages en double page qui distribu diverse information en fonction du format POST et GET.
+                        Le templates comme dans une majoriter des cas s'adapte a afficher certaines chose en plus si une donnée particulière lui est donner en plus que d'autre appel.
+                        Les dossiers sont séparer en plusieur packages:
+
+                            - (/package\) request englobe l'ensemble des fonctionnalité primaire que tout utilisateur peut accéder
+                            - (/package\) admin contient les fonctionnalité modératrice et supérieure, tel que la page modération, permettant de supprimer ou modifier n'importe 
+                              quel post/comment/user et un page qui gère ces suppréssion ici.
+                            - static , qui comme la logique le veut , contient css sccs et js des templates ainsi que les images utiliser pour le site.
+                            - templates , qui comme sont nom l'indique , contient tout nos templates.
+                            - toolbox qui contient certaines fonction que l'on a besoin et qui nous sert de boite a outil.
+
+
+                            /----------------------------------------------------------------------------------------------------------------------\
+                            | La documentation est séparer en chaque type de language afin de pouvoir chercher plus facilement L'information voulu |
+                            \----------------------------------------------------------------------------------------------------------------------/

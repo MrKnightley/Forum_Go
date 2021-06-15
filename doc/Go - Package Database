@@ -1,0 +1,14 @@
+/---------------------------------- PACKAGE DATABASE ---------------------------------------\
+
+Fonction globale que l'on utilise un peu partout. Majoritairement des gets et des fill sont présent dedans.
+Models contient pratiquement toute les stucts que l'on utilise.
+
+/- - - - - - - - - - - - - - - - - MiddleWare / request.Auth - - - - - - - - - - - - - - - - -\
+
+function Auth: (Check si l'user a le droit d'accécder a la page)
+    Lance GetUserByCoockie
+    Puis lance le handle func qui correspond
+
+function GetUserByCoockie:
+    Chope le coockie de l'user actuel et si pas de coockie on le crée (if err != nil on le crée)
+

@@ -1,0 +1,19 @@
+/---------------------------------- PACKAGE ADMIN ---------------------------------------\
+
+Fonctionnalité d'administration qui se doivent d'être séparer du reste des fonctions
+
+/- - - - - - - - - - - - - - - - - Badge - - - - - - - - - - - - - - - - -\
+
+Plutot safe. Rajoute seulement le badge de l'utilisateur passer en argument.
+
+/- - - - - - - - - - - - - - - - - DELETE - - - - - - - - - - - - - - - - -\
+
+PAS SAFE, DETRUIT un enregistrement, un user et TOUT ce qui le concerne ou une ligne de la base de donnée. CECI EST IRREVERSIBLE.
+
+
+/- - - - - - - - - - - - - - - - - gestion - - - - - - - - - - - - - - - - -\
+
+En post: Modifie un élément de la base de donnée (sa valeur uniquement)
+
+En get: Charge la page de moderation.
+

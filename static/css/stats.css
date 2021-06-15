@@ -1,0 +1,8 @@
+.row-container {
+    display: flex;
+    flex-direction: row;
+}
+td {
+    width: 6.66%;
+    border: 1px solid grey;
+}

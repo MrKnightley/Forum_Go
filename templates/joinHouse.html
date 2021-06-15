@@ -1,0 +1,421 @@
+{{ define "join-house" }}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/join-house.css">
+    <link rel="icon" href="../static/images/web_favicon.png" type="image/icon type">
+    <title>Join a house</title>
+</head>
+
+<body>
+
+    <form action="/join-house" method="POST">
+        <!-- Values : 1 (Griphons), 2 (Wildcats), 3 (Krakens), 4 (Vipers) -->
+
+        <!-- Q1: What kind of instruments most pleases your ear?
+            - The piano	     (Griphons)
+            - The guitar     (Wildcats)
+            - The harp 	     (Krakens)
+            - The violin     (Vipers) 
+        -->
+        <!-- <input type="radio" name="q1" id="q1-a0" value="0" checked> -->
+        <input type="radio" name="q1" id="q1-a1" value="1" onclick="handleClick('q1');">The piano
+        <input type="radio" name="q1" id="q1-a2" value="2" onclick="handleClick('q1');">The guitar
+        <input type="radio" name="q1" id="q1-a3" value="3" onclick="handleClick('q1');">The harp
+        <input type="radio" name="q1" id="q1-a4" value="4" onclick="handleClick('q1');">The violin
+
+
+        <!-- Q2: If you were lost at night, which animal would you be most likely to follow to set you back on the right path?
+            - A cat		(Wildcats)
+            - A snake 	(Vipers) 
+            - An eagle	(Griphons)
+            - A fish	(Krakens)
+
+        -->
+        <!-- <input type="radio" name="q2" id="q2-a0" value="0" checked> -->
+        <input type="radio" name="q2" id="q2-a1" value="2" onclick="handleClick('q2');">A cat
+        <input type="radio" name="q2" id="q2-a2" value="4" onclick="handleClick('q2');">A snake
+        <input type="radio" name="q2" id="q2-a3" value="1" onclick="handleClick('q2');">An eagle
+        <input type="radio" name="q2" id="q2-a4" value="3" onclick="handleClick('q2');">A fish
+
+
+        <!-- Q3: How would you like to be known to history?
+            - The Great	(Griphons)
+            - The Bold	(Vipers) 
+            - The Wise	(Krakens)
+            - The Good	(Wildcats)
+        -->
+        <!-- <input type="radio" name="q3" id="q3-a0" value="0" checked> -->
+        <input type="radio" name="q3" id="q3-a1" value="1" onclick="handleClick('q3');">The Great
+        <input type="radio" name="q3" id="q3-a2" value="4" onclick="handleClick('q3');">The Bold
+        <input type="radio" name="q3" id="q3-a3" value="3" onclick="handleClick('q3');">The Wise
+        <input type="radio" name="q3" id="q3-a4" value="2" onclick="handleClick('q3');">The Good
+
+
+        <!-- Q4: Which magical ability would you choose if you could have one?
+            - Flying				        (Griphons)
+            - Talking to animals		    (Wildcats)
+            - Invisibility			        (Krakens)
+            - Hearing people's thoughts 	(Vipers)
+            - Traveling in time		        (Griphons)
+            - Turning water into wine	    (Wildcats)
+            - Moving objects with your mind (Krakens)
+            - All of the above		        (Vipers) 
+        -->
+        <!-- <input type="radio" name="q4" id="q4-a0" value="0" checked> -->
+        <input type="radio" name="q4" id="q4-a1" value="1" onclick="handleClick('q4');">
+        <input type="radio" name="q4" id="q4-a2" value="2" onclick="handleClick('q4');">
+        <input type="radio" name="q4" id="q4-a3" value="3" onclick="handleClick('q4');">
+        <input type="radio" name="q4" id="q4-a4" value="4" onclick="handleClick('q4');">
+        <input type="radio" name="q4" id="q4-a5" value="1" onclick="handleClick('q4');">
+        <input type="radio" name="q4" id="q4-a6" value="2" onclick="handleClick('q4');">
+        <input type="radio" name="q4" id="q4-a7" value="3" onclick="handleClick('q4');">
+        <input type="radio" name="q4" id="q4-a8" value="4" onclick="handleClick('q4');">
+
+
+        <!-- Q5: Which of the following do you find most difficult to deal with?
+            - Being ignored	(Vipers) 
+            - Loneliness	(Griphons)
+            - Boredom		(Krakens)
+            - Hunger		(Wildcats)
+        -->
+        <!-- <input type="radio" name="q5" id="q5-a0" value="0" checked> -->
+        <input type="radio" name="q5" id="q5-a1" value="4" onclick="handleClick('q5');">
+        <input type="radio" name="q5" id="q5-a2" value="1" onclick="handleClick('q5');">
+        <input type="radio" name="q5" id="q5-a3" value="3" onclick="handleClick('q5');">
+        <input type="radio" name="q5" id="q5-a4" value="2" onclick="handleClick('q5');">
+
+
+        <!-- Q6: Were you born...
+            - In the summer	(Griphons)
+            - In autumn		(Krakens)
+            - In winter		(Vipers) 
+            - In spring		(Wildcats)
+        -->
+        <!-- <input type="radio" name="q6" id="q6-a0" value="0" checked> -->
+        <input type="radio" name="q6" id="q6-a1" value="1" onclick="handleClick('q6');">
+        <input type="radio" name="q6" id="q6-a2" value="3" onclick="handleClick('q6');">
+        <input type="radio" name="q6" id="q6-a3" value="4" onclick="handleClick('q6');">
+        <input type="radio" name="q6" id="q6-a4" value="2" onclick="handleClick('q6');">
+
+
+        <!-- Q7: Which of the following is most important to you?
+            - Power			(Vipers) 
+            - Wealth		(Wildcats)
+            - Knowledge		(Krakens)
+            - Love			(Griphons)
+        -->
+        <!-- <input type="radio" name="q7" id="q7-a0" value="0" checked> -->
+        <input type="radio" name="q7" id="q7-a1" value="4" onclick="handleClick('q7');">
+        <input type="radio" name="q7" id="q7-a2" value="2" onclick="handleClick('q7');">
+        <input type="radio" name="q7" id="q7-a3" value="3" onclick="handleClick('q7');">
+        <input type="radio" name="q7" id="q7-a4" value="1" onclick="handleClick('q7');">
+
+        <!-- Q8: Do you most pride yourself on your...
+            - Determination		(Vipers)
+            - Intelligence		(Krakens)
+            - Kindness			(Wildcats)
+            - Optimism			(Griphons)
+            - Imagination		(Wildcats)
+            - Patience			(Griphons)
+            - Originality		(Krakens)
+            - Resilience		(Vipers) 
+        -->
+        <!-- <input type="radio" name="q8" id="q8-a0" value="0" checked> -->
+        <input type="radio" name="q8" id="q8-a1" value="4" onclick="handleClick('q8');">
+        <input type="radio" name="q8" id="q8-a2" value="3" onclick="handleClick('q8');">
+        <input type="radio" name="q8" id="q8-a3" value="2" onclick="handleClick('q8');">
+        <input type="radio" name="q8" id="q8-a4" value="1" onclick="handleClick('q8');">
+        <input type="radio" name="q8" id="q8-a5" value="2" onclick="handleClick('q8');">
+        <input type="radio" name="q8" id="q8-a6" value="1" onclick="handleClick('q8');">
+        <input type="radio" name="q8" id="q8-a7" value="3" onclick="handleClick('q8');">
+        <input type="radio" name="q8" id="q8-a8" value="4" onclick="handleClick('q8');">
+
+
+        <!-- Q9: Traveling alone on a deserted road, you reach a crossroad. Do you go...
+            - Left towards the sea		(Krakens)
+            - Ahead towards the forest	(Griphons)
+            - Right towards the castle	(Vipers)
+            - Back to the city		    (Wildcats) 
+         -->
+        <!-- <input type="radio" name="q9" id="q9-a0" value="0" checked> -->
+        <input type="radio" name="q9" id="q9-a1" value="3" onclick="handleClick('q9');">
+        <input type="radio" name="q9" id="q9-a2" value="1" onclick="handleClick('q9');">
+        <input type="radio" name="q9" id="q9-a3" value="4" onclick="handleClick('q9');">
+        <input type="radio" name="q9" id="q9-a4" value="2" onclick="handleClick('q9');">
+
+
+        <!-- Q10: Do you most fear...
+            - Isolation	    (Wildcats)
+            - Small spaces	(Krakens)
+            - Darkness      (Griphons)
+            - Height		(Vipers)
+        -->
+        <!-- <input type="radio" name="q10" id="q10-a0" value="0" checked> -->
+        <input type="radio" name="q10" id="q10-a1" value="2" onclick="handleClick('q10');">
+        <input type="radio" name="q10" id="q10-a2" value="3" onclick="handleClick('q10');">
+        <input type="radio" name="q10" id="q10-a3" value="1" onclick="handleClick('q10');">
+        <input type="radio" name="q10" id="q10-a4" value="4" onclick="handleClick('q10');">
+
+
+        <!-- Q11: In a chest of mysterious artefacts, would you choose...
+            - The golden key			        (Griphons)
+            - The emerald-encrusted dagger		(Vipers) 
+            - The sealed scroll			        (Krakens)
+            - The glittering jewels			    (Wildcats)
+        -->
+        <!-- <input type="radio" name="q11" id="q11-a0" value="0" checked> -->
+        <input type="radio" name="q11" id="q11-a1" value="1" onclick="handleClick('q11');">
+        <input type="radio" name="q11" id="q11-a2" value="4" onclick="handleClick('q11');">
+        <input type="radio" name="q11" id="q11-a3" value="3" onclick="handleClick('q11');">
+        <input type="radio" name="q11" id="q11-a4" value="2" onclick="handleClick('q11');">
+
+
+        <!-- Q12: Salt or sweet?
+            - Salt			(Krakens) (Vipers) 
+            - Sweet			(Griphons) (Wildcats)
+        -->
+        <!-- <input type="radio" name="q12" id="q12-a0" value="0" checked> -->
+        <input type="radio" name="q12" id="q12-a1" value="34" onclick="handleClick('q12');">
+        <input type="radio" name="q12" id="q12-a2" value="12" onclick="handleClick('q12');">
+
+
+        <!-- Q13: Safe or free?
+            - Safe			(Krakens) (Wildcats)
+            - Free			(Griphons) (Vipers) 
+        -->
+        <!-- <input type="radio" name="q13" id="q13-a0" value="0" checked> -->
+        <input type="radio" name="q13" id="q13-a1" value="32" onclick="handleClick('q13');">
+        <input type="radio" name="q13" id="q13-a2" value="14" onclick="handleClick('q13');">
+
+        <input type="submit" value="Valider">
+    </form>
+
+    <div class="slidershow middle">
+        <div class="slides">
+            <input type="radio" name="r" id="r1" checked>
+            <input type="radio" name="r" id="r2">
+            <input type="radio" name="r" id="r3">
+            <input type="radio" name="r" id="r4">
+            <input type="radio" name="r" id="r5">
+            <input type="radio" name="r" id="r6">
+            <input type="radio" name="r" id="r7">
+            <input type="radio" name="r" id="r8">
+            <input type="radio" name="r" id="r9">
+            <input type="radio" name="r" id="r10">
+            <input type="radio" name="r" id="r11">
+            <input type="radio" name="r" id="r12">
+            <input type="radio" name="r" id="r13">
+
+
+            <div class="slide" id="s1">
+                <img src="../static/images/join-house/q1.webp" class="background-img">
+                <img src="../static/images/join-house/q7.webp" class="background-img" id="overlay-img">
+                <div class="text">
+                    <p class="question">What kind of instruments most pleases your ear?</p>
+                    <div class="answers">
+                        <label for="q1-a1" class="answer">The piano</label>
+                        <label for="q1-a2" class="answer">The guitar</label>
+                        <label for="q1-a3" class="answer">The harp</label>
+                        <label for="q1-a4" class="answer">The violin</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="slide">
+                <img src="../static/images/join-house/q2.webp" class="background-img">
+                <img src="../static/images/join-house/q7.webp" class="background-img" id="overlay-img">
+                <div class="text">
+                    <p class="question">If you were lost at night, which animal would you be most likely to follow to set you back on the right path?</p>
+                    <div class="answers">
+                        <label for="q2-a1" class="answer">A cat</label>
+                        <label for="q2-a2" class="answer">A snake</label>
+                        <label for="q2-a3" class="answer">An eagle</label>
+                        <label for="q2-a4" class="answer">A fish</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="slide">
+                <img src="../static/images/join-house/q3.webp" class="background-img">
+                <img src="../static/images/join-house/q7.webp" class="background-img" id="overlay-img">
+                <div class="text">
+                    <p class="question">How would you like to be known to history?</p>
+                    <div class="answers">
+                        <label for="q3-a1" class="answer">The Great</label>
+                        <label for="q3-a2" class="answer">The Bold</label>
+                        <label for="q3-a3" class="answer">The Wise</label>
+                        <label for="q3-a4" class="answer">The Good</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="slide">
+                <img src="../static/images/join-house/q4.webp" class="background-img">
+                <img src="../static/images/join-house/q7.webp" class="background-img" id="overlay-img">
+                <div class="text">
+                    <p class="question">Which magical ability would you choose if you could have one?</p>
+                    <div class="answers">
+                        <label for="q4-a1" class="answer">Flying</label>
+                        <label for="q4-a2" class="answer">Talking to animals</label>
+                        <label for="q4-a3" class="answer">Invisibility</label>
+                        <label for="q4-a4" class="answer">Hearing people's thoughts</label>
+                        <label for="q4-a5" class="answer">Traveling in time</label>
+                        <label for="q4-a6" class="answer">Turning water into wine</label>
+                        <label for="q4-a7" class="answer">Moving objects with your mind</label>
+                        <label for="q4-a8" class="answer">All of the above</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="../static/images/join-house/q5.webp" class="background-img">
+                <img src="../static/images/join-house/q7.webp" class="background-img" id="overlay-img">
+                <div class="text">
+                    <p class="question">Which of the following do you find most difficult to deal with?</p>
+                    <div class="answers">
+                        <label for="q5-a1" class="answer">Being ignored</label>
+                        <label for="q5-a2" class="answer">Loneliness</label>
+                        <label for="q5-a3" class="answer">Boredom</label>
+                        <label for="q5-a4" class="answer">Hunger</label>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="slide">
+                <img src="../static/images/join-house/q6.webp" class="background-img">
+                <img src="../static/images/join-house/q7.webp" class="background-img" id="overlay-img">
+                <div class="text">
+                    <p class="question">Were you born in...</p>
+                    <div class="answers">
+                        <label for="q6-a1" class="answer">Summer</label>
+                        <label for="q6-a2" class="answer">Autumn</label>
+                        <label for="q6-a3" class="answer">Winter</label>
+                        <label for="q6-a4" class="answer">Spring</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="slide">
+                <img src="../static/images/join-house/q7.webp" class="background-img">
+                <img src="../static/images/join-house/q7.webp" class="background-img" id="overlay-img">
+                <div class="text">
+                    <p class="question">Which of the following is most important to you?</p>
+                    <div class="answers">
+                        <label for="q7-a1" class="answer">Power</label>
+                        <label for="q7-a2" class="answer">Wealth</label>
+                        <label for="q7-a3" class="answer">Knowledge</label>
+                        <label for="q7-a4" class="answer">Love</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="../static/images/join-house/q8.webp" class="background-img">
+                <img src="../static/images/join-house/q7.webp" class="background-img" id="overlay-img">
+                <div class="text">
+                    <p class="question">Do you most pride yourself on your...</p>
+                    <div class="answers">
+                        <label for="q8-a1" class="answer">Determination</label>
+                        <label for="q8-a2" class="answer">Intelligence</label>
+                        <label for="q8-a3" class="answer">Kindness</label>
+                        <label for="q8-a4" class="answer">Optimism</label>
+                        <label for="q8-a5" class="answer">Imagination</label>
+                        <label for="q8-a6" class="answer">Patience</label>
+                        <label for="q8-a7" class="answer">Originality</label>
+                        <label for="q8-a8" class="answer">Resilience</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="../static/images/join-house/q9.webp" class="background-img">
+                <img src="../static/images/join-house/q7.webp" class="background-img" id="overlay-img">
+                <div class="text">
+                    <p class="question">Traveling alone on a deserted road, you reach a crossroad. Do you go...</p>
+                    <div class="answers">
+                        <label for="q9-a1" class="answer">Left towards the sea</label>
+                        <label for="q9-a2" class="answer">Ahead towards the forest</label>
+                        <label for="q9-a3" class="answer">Right towards the castle</label>
+                        <label for="q9-a4" class="answer">Back to the city</label>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="../static/images/join-house/q10.webp" class="background-img">
+                <img src="../static/images/join-house/q7.webp" class="background-img" id="overlay-img">
+                <div class="text">
+                    <p class="question">Do you most fear...</p>
+                    <div class="answers">
+                        <label for="q10-a1" class="answer">Isolation</label>
+                        <label for="q10-a2" class="answer">Small spaces</label>
+                        <label for="q10-a3" class="answer">Darkness</label>
+                        <label for="q10-a4" class="answer">Height</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="../static/images/join-house/q11.webp" class="background-img">
+                <img src="../static/images/join-house/q7.webp" class="background-img" id="overlay-img">
+                <div class="text">
+                    <p class="question">In a chest full of mysterious artefacts, would you choose...</p>
+                    <div class="answers">
+                        <label for="q11-a1" class="answer">The golden key</label>
+                        <label for="q11-a2" class="answer">The emerald-encrusted dagger</label>
+                        <label for="q11-a3" class="answer">The sealed scroll</label>
+                        <label for="q11-a4" class="answer">The glittering jewels</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="../static/images/join-house/q7.webp" class="background-img">
+                <img src="../static/images/join-house/q7.webp" class="background-img" id="overlay-img">
+                <div class="text">
+                    <p class="question">Salt or sweet?</p>
+                    <div class="answers">
+                        <label for="q12-a1" class="answer">Salt</label>
+                        <label for="q12-a2" class="answer">Sweet</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="../static/images/join-house/q7.webp" class="background-img">
+                <img src="../static/images/join-house/q7.webp" class="background-img" id="overlay-img">
+                <div class="text">
+                    <p class="question">Safe or free?</p>
+                    <div class="answers">
+                        <label for="q13-a1" class="answer">Safe</label>
+                        <label for="q13-a2" class="answer">Free</label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+<script src="../static/js/join-house.js"></script>
+
+<!-- Si l'utilisateur est déjà dans une maison (.House.ID != 0), je le renvoie sur l'index (par sécurité en plus du middleware Go) : -->
+{{ if gt .House.ID 0 }}
+<script>
+    window.location.href = "/";
+</script>
+{{end}}
+
+</html>
+{{ end }}

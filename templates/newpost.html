@@ -1,0 +1,127 @@
+{{ define "newpost" }}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/newpost.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+    <link rel="icon" href="../static/images/web_favicon.png" type="image/icon type">
+    <title>FAIRFAX | Post a new fax</title>
+</head>
+
+<body>
+
+    {{template "header" .User }}
+
+    <section id="top-banner">
+        <img src="../static/images/newpost/banner-newpost.webp" class="banner-img" id="banner-img">
+    </section>
+
+    <section id="main">
+
+        <div class="cover">
+            <div class="book">
+                <label for="page-1" class="book__page book__page--1">
+                </label>
+
+                <label for="page-2" class="book__page book__page--4">
+                    <div class="page__content right">
+                        <h1 class="page__content-title">
+                            <form method="post" enctype="multipart/form-data">
+                                <input name="title" id="titleinput" maxlength="60" placeholder="❯ A new fax by {{ .User.Username}}" required>
+
+                                <select name="category" required>
+                            <option value="0" selected disabled>Select a spot</option>
+                            {{range .Categories}}
+                            <option value="{{.ID}}">{{.Name}}</option>
+                            {{end}}
+                        </select>
+                                <label class="custom-file-upload">
+                                <input type="file" name="image" accept="image/*" id="image_input">
+                                <i class="fa fa-cloud-upload"></i>
+                            </label>
+                </h1>
+
+                <div class="page__content-blockquote">
+                    <p class="page__content-blockquote-text">
+                        <div class="textarea">
+                            <textarea name="content" id="textarea-content" required></textarea> <br>
+                        </div>
+                    </p>
+                </div>
+                <button type="submit">Publish</button>
+                </form>
+                <div class="page__number">3</div>
+            </div>
+            </label>
+
+            <!-- Resets the page -->
+            <input type="radio" name="page" id="page-1" onclick="moveLeft();" />
+
+            <!-- Goes to the second page -->
+            <input type="radio" name="page" id="page-2" onclick="moveRight();" />
+
+            <label class="book__page book__page--2" id="flipping-page">
+                    <div class="book__page-front">
+                        <div class="page__content">
+                            <div class="page__content-ornament"><img src="../static/images/post/ornament.png"></div>
+                            <h1 class="page__content-book-title">A New Fax</h1>
+                            <h2 class="page__content-author"><span>by</span>{{ .User.Username }}</h2>
+
+                            <div class="page__content-avatar"><img src="{{ .User.Avatar }}"></div>
+                            {{ range .User.Badges }}
+                            <img src="{{ .Image }}">
+                            {{end}}
+                            <div class="page__content-copyright">
+                                <p>The Fairfax Society</p>
+                                <p>MMXXI</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book__page-back">
+                        <div class="page__content">
+                            <h1 class="page__content-title">Table of content</h1>
+                            <table class="page__content-table">
+                                <tr>
+                                    <td align="left"><span>I.</span></td>
+                                    <td align="left">Give a title to your fax</td>
+                                    <td align="right">3</td>
+                                </tr>
+                                <tr>
+                                    <td align="left"><span>II.</span></td>
+                                    <td align="left">Select a spot</td>
+                                    <td align="right">27</td>
+                                </tr>
+                                <tr>
+                                    <td align="left"><span>III.</span></td>
+                                    <td align="left">Add a picture</td>
+                                    <td align="right">42</td>
+                                </tr>
+                            </table>
+
+                            <div class="page__number">2</div>
+                        </div>
+                    </div>
+                </label>
+        </div>
+        <!-- <div class="btn-container"><a href="/" class="home-btn">Home</a></div> -->
+        </div>
+
+    </section>
+
+
+
+</body>
+
+<script src="../static/js/newpost.js"></script>
+
+
+</html>
+
+{{end}}

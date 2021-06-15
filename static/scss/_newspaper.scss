@@ -1,0 +1,275 @@
+    @import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic');
+    @import url('https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic');
+    @import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One');
+    @import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro');
+    section#newspaper {
+        // Titre du newspaper ("The Fairfax Post") :
+        .title {
+            font-family: 'Crimson Text', serif;
+            font-weight: 900;
+            font-size: 50px;
+            letter-spacing: 15px;
+            text-transform: uppercase;
+            display: inline-block;
+            line-height: 72px;
+            margin-top: -50px;
+            padding: 0px 0 40px 0;
+            cursor: default;
+            transition: all 1s ease-in-out;
+            &:hover {
+                letter-spacing: 17px;
+            }
+        }
+        p {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        p.content {
+            font-size: 80%;
+            text-align: justify;
+            background: -webkit-linear-gradient(90deg, rgba(255, 255, 255, 1) 20%, rgba(0, 0, 0, 1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            user-select: none;
+        }
+        .author {
+            display: flex;
+            justify-content: center;
+            text-decoration: none;
+            color: inherit;
+            img {
+                margin: 13px 0 0 20px;
+                width: 30px;
+                height: 30px;
+                border-radius: 140px;
+            }
+        }
+        .head {
+            color: rgba(42, 32, 53, 0.8); // Couleur de TOUT le texte SAUF le contenu
+            text-align: center;
+            position: relative;
+        }
+        .today-date {
+            text-transform: uppercase;
+            font-family: 'Crimson Text', serif;
+            border-bottom: 1px solid rgba(47, 47, 47, 0.5);
+            border-top: 1px solid rgba(47, 47, 47, 0.5);
+            padding: 4px 0 4px 0;
+            span {
+                text-transform: lowercase;
+                font-family: 'Crimson Text', serif;
+            }
+        }
+        .container {
+            font-size: 0;
+            line-height: 0;
+            word-spacing: -.31em;
+            display: inline-block;
+            margin: 30px 5% 0 5%; // Marge de 5% à gauche et à droite
+        }
+        // .columns {}
+        .column {
+            font-size: 14px;
+            line-height: 20px;
+            width: 33%; // Chaque colonne prend 1/3 de la largeur de l'écran
+            display: inline-block;
+            padding: 0 4% 0 4%; // Padding de 3% entre les colonnes
+            vertical-align: top;
+            margin-bottom: 10px;
+            transition: all .7s;
+        }
+        .column+.column {
+            border-left: 1px solid rgba(47, 47, 47, 0.6);
+        }
+        .column .headline {
+            text-align: center;
+            line-height: normal;
+            font-family: 'Playfair Display', serif;
+            display: block;
+            margin: 0 auto;
+        }
+        // (1) Titre de la 1ère colonne :
+        .column .headline.hl1 {
+            font-weight: 400;
+            font-style: italic;
+            font-size: 24px;
+            box-sizing: border-box;
+            padding: 10px 0 10px 0;
+            color: red;
+        }
+        // (1) Auteur de la 1ère colonne :
+        .column .headline.hl1-author {
+            font-weight: 700;
+            font-size: 12px;
+            box-sizing: border-box;
+            padding: 10px 0 10px 0;
+        }
+        .column .headline.hl1-author:before {
+            border-top: 1px solid rgba(47, 47, 47, 0.6);
+            content: '';
+            width: 100px;
+            height: 7px;
+            display: block;
+            margin: 0 auto;
+        }
+        .column .headline.hl1-author:after {
+            border-bottom: 1px solid rgba(47, 47, 47, 0.6);
+            content: '';
+            width: 100px;
+            height: 10px;
+            display: block;
+            margin: 0 auto;
+        }
+        // (2) Titre de la 2ème colonne :
+        .column .headline.hl2 {
+            font-weight: 700;
+            font-size: 20px;
+            text-transform: uppercase;
+            padding: 10px 0 10px 0;
+        }
+        // (2) Auteur de la 2ème colonne :
+        .column .headline.hl2-author {
+            font-weight: 400;
+            font-size: 12px;
+            box-sizing: border-box;
+            padding: 10px 0 10px 0;
+        }
+        .column .headline.hl2-author:before {
+            border-top: 1px solid rgba(47, 47, 47, 0.6);
+            content: '';
+            width: 100px;
+            height: 7px;
+            display: block;
+            margin: 0 auto;
+        }
+        .column .headline.hl2-author:after {
+            border-bottom: 1px solid rgba(47, 47, 47, 0.6);
+            content: '';
+            width: 100px;
+            height: 10px;
+            display: block;
+            margin: 0 auto;
+        }
+        // (3) Titre de la 3ème colonne :
+        .column .headline.hl3 {
+            font-weight: 400;
+            font-size: 20px;
+            text-transform: uppercase;
+            font-style: italic;
+            box-sizing: border-box;
+            padding: 10px 0 10px 0;
+        }
+        // (3) Auteur de la 3ème colonne :
+        .column .headline.hl3-author {
+            font-weight: 400;
+            font-style: italic;
+            font-size: 12px;
+            box-sizing: border-box;
+            padding: 10px 0 10px 0;
+        }
+        .column .headline.hl3-author:before {
+            border-top: 1px solid rgba(47, 47, 47, 0.6);
+            content: '';
+            width: 100px;
+            height: 7px;
+            display: block;
+            margin: 0 auto;
+        }
+        .column .headline.hl3-author:after {
+            border-bottom: 1px solid rgba(47, 47, 47, 0.6);
+            content: '';
+            width: 100px;
+            height: 10px;
+            display: block;
+            margin: 0 auto;
+        }
+        .column .citation {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            line-height: 44px;
+            /*font-style: italic;*/
+            text-align: center;
+            font-weight: 400;
+            display: block;
+            margin: 40px 0 40px 0;
+            font-feature-settings: "liga", "dlig";
+        }
+        .column .citation:before {
+            border-top: 1px solid #2f2f2f;
+            content: '';
+            width: 100px;
+            height: 16px;
+            display: block;
+            margin: 0 auto;
+        }
+        .column .citation:after {
+            border-bottom: 1px solid #2f2f2f;
+            content: '';
+            width: 100px;
+            height: 16px;
+            display: block;
+            margin: 0 auto;
+        }
+        .column .figure {
+            margin: 0 0 20px;
+        }
+        .column .figcaption {
+            font-style: italic;
+            font-size: 12px;
+        }
+        .media {
+            -webkit-filter: sepia(80%) contrast(1) opacity(0.8);
+            filter: sepia(80%) grayscale(1) contrast(1) opacity(0.8);
+            mix-blend-mode: multiply;
+            width: 100%;
+        }
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    // Media Queries :
+    // Les 2 premières colonnes côte-à-côte (largeurs : 50% chacune), la 3ème toute seule en bas (largeur : 100%) :
+    @media only all and (max-width: 1200px) {
+        section#newspaper {
+            .column {
+                width: 50%;
+                padding: 0 6% 0 6%; // Augmentation du padding entre les 2 colonnes puisqu'elles ne sont plus que 2
+            }
+            #column-3 {
+                width: 100%;
+                border-left: none;
+            }
+        }
+    }
+    
+    // Une seule colonne par ligne (largeur : 100% chacune) :
+    @media only all and (max-width: 900px) {
+        section#newspaper {
+            .column {
+                width: 100%;
+            }
+            .column+.column {
+                border-left: none;
+            }
+        }
+    }
+    
+    @media only all and (max-width: 500px) {
+        section#newspaper {
+            .column {
+                width: 100%;
+            }
+            .column+.column {
+                border-left: none;
+                border-bottom: 1px solid #2f2f2f;
+            }
+            .title {
+                max-width: 300px;
+                font-size: 30px;
+                line-height: 40px;
+                overflow: hidden;
+            }
+        }
+    }

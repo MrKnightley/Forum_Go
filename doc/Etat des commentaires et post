@@ -1,0 +1,5 @@
+0 normal
+1 supprimer par l'user
+2 supprimer par le staff
+
+Une raison peut être donner, la valeur d'origine est "supprimer par l'user car l'user n'a pas a donner de raison lui même"

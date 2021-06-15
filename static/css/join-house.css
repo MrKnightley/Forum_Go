@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap");
+body {
+  margin: 0 0 0 0;
+  padding: 0;
+  background: #171822;
+  font-family: "Poppins", sans-serif;
+}
+
+.slidershow {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+.slidershow.middle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+form {
+  display: none;
+}
+
+input[type=radio] {
+  position: absolute;
+  display: none;
+}
+
+.slides {
+  width: 100vw;
+  height: 1300vh;
+  display: flex;
+  flex-direction: column;
+}
+.slides .slide {
+  position: relative;
+  height: calc(100% * (1/13));
+  transition: 0.7s;
+}
+.slides .slide img.background-img {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+.slides .slide img#overlay-img {
+  opacity: 0.6;
+}
+.slides .slide .text {
+  position: absolute;
+  display: flex;
+  width: 80vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.slides .slide .text .question {
+  font-family: "Crimson Text", serif;
+  font-size: 60px;
+  text-shadow: 0 0 10px black;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.slides .slide .text .answers {
+  display: flex;
+  width: 60%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.slides .slide .text .answers .answer {
+  text-transform: uppercase;
+  text-shadow: 0 0 10px black;
+  font-size: 20px;
+  letter-spacing: 2px;
+  padding: 10px 30px 10px 30px;
+  cursor: pointer;
+  transition: text-shadow 0.7s;
+}
+.slides .slide .text .answers .answer:hover {
+  text-shadow: 0 0 5px white;
+}
+.slides #r1:checked ~ #s1 {
+  margin-top: 0;
+}
+.slides #r2:checked ~ #s1 {
+  margin-top: -100vh;
+}
+.slides #r3:checked ~ #s1 {
+  margin-top: -200vh;
+}
+.slides #r4:checked ~ #s1 {
+  margin-top: -300vh;
+}
+.slides #r5:checked ~ #s1 {
+  margin-top: -400vh;
+}
+.slides #r6:checked ~ #s1 {
+  margin-top: -500vh;
+}
+.slides #r7:checked ~ #s1 {
+  margin-top: -600vh;
+}
+.slides #r8:checked ~ #s1 {
+  margin-top: -700vh;
+}
+.slides #r9:checked ~ #s1 {
+  margin-top: -800vh;
+}
+.slides #r10:checked ~ #s1 {
+  margin-top: -900vh;
+}
+.slides #r11:checked ~ #s1 {
+  margin-top: -1000vh;
+}
+.slides #r12:checked ~ #s1 {
+  margin-top: -1100vh;
+}
+.slides #r13:checked ~ #s1 {
+  margin-top: -1200vh;
+}
+
+/*# sourceMappingURL=join-house.css.map */

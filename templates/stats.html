@@ -1,0 +1,126 @@
+{{ define "stats" }}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/stats.css">
+    <title>Stats</title>
+</head>
+
+<body>
+
+    <div class="row-container"></div>
+        {{ range $index , $cat := .Categories }}
+        <table>
+            <tr>
+                <th>{{$cat.Name}}</th>
+            </tr>
+            <!-- Posts side -->
+            <tr>
+                <td>Nombre de posts:</td>
+            </tr>
+            <tr>
+                <td>{{index $.LifePostResult $index}}</td>
+            </tr>
+            <tr>
+                <td>Au cour des 30derniers jours:</td>
+            </tr>
+            <tr>
+                <td>{{index $.MonthlyPostResult $index}}</td>
+            </tr>
+            <tr>
+                <td>Au cour des 7derniers jours:</td>
+            </tr>
+            <tr>
+                <td>{{index $.WeeklyPostResult $index}}</td>
+            </tr>
+            <tr>
+                <td>Au cour du dernier jour:</td>
+            </tr>
+            <tr>
+                <td>{{index $.DailyPostResult $index}}</td>
+            </tr>
+            <!-- Comments side -->
+            <tr>
+                <td>Nombre de commentaires:</td>
+            </tr>
+            <tr>
+                <td>{{index $.LifeCommentResult $index}}</td>
+            </tr>
+            <tr>
+                <td>Au cour des 30derniers jours:</td>
+            </tr>
+            <tr>
+                <td>{{index $.MonthlyCommentResult $index}}</td>
+            </tr>
+            <tr>
+                <td>Au cour des 7derniers jours:</td>
+            </tr>
+            <tr>
+                <td>{{index $.WeeklyCommentResult $index}}</td>
+            </tr>
+            <tr>
+                <td>Au cour du dernier jour:</td>
+            </tr>
+            <tr>
+                <td>{{index $.DailyCommentResult $index}}</td>
+            </tr>
+            <!-- Like Side -->
+            <tr>
+                <td>Nombre de Likes:</td>
+            </tr>
+            <tr>
+                <td>{{index $.LifeLikeResult $index}}</td>
+            </tr>
+            <tr>
+                <td>Au cour des 30derniers jours:</td>
+            </tr>
+            <tr>
+                <td>{{index $.MonthlyLikeResult $index}}</td>
+            </tr>
+            <tr>
+                <td>Au cour des 7derniers jours:</td>
+            </tr>
+            <tr>
+                <td>{{index $.WeeklyLikeResult $index}}</td>
+            </tr>
+            <tr>
+                <td>Au cour du dernier jour:</td>
+            </tr>
+            <tr>
+                <td>{{index $.DailyLikeResult $index}}</td>
+            </tr>
+            <!-- Dislike Side -->
+            <tr>
+                <td>Nombre de Dislikes:</td>
+            </tr>
+            <tr>
+                <td>{{index $.LifeDislikeResult $index}}</td>
+            </tr>
+            <tr>
+                <td>Au cour des 30derniers jours:</td>
+            </tr>
+            <tr>
+                <td>{{index $.MonthlyDislikeResult $index}}</td>
+            </tr>
+            <tr>
+                <td>Au cour des 7derniers jours:</td>
+            </tr>
+            <tr>
+                <td>{{index $.WeeklyDislikeResult $index}}</td>
+            </tr>
+            <tr>
+                <td>Au cour du dernier jour:</td>
+            </tr>
+            <tr>
+                <td>{{index $.DailyDislikeResult $index}}</td>
+            </tr>
+        </table>
+        {{end}}
+    </div>
+
+</body>
+
+</html>
+{{ end }}

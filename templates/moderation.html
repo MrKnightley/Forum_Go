@@ -1,0 +1,333 @@
+{{define "moderation"}}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/moderation.css">
+    <title>ADMINISTRATION BDD</title>
+</head>
+
+<body style="width:100%">
+    <div class="tableList">
+        <input type="button" value="Comments" id="comment" onclick="showComments()" />
+        <input type="button" value="Posts" id="post" onclick="showPosts()" />
+        <input type="button" value="Users" id="user" onclick="showUsers()" />{{ if gt .Self.Role 2 }}
+        <input type="button" value="Categories" id="categories " onclick="showCategory()" />{{end}}
+    </div>
+    <div class="selectOption">
+        <select id="select">
+            <option value="">--  Filter  --</option>
+            <!-- user option -->
+            <option class="userOption Invisible">id</option>
+            <option class="userOption Invisible">username</option>
+            <option class="userOption Invisible">password</option>
+            <option class="userOption Invisible">email</option>
+            <option class="userOption Invisible">role</option>
+            <option class="userOption Invisible">avatar</option>
+            <option class="userOption Invisible">date</option>
+            <option class="userOption Invisible">state</option>
+            <option class="userOption Invisible">Secret Question</option>
+            <option class="userOption Invisible">Secret Answer</option>
+            <!-- comment option -->
+            <option class="commentOption Invisible">id</option>
+            <option class="commentOption Invisible">author_id</option>
+            <option class="commentOption Invisible">post_id</option>
+            <option class="commentOption Invisible">content</option>
+            <option class="commentOption Invisible">date</option>
+            <option class="commentOption Invisible">state</option>
+            <!-- post option -->
+            <option class="postOption Invisible">id</option>
+            <option class="postOption Invisible">author_id</option>
+            <option class="postOption Invisible">title</option>
+            <option class="postOption Invisible">content</option>
+            <option class="postOption Invisible">categoryID</option>
+            <option class="postOption Invisible">date</option>
+            <option class="postOption Invisible">image</option>
+            <option class="postOption Invisible">state</option>
+            <!-- category option -->
+            <option class="postOption Invisible">id</option>
+            <option class="postOption Invisible">name</option>
+        </select>
+        <input type="textarea" onkeyup="filter(this.value)">
+    </div>
+
+    <div class="container">
+
+        <table id="comments" class="Invisible">
+            <tr>
+                <th>
+                    <div>ID</div>
+                </th>
+                <th>
+                    <div>Author ID</div>
+                </th>
+                <th>
+                    <div>Post ID</div>
+                </th>
+                <th>
+                    <div>Content</div>
+                </th>
+                <th>
+                    <div>Gif</div>
+                </th>
+                <th>
+                    <div>Date</div>
+                </th>
+                <th>
+                    <div>State</div>
+                </th>
+                <th>
+                    <div>Raison</div>
+                </th>
+            </tr>
+            {{ range .Comment }}
+            <tr class="Invisible commentR">
+                <td class="commentD">
+                    <div id="{{.ID}}" data-name='id' data-value="{{.ID}}">{{.ID}}</div>
+                </td>
+                <td class="commentD">
+                    <div id="{{.ID}}" data-name='author_id' data-value="{{ .AuthorID }}">{{.AuthorID}}</div>
+                </td>
+                <td class="commentD">
+                    <div id="{{.ID}}" data-name='post_id' data-value="{{ .PostID }}">{{.PostID}}</div>
+                </td>
+                <td class="commentD">
+                    <div id="{{.ID}}" data-name='content' data-value="{{ .Content }}">{{.Content}}</div>
+                </td>
+                <td class="commentD">
+                    <img id="{{.ID}}" data-name='gif' data-value="{{ .Gif }}" src="{{.Gif}}">
+                </td>
+                <td class="commentD">
+                    <div id="{{.ID}}" data-name='date' data-value="{{ .Date }}">{{.Date}}</div>
+                </td>
+                <td class="commentD">
+                    <div id="{{.ID}}" data-name='state' data-value="{{ .State }}">{{.State}}</div>
+                </td>
+                <td class="commentD">
+                    <div id="{{.ID}}" data-name='reason' data-value="{{ .Reason }}">{{.Reason}}</div>
+                </td>
+            </tr>
+            {{ end }}
+            <tr>
+                <td>
+                    <button onclick="DeleteRow(`comments`)">Delete User Forever</button>
+                </td>
+            </tr>
+        </table>
+
+
+        <table id="posts" class="Invisible">
+            <tr>
+                <th>
+                    <div>ID</div>
+                </th>
+                <th>
+                    <div>Title</div>
+                </th>
+                <th>
+                    <div>Author ID</div>
+                </th>
+                <th>
+                    <div>Content</div>
+                </th>
+                <th>
+                    <div>Category ID</div>
+                </th>
+                <th>
+                    <div>Date</div>
+                </th>
+                <th>
+                    <div>Image</div>
+                </th>
+                <th>
+                    <div>State</div>
+                </th>
+                <th>
+                    <div>Raison</div>
+                </th>
+            </tr>
+            {{ range .Post }}
+            <tr class="Invisible postR">
+                <td class="postD">
+                    <div id="{{.ID}}" data-name='id' data-value="{{.ID}}">{{.ID}}</div>
+                </td>
+                <td class="postD">
+                    <div id="{{.ID}}" data-name='title' data-value="{{ .Title }}">{{.Title}}</div>
+                </td>
+                <td class="postD">
+                    <div id="{{.ID}}" data-name='author_id' data-value="{{ .AuthorID }}">{{.AuthorID}}</div>
+                </td>
+                <td class="postD">
+                    <div id="{{.ID}}" data-name='content' data-value="{{ .Content }}">{{.Content}}</div>
+                </td>
+                <td class="postD">
+                    <div id="{{.ID}}" data-name='categoryID' data-value="{{ .CategoryID }}">{{.CategoryID}}</div>
+                </td>
+                <td class="postD">
+                    <div id="{{.ID}}" data-name='date' data-value="{{ .Date }}">{{.Date}}</div>
+                </td>
+                <td class="postD">
+                    <div id="{{.ID}}" data-name='image' data-value="{{ .Image }}">{{if ne .Image " " }}<img src='{{.Image}}'>{{else}}<img src="">{{end}}</div>
+                </td>
+                <td class="postD">
+                    <div id="{{.ID}}" data-name='state' data-value="{{ .State }}">{{.State}}</div>
+                </td>
+                <td class="postD">
+                    <div id="{{.ID}}" data-name='reason' data-value="{{ .Reason }}">{{.Reason}}</div>
+                </td>
+            </tr>
+            {{ end }}
+            <tr>
+                <td>
+                    <input type="button" value="Delete Posts Forever" onclick="DeleteRow(`posts`)" />
+                </td>
+                <td>
+                    <div></div>
+                </td>
+                <td>
+                    <input type="button" value="Promote Post" id=promote onclick="Promote()" />
+                </td>
+            </tr>
+        </table>
+
+
+        <table id="users" class="Invisible">
+            <tr>
+                <th>
+                    <div>ID</div>
+                </th>
+                <th>
+                    <div>Username</div>
+                </th>
+                <th>
+                    <div>Password</div>
+                </th>
+                <th>
+                    <div>Email</div>
+                </th>
+                <th>
+                    <div>Role</div>
+                </th>
+                <th>
+                    <div>Avatar</div>
+                </th>
+                <th>
+                    <div>Date de creation</div>
+                </th>
+                <th>
+                    <div>State</div>
+                </th>
+                <!-- <th><div>Question secrète</div></th>
+                <th><div>Réponse secrète</div></th> -->
+            </tr>
+            {{ range .User }}
+            <tr class="Invisible userR">
+                <td class="userD">
+                    <div id="{{.ID}}" data-name='id' data-value="{{.ID}}">{{.ID}}</div>
+                </td>
+                <td class="userD">
+                    <div id="{{.ID}}" data-name='username' data-value="{{ .Username }}">{{.Username}}</div>
+                </td>
+                <td class="userD">
+                    <div id="{{.ID}}" data-name='password' data-value="{{ .Password }}">{{.Password}}</div>
+                </td>
+                <td class="userD">
+                    <div id="{{.ID}}" data-name='email' data-value="{{ .Email }}">{{.Email}}</div>
+                </td>
+                <td class="userD">
+                    <div id="{{.ID}}" data-name='role' data-value="{{ .Role }}">{{.Role}}</div>
+                </td>
+                <td class="userD">
+                    <div id="{{.ID}}" data-name='avatar' data-value="{{ .Avatar }}">{{.Avatar}}</div>
+                </td>
+                <td class="userD">
+                    <div id="{{.ID}}" data-name='date' data-value="{{ .Date }}">{{.Date}}</div>
+                </td>
+                <td class="userD">
+                    <div id="{{.ID}}" date-role="{{.Role}}" data-name='state' data-value="{{ .State }}">{{.State}}</div>
+                </td>
+                <!-- <td class="userD">
+                    <div id="{{.ID}}" data-name='secretQuestion' data-value="{{ .SecretQuestion }}">{{.SecretQuestion}}</div>
+                </td>
+                <td class="userD">
+                    <div id="{{.ID}}" data-name='secretAnswer' data-value="{{ .SecretAnswer }}">{{.SecretAnswer}}</div>
+                </td> -->
+            </tr>
+            {{ end }}
+            <tr>
+                {{ if gt $.Self.Role 2 }}
+                <td>
+                    <input type="button" value="Delete User Forever" onclick="DeleteRow(`users`)" />
+                </td>
+                {{end}}
+                <td>
+                    <textarea id="Badge"></textarea>
+                </td>
+                <td>
+                    <input type="button" value="Add to user Badge n°:" onclick="AddBadge(document.getElementById(`Badge`)`add`)" />
+                    <input type="button" value="Remove to user Badge n°:" onclick="Badge(document.getElementById(`Badge`),`remove`)" />
+                </td>
+            </tr>
+        </table>
+        {{ if gt .Self.Role 2 }}
+        <table id="categories" class="Invisible">
+            <tr>
+                <th>
+                    <div>ID</div>
+                </th>
+                <th>
+                    <div>Name</div>
+                </th>
+                <th>
+                    <div>Theme</div>
+                </th>
+                <th>
+                    <div>Description</div>
+                </th>
+            </tr>
+            {{ range .Category }}
+            <tr class="Invisible categoryR">
+                <td class="categoryD">
+                    <div id="{{.ID}}" data-name='id' data-value="{{.ID}}">{{.ID}}</div>
+                </td>
+                <td class="categoryD">
+                    <div id="{{.ID}}" data-name='name' data-value="{{ .Name }}">{{.Name}}</div>
+                </td>
+                <td class="categoryD">
+                    <div id="{{.ID}}" data-name='theme' data-value="{{ .Theme }}">{{.Theme}}</div>
+                </td>
+                <td class="categoryD">
+                    <textarea id="{{.ID}}" data-name='description' data-value="{{ .Description }}">{{.Description}}</textarea>
+                </td>
+            </tr>
+            {{ end }}
+            <tr>
+                <td>
+                    <input type="button" value="Delete Category" onclick="DeleteRow(`category`)" />
+                    <input type="button" value="Create Category" onclick="Create()" />
+                </td>
+            </tr>
+        </table>
+        {{end}}
+        <div class="right">
+            <label>New Value:</label>
+            <br>
+            <input type="textarea" id=newValue required>
+            <input type="button" value=Send onClick="PostRequest({{.Self.Role}})" />
+        </div>
+        <div class="bottom">
+            <input type="button" value="Previous page" onClick="PreviousPage()" />
+            <input type="button" value="Next page" onClick="NextPage()" />
+        </div>
+    </div>
+</body>
+<script src="../static/js/moderation/aLotOfGetElement.js"></script>
+<script src="../static/js/moderation/outils.js"></script>
+<script src="../static/js/moderation/affichageDesPages.js"></script>
+<script src="../static/js/moderation/pageSystem.js"></script>
+<script src="../static/js/moderation/databaseCallViaPOSTrequest.js"></script>
+
+</html>
+{{end}}
