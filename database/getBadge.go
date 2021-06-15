@@ -6,6 +6,7 @@ func GetBadgeByUserID(id int) []Badge {
 	if err != nil {
 		panic(err)
 	}
+	defer rows.Close()
 	for rows.Next() {
 		var temp Badge
 		rows.Scan(&temp.ID, &temp.Type, &temp.Image)

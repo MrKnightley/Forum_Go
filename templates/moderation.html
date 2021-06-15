@@ -219,6 +219,9 @@
                 <th>
                     <div>State</div>
                 </th>
+                <th>
+                    <div>House</div>
+                </th>
                 <!-- <th><div>Question secrète</div></th>
                 <th><div>Réponse secrète</div></th> -->
             </tr>
@@ -247,6 +250,9 @@
                 </td>
                 <td class="userD">
                     <div id="{{.ID}}" date-role="{{.Role}}" data-name='state' data-value="{{ .State }}">{{.State}}</div>
+                </td>
+                <td class="userD">
+                    <div id="{{.ID}}" data-name='house_id' data-value="{{ .House.ID }}">{{.House.ID}}</div>
                 </td>
                 <!-- <td class="userD">
                     <div id="{{.ID}}" data-name='secretQuestion' data-value="{{ .SecretQuestion }}">{{.SecretQuestion}}</div>

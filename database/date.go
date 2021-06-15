@@ -13,6 +13,7 @@ func GetNumberOfPostByDateAndPostCategory(cat int, life *int, month *int, week *
 	if err != nil {
 		panic(err)
 	}
+	defer rows.Close()
 	for rows.Next() {
 		var post Post
 		rows.Scan(&post.Date)
@@ -39,6 +40,7 @@ func GetNumberOfCommentByDateAndPostCategory(cat int, life *int, month *int, wee
 	if err != nil {
 		panic(err)
 	}
+	defer rows.Close()
 	for rows.Next() {
 		var comment Comment
 		rows.Scan(&comment.Date)
@@ -67,6 +69,7 @@ func GetNumberOfReactionByDate(cat int, reaction string, life *int, month *int, 
 	if err != nil {
 		panic(err)
 	}
+	defer rows.Close()
 	for rows.Next() {
 		//sa prend aussi les post likes
 		var comment CommentLike
@@ -95,6 +98,7 @@ func GetMostLikedPostOfTheWeek() (Post, error) {
 							GROUP BY l.post_id
 							ORDER BY amount DESC
 							LIMIT 1`)
+	defer rows.Close()
 	for rows.Next() {
 		var postID int
 		var userID int
@@ -115,6 +119,7 @@ func GetMostCommentedPostOfTheWeek() (Post, error) {
 							GROUP BY c.post_id
 							ORDER BY amount DESC
 							LIMIT 1`)
+	defer rows.Close()
 	for rows.Next() {
 		var id int
 		var authorID int
@@ -136,6 +141,7 @@ func GetMostRecentPost() (Post, error) {
 	rows, err := Db.Query(`SELECT * FROM posts p 
 	ORDER BY id DESC
 	LIMIT 1 `)
+	defer rows.Close()
 	for rows.Next() {
 		rows.Scan(&res.ID, &res.Title, &res.AuthorID, &res.Content, &res.CategoryID, &res.Date, &res.Image, &res.State, &res.Reason)
 	}
@@ -146,6 +152,7 @@ func GetMostRecentPost() (Post, error) {
 func GetPromotedPost() (Post, error) {
 	var res Post
 	rows, err := Db.Query(`SELECT p.id,title,author_id,content,category_id,date,image,state,reason FROM promoted_post pp INNER JOIN posts p ON p.id = pp.post_id`)
+	defer rows.Close()
 	for rows.Next() {
 		rows.Scan(&res.ID, &res.Title, &res.AuthorID, &res.Content, &res.CategoryID, &res.Date, &res.Image, &res.State, &res.Reason)
 	}

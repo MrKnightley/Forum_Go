@@ -48,7 +48,7 @@ func Moderation(w http.ResponseWriter, r *http.Request, user database.User) {
 			//Sinon c'est pour update un élément de la base de donnée.
 			if isDatabaseTable(p.Table) && ColExist(p.Table, p.Category) {
 				querry := "UPDATE " + p.Table + " SET " + p.Category
-				_, err = database.Db.Exec(querry+` ="?" WHERE id = ?`, p.Category, p.NewValue, p.ID)
+				_, err = database.Db.Exec(querry+` = ? WHERE id = ?`, p.NewValue, p.ID)
 				if err != nil {
 					panic(err)
 				}
@@ -69,14 +69,14 @@ func Moderation(w http.ResponseWriter, r *http.Request, user database.User) {
 	}
 }
 func ColExist(table string, cat string) bool {
-	var col string
-	rows, err := database.Db.Query("PRAGMA table_info(" + table + ")")
+	query := "SELECT * FROM " + table
+	cols, err := database.Db.Query(query)
+	rows, err := cols.Columns()
 	if err != nil {
 		panic(err)
 	}
-	for rows.Next() {
-		rows.Scan(nil, &col, nil, nil, nil, nil)
-		if col == table {
+	for i := 0; i < len(rows); i++ {
+		if rows[i] == cat {
 			return true
 		}
 	}
@@ -88,6 +88,7 @@ func isDatabaseTable(table string) bool {
 	if err != nil {
 		panic(err)
 	}
+	defer rows.Close()
 	for rows.Next() {
 		rows.Scan(&newtable)
 		if newtable == table {

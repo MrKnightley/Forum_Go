@@ -3,6 +3,7 @@ package database
 func GetTicketByUserID(id int) []Ticket {
 	var tickets []Ticket
 	rows, _ := Db.Query("SELECT * FROM tickets WHERE author_id = ? ORDER BY id DESC", id)
+	defer rows.Close()
 	for rows.Next() {
 		var ticket Ticket
 		rows.Scan(&ticket.ID, &ticket.Author_id, &ticket.Actual_Admin, &ticket.Title, &ticket.Content, &ticket.Date, &ticket.State)
@@ -15,6 +16,7 @@ func GetAllTickets() []Ticket {
 	var tickets []Ticket
 
 	rows, _ := Db.Query("SELECT * FROM tickets")
+	defer rows.Close()
 	for rows.Next() {
 		var ticket Ticket
 		rows.Scan(&ticket.ID, &ticket.Author_id, &ticket.Actual_Admin, &ticket.Title, &ticket.Content, &ticket.Date, &ticket.State)
@@ -34,6 +36,7 @@ func GetAnswerOfTicket(id int) []Ticket_Answer {
 	var answers []Ticket_Answer
 
 	rows, _ := Db.Query("SELECT * FROM ticket_answers WHERE Ticket_id=?", id)
+	defer rows.Close()
 	for rows.Next() {
 		var answer Ticket_Answer
 		rows.Scan(&answer.ID, &answer.Ticket_id, &answer.Author_id, &answer.Author_name, &answer.Content, &answer.Date, &answer.State)
