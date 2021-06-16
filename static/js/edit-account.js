@@ -214,3 +214,25 @@ function isLongEnough() {
         return true
     }
 }
+
+
+// Fonction onclick pour la suppression du compte (Delete Account) :
+
+function DeleteAccountRequest(userID) {
+    console.log("TEST")
+    var params = new Object();
+    params.id = userID.toString();
+    params.table = "users"
+    fetch("/Profile", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: "application/json"
+            },
+            body: JSON.stringify(params)
+        }).then(x => x.json())
+        //Réponse qui me dit que la valeur est attribuer dans la base de donnée
+        .then(window.location.href = "/")
+        //gestion erreur
+        .catch(x => console.log(x.json()))
+}

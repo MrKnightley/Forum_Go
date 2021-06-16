@@ -330,6 +330,7 @@ input[type="file"] {
     display: flex;
     flex-direction: row;
     margin: 8px 0 8px 0;
+    cursor: pointer;
 }
 
 .logout {

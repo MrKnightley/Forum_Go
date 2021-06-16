@@ -74,13 +74,13 @@ func ProfilePage(w http.ResponseWriter, r *http.Request, user database.User) {
 			w.Write([]byte(`{"message":"ERROR"}`))
 			panic(err)
 		} else {
-			deleteSelection(w, r, user, p)
+			deleteAccount(w, r, user, p)
 			w.Write([]byte(`{"message":"deleted"}`))
 		}
 	}
 }
 
-func deleteSelection(w http.ResponseWriter, r *http.Request, user database.User, p receivedData) {
+func deleteAccount(w http.ResponseWriter, r *http.Request, user database.User, p receivedData) {
 	query := "UPDATE " + p.Table + " SET state = 2 WHERE id=" + p.ID
 	_, err := database.Db.Exec(query)
 	if err != nil {
