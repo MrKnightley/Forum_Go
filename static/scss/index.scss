@@ -220,6 +220,7 @@
     section#category-banner {
         position: relative;
         background: $off-white;
+        padding-bottom: 100px;
         .separator {
             background-color: $off-white;
             height: 100px;
@@ -337,11 +338,24 @@
     }
     
     // ========= SECTION 4 : Join Club =========
-    section.join-club {
-        margin-top: 200px;
-        .join-class-banner {
-            img.club-banner-img {
-                width: 30%;
+    section#join-club {
+        .join-club-banner {
+            position: relative;
+            img {
+                width: 100%;
+            }
+            p {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-family: 'Crimson Text', serif;
+                color: white;
+                text-transform: uppercase;
+                text-shadow: 0 0 8px rgba(0, 0, 0);
+                font-size: 40px;
+                font-weight: 800;
+                letter-spacing: 5px;
             }
         }
     }

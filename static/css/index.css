@@ -658,6 +658,7 @@ section#category-banner:before {
 section#category-banner {
   position: relative;
   background: #faf6f0;
+  padding-bottom: 100px;
 }
 section#category-banner .separator {
   background-color: #faf6f0;
@@ -769,11 +770,24 @@ section#category-banner .wrapper .container .right a:hover {
   color: black;
 }
 
-section.join-club {
-  margin-top: 200px;
+section#join-club .join-club-banner {
+  position: relative;
 }
-section.join-club .join-class-banner img.club-banner-img {
-  width: 30%;
+section#join-club .join-club-banner img {
+  width: 100%;
+}
+section#join-club .join-club-banner p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Crimson Text", serif;
+  color: white;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px black;
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: 5px;
 }
 
 .slider {
