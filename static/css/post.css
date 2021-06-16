@@ -12,8 +12,8 @@ p.username {
   font-family: "Satisfy", cursive;
   font-weight: 100;
   line-height: 1.6;
-  opacity: 0.6;
-  color: #5a5399;
+  opacity: 1;
+  color: rgba(90, 83, 153, 0.6);
 }
 
 p.username {
@@ -1052,63 +1052,6 @@ section#envelope-form .locked .login-btn:hover {
     font-size: 13px;
   }
 }
-/* Arrows */
-table th:after,
-table th:before {
-  border: 0.35em solid transparent;
-  content: "";
-  height: 0;
-  position: absolute;
-  right: 0.65em;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: border-color 0.2s ease-in-out;
-  width: 0;
-}
-
-table th:before {
-  border-bottom-color: rgba(255, 255, 255, 0.25);
-  border-top: 0;
-  margin-top: -0.35em;
-}
-
-table th:after {
-  border-bottom: 0;
-  border-top-color: rgba(255, 255, 255, 0.25);
-  margin-top: 0.35em;
-}
-
-table th:hover:before,
-table th:focus:before {
-  border-bottom-color: rgba(255, 255, 255, 0.75);
-}
-
-table th:hover:after,
-table th:focus:after {
-  border-top-color: rgba(255, 255, 255, 0.75);
-}
-
-table th[aria-sort=ascending],
-table th[aria-sort=descending] {
-  color: #fddc32;
-}
-
-table th[aria-sort=ascending]:before {
-  border-bottom-color: #a2ed56;
-}
-
-table th[aria-sort=ascending]:after {
-  border-top-color: rgba(255, 255, 255, 0.25);
-}
-
-table th[aria-sort=descending]:before {
-  border-bottom-color: rgba(255, 255, 255, 0.25);
-}
-
-table th[aria-sort=descending]:after {
-  border-top-color: #fd6470;
-}
-
 @media only all and (max-height: 770px) {
   section#book-cover .cover {
     top: 70px;
