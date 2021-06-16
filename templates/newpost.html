@@ -75,11 +75,19 @@
                             <h2 class="page__content-author"><span>by</span>{{ .User.Username }}</h2>
 
                             <div class="page__content-avatar"><img src="{{ .User.Avatar }}"></div>
-                            {{ range .User.Badges }}
-                            <img src="{{ .Image }}">
-                            {{end}}
+                            
+                            <div class="page__content-trophies">
+                                {{ range .User.Badges }}
+                                <img src="{{ .Image }}">
+                                {{end}}
+                            </div>                         
+
                             <div class="page__content-copyright">
-                                <p>The Fairfax Society</p>
+                                {{ if ne .User.House.ID 0 }}
+                                <p>{{ .User.House.Name }}</p>
+                                {{ else }}
+                                <p>Unaffiliated</p>
+                                {{ end }}
                                 <p>MMXXI</p>
                             </div>
                         </div>

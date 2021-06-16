@@ -86,12 +86,34 @@
 
             <button type="submit" class="btn">Apply changes</button>
 
+            <!-- <div class="buttons">
+                <a class="active logout" href="/logout">Logout</a>
+                <button class="delete-btn" onclick="">Delete your account</button>
+            </div> -->
+
+            <div class="buttons">
+                <a class="logout" href="/logout">
+                    <i class="fa fa-power-off" aria-hidden="true"></i>
+                    <p>Logout</p>
+                </a>
+
+
+                <div class="delete" onclick="DeleteAccountRequest({{ .User.ID }});">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    <p>Delete your account</p>
+                </div>
+            </div>
+
         </form>
+
     </div>
 
 </body>
 
 <script src="static/js/edit-account.js"></script>
+
+<script>
+</script>
 
 </html>
 

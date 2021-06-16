@@ -79,29 +79,26 @@ func ProfilePage(w http.ResponseWriter, r *http.Request, user database.User) {
 			w.Write([]byte(`{"message":"ERROR"}`))
 			panic(err)
 		} else {
-			deleteSelection(w, r, user, p)
-			w.Write([]byte(`{"message":"deleted"}`))
+			deleteAccount(w, r, user, p)
 		}
 	}
 }
 
-func deleteSelection(w http.ResponseWriter, r *http.Request, user database.User, p receivedData) {
-	query := "UPDATE " + p.Table + " SET state = 2 WHERE id=" + p.ID
-	_, err := database.Db.Exec(query)
+func deleteAccount(w http.ResponseWriter, r *http.Request, user database.User, p receivedData) {
+	_, err := database.Db.Exec("UPDATE users SET state = 2 WHERE id = ?", p.ID)
 	if err != nil {
 		ERROR, _ := json.Marshal("ERROR WHILE DELETE")
 		w.Write(ERROR)
 		panic(err)
-	} else {
-		if p.Table == "users" {
-			database.Db.Exec("DELETE FROM sessions WHERE user_id = $1", p.ID)
-			// On récupère le cookie dont le nom est "session", et on modifie son MaxAge (nombre négatif) pour le faire expirer :
-			cookie := &http.Cookie{
-				Name:   "session",
-				Value:  "",
-				MaxAge: -1, // Fait expirer le cookie immédiatement
-			}
-			http.SetCookie(w, cookie) // Suppression du cookie
-		}
 	}
+	database.Db.Exec("DELETE FROM sessions WHERE user_id = $1", p.ID)
+	// On récupère le cookie dont le nom est "session", et on modifie son MaxAge (nombre négatif) pour le faire expirer :
+	cookie := &http.Cookie{
+		Name:   "session",
+		Value:  "",
+		MaxAge: -1, // Fait expirer le cookie immédiatement
+	}
+	http.SetCookie(w, cookie) // Suppression du cookie
+	w.Write([]byte(`{"message":"deleted"}`))
+	http.Redirect(w, r, "/", http.StatusFound)
 }

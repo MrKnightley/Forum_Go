@@ -123,7 +123,7 @@ func main() {
 	http.HandleFunc("/reaction/", request.Auth(request.Reaction, "active members only"))
 
 	// ⭐ Accès au tableau de bord 'Admin' :
-	http.HandleFunc("/moderation", request.Auth(admin.Moderation, "active admins only"))
+	http.HandleFunc("/moderation", request.Auth(admin.Moderation, "active moderators only"))
 
 	// ⭐ Accès au questionnaire pour rejoindre une Maison :
 	http.HandleFunc("/join-house", request.Auth(request.JoinHouse, "unaffiliated members only"))
