@@ -1077,8 +1077,8 @@ section#envelope-form .locked .login-btn:hover {
   z-index: 50;
   border-radius: 25px;
   background-color: #1b043e;
-  width: 30em;
-  height: 80em;
+  width: 25em;
+  height: 37.5em;
   display: flex;
   flex-flow: row wrap;
   position: fixed;
