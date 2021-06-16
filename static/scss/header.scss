@@ -40,7 +40,7 @@ header {
     z-index: 999999;
     background: #202335;
     border-bottom: solid 1px #434343;
-    .left {
+    .column_left {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
@@ -56,7 +56,7 @@ header {
             padding-right: 12vw;
         }
     }
-    .center {
+    .column_center {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -70,7 +70,7 @@ header {
             }
         }
     }
-    .right {
+    .column_right {
         float: right;
         display: flex;
         flex-direction: row;
@@ -104,7 +104,7 @@ header {
 
 @media only all and (max-width: 790px) {
     header {
-        .right {
+        .column_right {
             a {
                 margin: 0 10px 0 10px;
             }
@@ -114,7 +114,7 @@ header {
 
 @media only all and (max-width: 600px) {
     header {
-        .right {
+        .column_right {
             a {
                 margin: 0 5px 0 5px;
             }
@@ -124,7 +124,7 @@ header {
 
 @media only all and (max-width: 510px) {
     header {
-        .right {
+        .column_right {
             .logout {
                 display: none;
             }
