@@ -26,7 +26,7 @@ func Account(w http.ResponseWriter, r *http.Request, user database.User) {
 		err := profileTmpl.ExecuteTemplate(w, "account", dataForSettings)
 		if err != nil {
 			log.Println("❌ ERREUR | Impossible d'afficher le template Account")
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 
@@ -43,7 +43,7 @@ func Account(w http.ResponseWriter, r *http.Request, user database.User) {
 			log.Println("❌ EDIT AVATAR | Impossible de récupérer le path de l'image uploadée.")
 			err := MyTemplates.ExecuteTemplate(w, "400", user)
 			if err != nil {
-				MyTemplates.ExecuteTemplate(w, "500", user)
+				http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 				return
 			}
 			return
@@ -88,7 +88,7 @@ func Account(w http.ResponseWriter, r *http.Request, user database.User) {
 		err2 := profileTmpl.ExecuteTemplate(w, "account-success", user)
 		if err2 != nil {
 			log.Println("❌ ERREUR | Impossible d'afficher le template Account-Success")
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 	}

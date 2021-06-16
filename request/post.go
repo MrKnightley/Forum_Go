@@ -18,7 +18,7 @@ func Post(w http.ResponseWriter, r *http.Request, user database.User) {
 	if err != nil || ID < 1 {
 		err := MyTemplates.ExecuteTemplate(w, "404", user)
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 		// http.Error(w, "404 NOT FOUND", http.StatusNotFound)
@@ -43,14 +43,14 @@ func Post(w http.ResponseWriter, r *http.Request, user database.User) {
 		if dataForPost.Post.State == 0 {
 			dataForPost.Comments, err = database.GetCommentsByPostID(ID, user.ID)
 			if err != nil {
-				MyTemplates.ExecuteTemplate(w, "500", user)
+				http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 				log.Println("❌ ERREUR | Impossible de récupérer le post ou les commentaires du post dont l'ID est ", ID)
 				return
 			}
 		}
 		err = MyTemplates.ExecuteTemplate(w, "post", dataForPost)
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			log.Println("❌ ERREUR | Impossible d'exécuter le template “post”.")
 			fmt.Println(err)
 			return
@@ -73,7 +73,7 @@ func Post(w http.ResponseWriter, r *http.Request, user database.User) {
 		if toolbox.IsEmptyString(content) || len(content) < 3 {
 			err := MyTemplates.ExecuteTemplate(w, "404", user)
 			if err != nil {
-				MyTemplates.ExecuteTemplate(w, "500", user)
+				http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 				return
 			}
 			return
@@ -99,7 +99,7 @@ func Post(w http.ResponseWriter, r *http.Request, user database.User) {
 
 		err = comment.InsertIntoDatabase()
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 

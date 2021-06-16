@@ -14,7 +14,7 @@ func JoinHouse(w http.ResponseWriter, r *http.Request, user database.User) {
 	case "GET":
 		err := MyTemplates.ExecuteTemplate(w, "join-house", user)
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			log.Println("❌ ERREUR | Impossible d'exécuter le template “houses”.")
 			fmt.Println(err)
 			return
@@ -91,12 +91,12 @@ func JoinHouse(w http.ResponseWriter, r *http.Request, user database.User) {
 		// Mise à jour de l'utilisateur dans la base de données :
 		err := user.UpdateInDatabase("house_id")
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 		}
 
 		err = MyTemplates.ExecuteTemplate(w, "discover-your-house", user)
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 	}

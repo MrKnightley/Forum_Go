@@ -16,7 +16,7 @@ func Reaction(w http.ResponseWriter, r *http.Request, user database.User) {
 	if len(pathArray) != 4 {
 		err := MyTemplates.ExecuteTemplate(w, "404", user)
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 		// http.Error(w, "404 NOT FOUND", http.StatusNotFound)
@@ -30,7 +30,7 @@ func Reaction(w http.ResponseWriter, r *http.Request, user database.User) {
 	if err != nil || ID < 1 || (reactType != "like" && reactType != "dislike") || (receiverType != "post" && receiverType != "comment") {
 		err := MyTemplates.ExecuteTemplate(w, "400", user)
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 		return
@@ -83,7 +83,7 @@ func Reaction(w http.ResponseWriter, r *http.Request, user database.User) {
 			}
 		}
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 		// Redirection vers la page du post :
@@ -135,7 +135,7 @@ func Reaction(w http.ResponseWriter, r *http.Request, user database.User) {
 			}
 		}
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 		// Redirection vers la page du post :

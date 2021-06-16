@@ -11,7 +11,7 @@ func Index(w http.ResponseWriter, r *http.Request, user database.User) {
 	if r.URL.Path != "/" {
 		err := MyTemplates.ExecuteTemplate(w, "400", user)
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 		return
@@ -48,7 +48,7 @@ func Index(w http.ResponseWriter, r *http.Request, user database.User) {
 	dataForIndex.PromotedPost.Author, _ = database.GetUserByID(dataForIndex.PromotedPost.AuthorID)
 
 	if err != nil || err2 != nil || err3 != nil || err4 != nil {
-		MyTemplates.ExecuteTemplate(w, "500", user)
+		http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 		log.Println("❌ ERREUR | Impossible de récupérer les 3 ou l'un des 3 posts pour la page Index")
 		fmt.Println(err, err2, err3)
 		return
@@ -58,7 +58,7 @@ func Index(w http.ResponseWriter, r *http.Request, user database.User) {
 
 	err5 := MyTemplates.ExecuteTemplate(w, "index", dataForIndex)
 	if err5 != nil {
-		MyTemplates.ExecuteTemplate(w, "500", user)
+		http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 		return
 	}
 }

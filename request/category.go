@@ -19,7 +19,7 @@ func Category(w http.ResponseWriter, r *http.Request, user database.User) {
 		if err != nil || ID < 1 {
 			err := MyTemplates.ExecuteTemplate(w, "404", user)
 			if err != nil {
-				MyTemplates.ExecuteTemplate(w, "500", user)
+				http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 				return
 			}
 			// http.Error(w, "404 NOT FOUND", http.StatusNotFound)
@@ -39,7 +39,7 @@ func Category(w http.ResponseWriter, r *http.Request, user database.User) {
 
 		myCategory, err := database.GetCategoryByID(ID) // Récupération du nom de la catégorie
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			log.Println("❌ ERREUR | Impossible de récupérer la catégorie depuis l'ID : ", ID)
 			return
 		}
@@ -52,7 +52,7 @@ func Category(w http.ResponseWriter, r *http.Request, user database.User) {
 		if dataForCategory.Name == "" {
 			err := MyTemplates.ExecuteTemplate(w, "404", user)
 			if err != nil {
-				MyTemplates.ExecuteTemplate(w, "500", user)
+				http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 				return
 			}
 			// http.Error(w, "404 NOT FOUND", http.StatusNotFound)
@@ -61,13 +61,13 @@ func Category(w http.ResponseWriter, r *http.Request, user database.User) {
 		}
 		dataForCategory.Posts, err = database.GetPostsByCategoryID(ID) // Récupération de tous les posts appartenant à la catégorie
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 		// (3) Exécution du template 'category' avec la Data :
 		err = MyTemplates.ExecuteTemplate(w, "category", dataForCategory)
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 	case "POST":
