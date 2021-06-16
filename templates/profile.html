@@ -50,8 +50,8 @@
                     </div>
 
                     <div class="main">
-                        <!-- Si le profile fait partie d'une maison : -->
-                        {{ if ne .Profile.House.ID 0}}
+                        <!-- Si le profile fait partie d'une maison (et que son compte est activé) : -->
+                        {{ if and (ne .Profile.House.ID 0) (eq .Profile.State 0) }}
                         <img src="../images/houses/house-{{ .Profile.House.ID }}.png" class="house-img"> {{ end }}
 
                         <!-- Si le profile NE fait PAS partie d'une maison ET que le user loggé est sur sa propre page de profile : -->
@@ -74,14 +74,17 @@
                         {{ end }}
 
                         <!-- Profil avec maison : -->
-                        {{ if and (gt .Profile.House.ID 0) (eq .Profile.State 0) }}
+                        {{ if and (ne .Profile.House.ID 0) (eq .Profile.State 0) }}
                         <p class="club">{{ .Profile.House.Name }}</p>
                         {{ end }}
 
+                        <!-- Si le compte est activé : -->
+                        {{ if eq .Profile.State 0}}
                         <div class="trophies">
                             {{ range .Profile.Badges }}
                             <img src="{{ .Image }}"> {{end}}
                         </div>
+                        {{ end }}
 
                     </div>
                 </div>

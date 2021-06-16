@@ -25,7 +25,7 @@
         <!-- Si le user est un modo/admin/dev : -->
         {{ if and (gt .Role 2) (eq .State 0) }}
         <a class="manage" href="/moderation">
-            <img id="logo" src="/static/images/profile/settings.svg">
+            <img id="logo" src="/static/images/profile/settings.svg" title="Forum management">
         </a>
         {{ end }}
 

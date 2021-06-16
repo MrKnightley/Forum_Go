@@ -99,5 +99,5 @@ func deleteAccount(w http.ResponseWriter, r *http.Request, user database.User, p
 		}
 	}
 	w.Write([]byte(`{"message":"deleted"}`))
-	//http.Redirect(w, r, "/", http.StatusFound)
+	http.Redirect(w, r, "/", http.StatusFound)
 }
