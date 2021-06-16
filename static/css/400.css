@@ -1,39 +1,56 @@
 @import url("https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap");
-body{
-    background-image: url("../images/profile/dark_sky1.webp");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+body {
+    background-image: url("../static/images/login/starry_sky.png");
     background-size: cover;
-    overflow: hidden;
+    overflow-x: hidden;
 }
-.img{
-    width: 40%;
-    height: 100%;
-}
-.container{
-    margin-top:15vh;
+
+.container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
 }
-.container div{
+
+.container>img.gif {
+    width: 100%;
+    margin: 100px 0 40px 0;
+}
+
+.main-title {
     font-family: 'Crimson Text', serif;
-    font-size:5em;
-    font-weight:900;
-    color: rgb(158, 142, 142);
+    font-size: 60px;
+    font-weight: 900;
+    color: rgb(255, 255, 255);
 }
-.container .msg{
-    font-size:3em;
+
+.subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    padding: 20px 0 40px 0;
 }
-div a{
-    margin-left: 0.33em;
-    font-size:0.7em;
-    padding-left:1em;
+
+.msg .back-btn {
+    font-family: 'Poppins', sans-serif;
+    background: #ffffff;
     text-decoration: none;
-    color:rgb(207, 206, 206);
-    background: #7269c0;
-    text-decoration: none;
-    padding: 0px 10px;
-    color: white;
-    border-radius: 10px;
+    padding: 10px 45px;
+    color: rgb(29, 29, 29);
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 800;
+    border-radius: 50px;
     transition: 0.3s ease-in-out;
 }
-div a:hover {
-    background: #57509b;
+
+.msg .back-btn:hover {
+    background: #cfcfcf;
+    color: rgb(0, 0, 0);
 }

@@ -7,18 +7,86 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/static/css/header.css">
     <link rel="stylesheet" type="text/css" href="/static/css/404.css">
-    <title>404 NOT FOUND</title>
+    <title>Page Not Found (404)</title>
 </head>
 
 <body>
 
     {{template "header" .}}
+
     <div class="container">
-        <div>404 NOT FOUND</div>
-        <img src="../static/images/error/perdu.gif" class="img">
-        <div class="msg">You seem lost, return home ?<br><a href="/">Yes</a></div>
+        <!-- <div>404 NOT FOUND</div> -->
+        <img src="../static/images/error/perdu.gif" class="gif">
+        <div class="msg">
+            <p class="main-title">Oh dear. Are you lost?</p>
+            <p class="subtitle">We couldn't find the page you're looking for.</p>
+            <a class="back-btn" href="/">Back to the home page</a>
+        </div>
     </div>
 
 </body>
+
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+    body {
+        background-image: url("../static/images/login/starry_sky.png");
+        background-size: cover;
+        overflow-x: hidden;
+    }
+    
+    .container {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    
+    .container>img.gif {
+        width: 100%;
+        margin: 100px 0 40px 0;
+    }
+    
+    .main-title {
+        font-family: 'Crimson Text', serif;
+        font-size: 60px;
+        font-weight: 900;
+        color: rgb(255, 255, 255);
+    }
+    
+    .subtitle {
+        font-family: 'Poppins', sans-serif;
+        font-size: 16px;
+        color: rgb(255, 255, 255);
+        padding: 20px 0 40px 0;
+    }
+    
+    .msg .back-btn {
+        font-family: 'Poppins', sans-serif;
+        background: #ffffff;
+        text-decoration: none;
+        padding: 10px 45px;
+        color: rgb(29, 29, 29);
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 800;
+        border-radius: 50px;
+        transition: 0.3s ease-in-out;
+    }
+    
+    .msg .back-btn:hover {
+        background: #cfcfcf;
+        color: rgb(0, 0, 0);
+    }
+</style>
+
 </html>
+
+
+
 {{end}}
