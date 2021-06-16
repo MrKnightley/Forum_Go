@@ -16,7 +16,7 @@ func Auth(nextFunction CustomFunc, credentials string) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		user, err := database.GetUserByCookie(w, r)
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 
@@ -48,7 +48,7 @@ func Auth(nextFunction CustomFunc, credentials string) http.HandlerFunc {
 			log.Println("⚠️ AUTH | Access denied. Active administrators only but user's role is ", user.Role, " and user's state is ", user.State)
 			err := MyTemplates.ExecuteTemplate(w, "unauthorized", user)
 			if err != nil {
-				MyTemplates.ExecuteTemplate(w, "500", user)
+				http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 				return
 			}
 			return

@@ -39,7 +39,7 @@ func Ticket(w http.ResponseWriter, r *http.Request, user database.User) {
 
 		err := MyTemplates.ExecuteTemplate(w, "ticket", data)
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			log.Println("❌ ERREUR | Impossible d'exécuter le template ticket.")
 			fmt.Println(err)
 			return
@@ -54,7 +54,7 @@ func Ticket(w http.ResponseWriter, r *http.Request, user database.User) {
 		}
 		err := MyTemplates.ExecuteTemplate(w, "ticket", data)
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			log.Println("❌ ERREUR | Impossible d'exécuter le template ticket.")
 			fmt.Println(err)
 			return
@@ -72,7 +72,7 @@ func NewTicket(w http.ResponseWriter, r *http.Request, user database.User) {
 
 		err := MyTemplates.ExecuteTemplate(w, "newticket", data)
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			log.Println("❌ ERREUR | Impossible d'exécuter le template “newpost”.")
 			return
 		}
@@ -84,7 +84,7 @@ func NewTicket(w http.ResponseWriter, r *http.Request, user database.User) {
 			log.Println("❌ POST | Impossible de publier le post : le titre ou le contenu est vide.")
 			err := MyTemplates.ExecuteTemplate(w, "400", user)
 			if err != nil {
-				MyTemplates.ExecuteTemplate(w, "500", user)
+				http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 				return
 			}
 			return
@@ -104,7 +104,7 @@ func NewTicket(w http.ResponseWriter, r *http.Request, user database.User) {
 		// (4) Insertion du post dans la base de données :
 		ticketID, err := ticket.InsertIntoDatabase() // La méthode d'insertion dans la DB renvoie l'ID du post qui vient d'être inséré
 		if err != nil || ticketID < 1 {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 

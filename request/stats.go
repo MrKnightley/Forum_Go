@@ -68,7 +68,7 @@ func Stats(w http.ResponseWriter, r *http.Request, user database.User) {
 
 	err := MyTemplates.ExecuteTemplate(w, "stats", data)
 	if err != nil {
-		MyTemplates.ExecuteTemplate(w, "500", user)
+		http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 		log.Println("❌ ERREUR | Impossible d'exécuter le template “post”.")
 		return
 	}

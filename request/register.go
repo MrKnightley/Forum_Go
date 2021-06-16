@@ -15,7 +15,7 @@ func Register(w http.ResponseWriter, r *http.Request, user database.User) {
 	case "GET":
 		err := MyTemplates.ExecuteTemplate(w, "register", nil)
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 
@@ -44,14 +44,14 @@ func Register(w http.ResponseWriter, r *http.Request, user database.User) {
 		// (3) Ajouter l'utilisateur dans la base de données :
 		err := user.InsertIntoDatabase()
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 
 		// (4) Ajouter la session de l'utilisateur à la base de données :
 		err = database.AddSessionToDatabase(w, r, user)
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 
@@ -84,7 +84,7 @@ func RegisterSecret(w http.ResponseWriter, r *http.Request, user database.User) 
 	case "GET":
 		err := MyTemplates.ExecuteTemplate(w, "register-secret", nil)
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 
@@ -100,25 +100,25 @@ func RegisterSecret(w http.ResponseWriter, r *http.Request, user database.User) 
 		// (3) Modification de l'utilisateur dans la base de données :
 		err := user.UpdateInDatabase("secretQuestion")
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 		}
 
 		err = user.UpdateInDatabase("secretAnswer")
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 		}
 
 		// Modification du statut de l'utilisateur (de INCOMPLETE à NORMAL) :
 		user.State = database.NORMAL
 		err = user.UpdateInDatabase("state")
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 		}
 
 		// (4) Ajouter la session de l'utilisateur à la base de données :
 		err = database.AddSessionToDatabase(w, r, user)
 		if err != nil {
-			MyTemplates.ExecuteTemplate(w, "500", user)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 		}
 
 		// Redirection vers la page de login :
