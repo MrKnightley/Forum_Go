@@ -1074,10 +1074,11 @@ section#envelope-form .locked .login-btn:hover {
   }
 }
 .tenorTest {
+  z-index: 50;
   border-radius: 25px;
   background-color: #1b043e;
-  width: 20vw;
-  height: 80vh;
+  width: 30em;
+  height: 80em;
   display: flex;
   flex-flow: row wrap;
   position: fixed;

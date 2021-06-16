@@ -693,10 +693,11 @@ section#envelope-form {
 }
 
 .tenorTest {
+    z-index: 50;
     border-radius: 25px;
     background-color: rgb(27, 4, 62);
-    width: 20vw;
-    height: 80vh;
+    width: 30em;
+    height: 80em;
     display: flex;
     flex-flow: row wrap;
     position: fixed;
