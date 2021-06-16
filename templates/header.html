@@ -1,24 +1,47 @@
 {{define "header" }}
 
 <header>
-    <a href="/" class="menu">X</a>
-    <a href="/"><img src="/static/images/main_logo.png" id="logo">
-    </a>
+
+    <div class="left">
+        <a class="menu" href="/">X</a>
+    </div>
+
+    <div class="center">
+        <a href="/">
+            <img id="logo" src="/static/images/main_logo.png">
+        </a>
+    </div>
+
     {{ if eq .Role 0 }}
-    <ul>
-        <li><a class="active" href="/login">Login</a></li>
-    </ul>
+
+    <div class="right">
+        <a class="active login" href="/login">Login</a>
+    </div>
+
     {{ else }}
-    <ul>
-        <li>
-            <a class="avatar" href="/Profile?user={{ .Username }}"><img class="avatar-img" src="{{ .Avatar }}"></a>
-        </li>
-        <li>
-            <a class="new-post" href="/new-post"><img class="new-post-img" src="../static/images/new-post.png"></a>
-        </li>
-        <li><a class="active" href="/logout">Logout</a></li>
-    </ul>
+
+    <div class="right">
+
+        <!-- Si le user est un modo/admin/dev : -->
+        {{ if gt .Role 1 }}
+        <a class="manage" href="/moderation">
+            <img id="logo" src="/static/images/profile/settings.svg">
+        </a>
+        {{ end }}
+
+        <a class="new-post" href="/new-post">
+            <img class="new-post-img" src="../static/images/plus_sign.png" title="Publish a new fax">
+        </a>
+
+        <a class="profile" href="/Profile?user={{ .Username }}">
+            <img class="profile-img" src="../static/images/profile.png" title="Your profile page">
+        </a>
+
+        <a class="active logout" href="/logout">Logout</a>
+    </div>
+
     {{ end }}
+
 </header>
 
 {{end}}

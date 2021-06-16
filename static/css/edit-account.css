@@ -298,3 +298,81 @@ svg {
 input[type="file"] {
     display: none;
 }
+
+
+/* .logout {
+    text-decoration: none;
+    padding: 7px 25px;
+    background: #6b63b5;
+    color: #ffffff;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    font-size: 70%;
+    border-radius: 3px;
+    transition: 0.3s ease-in-out;
+}
+
+.logout:hover {
+    background: #514a92;
+} */
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    /* width: 70%; */
+    margin: 10px 0 60px 60px;
+}
+
+.delete,
+.logout {
+    display: flex;
+    flex-direction: row;
+    margin: 8px 0 8px 0;
+}
+
+.logout {
+    text-decoration: none;
+    color: white;
+}
+
+.delete i,
+.logout i {
+    margin: 1px 15px 0 0;
+    text-shadow: 0 0 6px rgb(255, 255, 255, 0.7);
+}
+
+.delete p,
+.logout p {
+    text-shadow: 0 0 6px rgb(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.delete p:hover,
+.logout p:hover {
+    text-decoration: underline dotted;
+}
+
+
+/* .delete-btn {
+    background: #7269c0;
+    text-decoration: none;
+    padding: 8px 45px;
+    color: white;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    font-size: 70%;
+    border-radius: 3px;
+    transition: 0.3s ease-in-out;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background: #57509b;
+} */
