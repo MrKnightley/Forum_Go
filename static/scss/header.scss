@@ -40,7 +40,7 @@ header {
     z-index: 999999;
     background: #202335;
     border-bottom: solid 1px #434343;
-    .column_left {
+    .columnLeft {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
@@ -56,7 +56,7 @@ header {
             padding-right: 12vw;
         }
     }
-    .column_center {
+    .columnCenter {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -70,7 +70,7 @@ header {
             }
         }
     }
-    .column_right {
+    .columnRight {
         float: right;
         display: flex;
         flex-direction: row;
@@ -104,7 +104,7 @@ header {
 
 @media only all and (max-width: 790px) {
     header {
-        .column_right {
+        .columnRight {
             a {
                 margin: 0 10px 0 10px;
             }
@@ -114,7 +114,7 @@ header {
 
 @media only all and (max-width: 600px) {
     header {
-        .column_right {
+        .columnRight {
             a {
                 margin: 0 5px 0 5px;
             }
@@ -124,7 +124,7 @@ header {
 
 @media only all and (max-width: 510px) {
     header {
-        .column_right {
+        .columnRight {
             .logout {
                 display: none;
             }

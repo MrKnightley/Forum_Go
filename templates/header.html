@@ -2,11 +2,11 @@
 
 <header>
 
-    <div class="column_left">
+    <div class="columnLeft">
         <a class="menu" href="/">X</a>
     </div>
 
-    <div class="column_center">
+    <div class="columnCenter">
         <a href="/">
             <img id="logo" src="/static/images/main_logo.png">
         </a>
@@ -14,13 +14,13 @@
 
     {{ if and (eq .Role 0) (eq .State 0) }}
 
-    <div class="column_right">
+    <div class="columnRight">
         <a class="active login" href="/login">Login</a>
     </div>
 
     {{ else }}
 
-    <div class="column_right">
+    <div class="columnRight">
 
         <!-- Si le user est un modo/admin/dev : -->
         {{ if and (gt .Role 2) (eq .State 0) }}

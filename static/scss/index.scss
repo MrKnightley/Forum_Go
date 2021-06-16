@@ -336,6 +336,16 @@
         }
     }
     
+    // ========= SECTION 4 : Join Club =========
+    section.join-club {
+        margin-top: 200px;
+        .join-class-banner {
+            img.club-banner-img {
+                width: 30%;
+            }
+        }
+    }
+    
     .slider {
         opacity: 1;
         transition: opacity 1s ease-in-out;
