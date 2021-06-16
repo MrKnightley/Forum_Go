@@ -64,7 +64,7 @@
                         </div>
 
                         <!-- Profil sans maison : -->
-                        {{ if eq .Profile.House.ID 0}}
+                        {{ if and (eq .Profile.House.ID 0) (eq .Profile.State 0) }}
                         <p class="club">Unaffiliated</p>
                         {{ end }}
 
@@ -74,7 +74,7 @@
                         {{ end }}
 
                         <!-- Profil avec maison : -->
-                        {{ if gt .Profile.House.ID 0}}
+                        {{ if and (gt .Profile.House.ID 0) (eq .Profile.State 0) }}
                         <p class="club">{{ .Profile.House.Name }}</p>
                         {{ end }}
 
