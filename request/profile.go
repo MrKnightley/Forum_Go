@@ -75,7 +75,6 @@ func ProfilePage(w http.ResponseWriter, r *http.Request, user database.User) {
 			panic(err)
 		} else {
 			deleteAccount(w, r, user, p)
-			w.Write([]byte(`{"message":"deleted"}`))
 		}
 	}
 }
@@ -99,4 +98,6 @@ func deleteAccount(w http.ResponseWriter, r *http.Request, user database.User, p
 			http.SetCookie(w, cookie) // Suppression du cookie
 		}
 	}
+	w.Write([]byte(`{"message":"deleted"}`))
+	//http.Redirect(w, r, "/", http.StatusFound)
 }

@@ -21,8 +21,8 @@
 
             <!-- PREMIERE SLIDE -->
             <div class="slide" id="s1">
-                <!-- Fond neutre (aucune maison) : -->
-                {{ if eq .Profile.House.ID 0}}
+                <!-- Fond neutre (aucune maison OU compte supprimé) : -->
+                {{ if or (eq .Profile.House.ID 0) (gt .Profile.State 0) }}
                 <img src="../static/images/profile/dark_sky1.webp" class="background-img" id="sky1">
                 <img src="../static/images/profile/dark_sky2.webp" class="background-img" id="sky2">
 
@@ -63,9 +63,18 @@
                             <h1 class="username">{{ .Profile.Username }}</h1>
                         </div>
 
+                        <!-- Profil sans maison : -->
                         {{ if eq .Profile.House.ID 0}}
                         <p class="club">Unaffiliated</p>
-                        {{ else }}
+                        {{ end }}
+
+                        <!-- Compte désactivé : -->
+                        {{ if gt .Profile.State 0}}
+                        <p class="club">This account was disactivated</p>
+                        {{ end }}
+
+                        <!-- Profil avec maison : -->
+                        {{ if gt .Profile.House.ID 0}}
                         <p class="club">{{ .Profile.House.Name }}</p>
                         {{ end }}
 

@@ -12,7 +12,7 @@
         </a>
     </div>
 
-    {{ if eq .Role 0 }}
+    {{ if and (eq .Role 0) (eq .State 0) }}
 
     <div class="right">
         <a class="active login" href="/login">Login</a>
@@ -23,7 +23,7 @@
     <div class="right">
 
         <!-- Si le user est un modo/admin/dev : -->
-        {{ if gt .Role 1 }}
+        {{ if and (gt .Role 2) (eq .State 0) }}
         <a class="manage" href="/moderation">
             <img id="logo" src="/static/images/profile/settings.svg">
         </a>

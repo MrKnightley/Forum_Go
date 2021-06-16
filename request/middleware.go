@@ -28,19 +28,25 @@ func Auth(nextFunction CustomFunc, credentials string) http.HandlerFunc {
 
 		if credentials == "members only" && user.Role < database.MEMBER {
 			log.Println("⚠️ AUTH | Access denied. Members only but user's role is : ", user.Role)
-			http.Redirect(w, r, "/", http.StatusSeeOther)
+			http.Redirect(w, r, "/login", http.StatusSeeOther)
 			return
 		}
 
 		if credentials == "active members only" && (user.Role < database.MEMBER || user.State != database.NORMAL) {
 			log.Println("⚠️ AUTH | Access denied. Active members only but user's role is ", user.Role, " and user's state is ", user.State)
-			http.Redirect(w, r, "/", http.StatusSeeOther)
+			http.Redirect(w, r, "/login", http.StatusSeeOther)
+			return
+		}
+
+		if credentials == "active moderators only" && (user.Role < database.MODERATOR || user.State != database.NORMAL) {
+			log.Println("⚠️ AUTH | Access denied. Active moderators only but user's role is ", user.Role, " and user's state is ", user.State)
+			http.Redirect(w, r, "/login", http.StatusSeeOther)
 			return
 		}
 
 		if credentials == "active admins only" && (user.Role < database.ADMIN || user.State != database.NORMAL) {
-			log.Println("⚠️ AUTH | Access denied. Active administrators only but user's role is ", user.Role, " and user's state is ", user.State)
-			http.Redirect(w, r, "/", http.StatusSeeOther)
+			log.Println("⚠️ AUTH | Access denied. Active admins only but user's role is ", user.Role, " and user's state is ", user.State)
+			http.Redirect(w, r, "/login", http.StatusSeeOther)
 			return
 		}
 
