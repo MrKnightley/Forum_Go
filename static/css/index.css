@@ -776,11 +776,16 @@ section#join-club .join-club-banner {
 section#join-club .join-club-banner img {
   width: 100%;
 }
-section#join-club .join-club-banner p {
+section#join-club .join-club-banner .container {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+section#join-club .join-club-banner .container p {
   font-family: "Crimson Text", serif;
   color: white;
   text-transform: uppercase;
@@ -788,6 +793,21 @@ section#join-club .join-club-banner p {
   font-size: 40px;
   font-weight: 800;
   letter-spacing: 5px;
+}
+section#join-club .join-club-banner .container .join-btn {
+  background: #7269c0;
+  text-decoration: none;
+  padding: 10px 45px;
+  color: white;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  font-size: 14px;
+  border-radius: 50px;
+  transition: 0.3s ease-in-out;
+  margin-top: 50px;
+}
+section#join-club .join-club-banner .container .join-btn:hover {
+  background: #57509b;
 }
 
 .slider {

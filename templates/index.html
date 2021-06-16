@@ -224,15 +224,21 @@
         </div>
     </section>
 
+    {{ if eq .User.House.ID 0 }}
     <section id="join-club">
-
         <div class="join-club-banner">
             <img class="club-banner-img" src="../static/images/index/join-club.jpg">
-            <p>Join a local sports club</p>
+            <div class="container">
+                <p>Join a local sports club</p>
+                {{ if gt .User.Role 0 }}
+                <a class="join-btn" href="/join-house">Take the test</a> {{ else }}
+                <a class="join-btn" href="/login">Log in to take the test</a> {{ end }}
+            </div>
         </div>
-
-
     </section>
+
+    {{ end }}
+    <!--  -->
 
     {{template "loading" . }}
 

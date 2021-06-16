@@ -344,18 +344,38 @@
             img {
                 width: 100%;
             }
-            p {
+            .container {
                 position: absolute;
-                top: 50%;
+                top: 60%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                font-family: 'Crimson Text', serif;
-                color: white;
-                text-transform: uppercase;
-                text-shadow: 0 0 8px rgba(0, 0, 0);
-                font-size: 40px;
-                font-weight: 800;
-                letter-spacing: 5px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                p {
+                    font-family: 'Crimson Text', serif;
+                    color: white;
+                    text-transform: uppercase;
+                    text-shadow: 0 0 8px rgba(0, 0, 0);
+                    font-size: 40px;
+                    font-weight: 800;
+                    letter-spacing: 5px;
+                }
+                .join-btn {
+                    background: #7269c0;
+                    text-decoration: none;
+                    padding: 10px 45px;
+                    color: white;
+                    text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+                    text-transform: uppercase;
+                    font-size: 14px;
+                    border-radius: 50px;
+                    transition: 0.3s ease-in-out;
+                    margin-top: 50px;
+                    &:hover {
+                        background: #57509b;
+                    }
+                }
             }
         }
     }
