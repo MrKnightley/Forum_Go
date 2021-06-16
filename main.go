@@ -75,13 +75,13 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", static))
 
 	// ⭐ Ticket :
-	http.HandleFunc("/ticket", request.Auth(request.Ticket, "members only"))
+	http.HandleFunc("/ticket", request.Auth(request.Ticket, "active members only"))
 
 	// ⭐ New Ticket :
-	http.HandleFunc("/newTicket", request.Auth(request.NewTicket, "members only"))
+	http.HandleFunc("/newTicket", request.Auth(request.NewTicket, "active members only"))
 
 	// ⭐ Ticket Answer :
-	http.HandleFunc("/ticket-answer", request.Auth(request.Ticket_Answer, "members only"))
+	http.HandleFunc("/ticket-answer", request.Auth(request.Ticket_Answer, "active members only"))
 
 	// ⭐ Delete User :
 	http.HandleFunc("/delete", request.Auth(admin.Delete, "active admins only"))
@@ -90,7 +90,7 @@ func main() {
 	http.HandleFunc("/stats", request.Auth(request.Stats, "everybody"))
 
 	// ⭐ Suppression de post ou commentaire :
-	http.HandleFunc("/delete-post", request.Auth(request.DeletePost, "members only"))
+	http.HandleFunc("/delete-post", request.Auth(request.DeletePost, "active members only"))
 
 	// ⭐ AddBadgeToUser :
 	http.HandleFunc("/badge", request.Auth(admin.AddBadge, "everybody"))
@@ -99,16 +99,16 @@ func main() {
 	http.HandleFunc("/Profile", request.Auth(request.ProfilePage, "everybody"))
 
 	// ⭐ Accès à la page de modification du compte :
-	http.HandleFunc("/edit-account", request.Auth(request.Account, "members only"))
+	http.HandleFunc("/edit-account", request.Auth(request.Account, "active members only"))
 
 	// ⭐ modification d'un post :
-	http.HandleFunc("/edit-post", request.Auth(request.EditPost, "members only"))
+	http.HandleFunc("/edit-post", request.Auth(request.EditPost, "active members only"))
 
 	// ⭐ Accès aux pages d'inscription, de connexion et déconnexion :
 	http.HandleFunc("/register", request.Auth(request.Register, "guests only"))
 	http.HandleFunc("/login", request.Auth(request.Login, "guests only"))
 	http.HandleFunc("/forgotten-password", request.Auth(request.ForgottenPassword, "guests only"))
-	http.HandleFunc("/logout", request.Auth(request.Logout, "members only"))
+	http.HandleFunc("/logout", request.Auth(request.Logout, "active members only"))
 
 	// ⭐ Accès à la page de chaque catégorie :
 	http.HandleFunc("/category/", request.Auth(request.Category, "everybody"))
