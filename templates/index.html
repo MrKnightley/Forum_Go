@@ -49,10 +49,15 @@
                         <a href="/post/{{ .MostLikedPost.ID }}">
                             <span class="headline hl">{{ .MostLikedPost.Title }}</span>
                         </a>
+
                         <a class="author" href="/Profile?user={{ .MostLikedPost.Author.Username }}">
+                            {{ if ne .MostLikedPost.Author.House.ID 0 }}
+                            <img class="house-img" src="{{ .MostLikedPost.Author.House.Image}}">
+                            {{ end }}
                             <p><span class="headline hl1-author">by {{ .MostLikedPost.Author.Username }}</span></p>
-                            <img src="{{ .MostLikedPost.Author.Avatar}}">
+                            <img class="avatar-img" src="{{ .MostLikedPost.Author.Avatar}}">
                         </a>
+
                     </div>
 
                     <p class="content">
@@ -73,11 +78,19 @@
                         <img src="../static/images/reply.png" title="The most commented post of the week">
                     </div>
 
-                    <div class="head"><a href="/post/{{ .MostCommentedPost.ID }}"><span class="headline hl">{{ .MostCommentedPost.Title }}</span></a>
-                        <a class="author" href="/Profile?user={{ .MostCommentedPost.Author.Username }}">
-                            <p><span class="headline hl1-author">by {{ .MostCommentedPost.Author.Username }}</span></p>
-                            <img src="{{ .MostCommentedPost.Author.Avatar}}">
+                    <div class="head">
+                        <a href="/post/{{ .MostCommentedPost.ID }}">
+                            <span class="headline hl">{{ .MostCommentedPost.Title }}</span>
                         </a>
+
+                        <a class="author" href="/Profile?user={{ .MostCommentedPost.Author.Username }}">
+                            {{ if ne .MostCommentedPost.Author.House.ID 0 }}
+                            <img class="house-img" src="{{ .MostCommentedPost.Author.House.Image}}">
+                            {{ end }}
+                            <p><span class="headline hl1-author">by {{ .MostCommentedPost.Author.Username }}</span></p>
+                            <img class="avatar-img" src="{{ .MostCommentedPost.Author.Avatar}}">
+                        </a>
+
                     </div>
 
                     <p class="content">
@@ -100,8 +113,11 @@
 
                     <div class="head"><a href="/post/{{ .MostRecentPost.ID }}"><span class="headline hl">{{ .MostRecentPost.Title }}</span></a>
                         <a class="author" href="/Profile?user={{ .MostRecentPost.Author.Username }}">
+                            {{ if ne .MostRecentPost.Author.House.ID 0 }}
+                            <img class="house-img" src="{{ .MostLikedPost.Author.House.Image}}">
+                            {{ end }}
                             <p><span class="headline hl1-author">by {{ .MostRecentPost.Author.Username }}</span></p>
-                            <img src="{{ .MostRecentPost.Author.Avatar}}">
+                            <img class="avatar-img" src="{{ .MostRecentPost.Author.Avatar}}">
                         </a>
                     </div>
                     <p class="content">
@@ -124,7 +140,8 @@
                         <h1 title="This post has been highlighted by our team">⭐</h1>
                     </div>
 
-                    <div class="head"><a href="/post/{{ .PromotedPost.ID }}"><span class="headline hl">{{ .MostRecentPost.Title }}</span></a>
+                    <div class="head"><a href="/post/{{ .PromotedPost.ID }}"><span class="headline hl">{{ .MostRecentPost.Title }}</span></a> {{ if ne .PromotedPost.Author.House.ID 0 }}
+                        <img class="house-img" src="{{ .Promoted.Author.House.Image}}"> {{ end }}
                         <a class="author" href="/Profile?user={{ .PromotedPost.Author.Username }}">
                             <p><span class="headline hl1-author">by {{ .PromotedPost.Author.Username }}</span></p>
                             <img src="{{ .PromotedPost.Author.Avatar}}">
@@ -205,17 +222,14 @@
 
 
         </div>
+    </section>
 
-        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod
-            non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero
-            pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing
-            nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper.
-            Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Lorem ipsum dolor
-            sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin
-            porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor.
-            Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed,
-            dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque
-            vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim.</div>
+    <section class="join-club">
+
+        <div class="join-club-banner">
+            <img class="club-banner-img" src="../static/images/index/join-club.jpg">
+        </div>
+
     </section>
 
     {{template "loading" . }}

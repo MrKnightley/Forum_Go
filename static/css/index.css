@@ -73,6 +73,66 @@ section#newspaper p .date {
   display: block;
   margin: 5px auto;
 }
+section#newspaper p .house-name__1 {
+  font-family: "Crimson Text", serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  background-image: radial-gradient(circle, #ddc578 0%, #a88e46 100%);
+  background-image: -webkit-radial-gradient(circle, #ddc578 0%, #a88e46 100%);
+  background-image: -moz-radial-gradient(circle, #ddc578 0%, #a88e46 100%);
+  background-image: -ms-radial-gradient(circle, #ddc578 0%, #a88e46 100%);
+  background-image: -o-radial-gradient(circle, #ddc578 0%, #a88e46 100%);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+section#newspaper p .house-name__2 {
+  font-family: "Crimson Text", serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  background-image: radial-gradient(circle, #78a7dd 0%, #4671a8 100%);
+  background-image: -webkit-radial-gradient(circle, #78a7dd 0%, #4671a8 100%);
+  background-image: -moz-radial-gradient(circle, #78a7dd 0%, #4671a8 100%);
+  background-image: -ms-radial-gradient(circle, #78a7dd 0%, #4671a8 100%);
+  background-image: -o-radial-gradient(circle, #78a7dd 0%, #4671a8 100%);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+section#newspaper p .house-name__3 {
+  font-family: "Crimson Text", serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  background-image: radial-gradient(circle, #dd78c7 0%, #a8468b 100%);
+  background-image: -webkit-radial-gradient(circle, #dd78c7 0%, #a8468b 100%);
+  background-image: -moz-radial-gradient(circle, #dd78c7 0%, #a8468b 100%);
+  background-image: -ms-radial-gradient(circle, #dd78c7 0%, #a8468b 100%);
+  background-image: -o-radial-gradient(circle, #dd78c7 0%, #a8468b 100%);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+section#newspaper p .house-name__4 {
+  font-family: "Crimson Text", serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  background-image: radial-gradient(circle, #3c9151 0%, #25692b 100%);
+  background-image: -webkit-radial-gradient(circle, #3c9151 0%, #25692b 100%);
+  background-image: -moz-radial-gradient(circle, #3c9151 0%, #25692b 100%);
+  background-image: -ms-radial-gradient(circle, #3c9151 0%, #25692b 100%);
+  background-image: -o-radial-gradient(circle, #3c9151 0%, #25692b 100%);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
 section#newspaper p .hl-author:hover {
   text-decoration: underline dotted;
 }
@@ -82,11 +142,16 @@ section#newspaper .author {
   text-decoration: none;
   color: inherit;
 }
-section#newspaper .author img {
+section#newspaper .author .avatar-img {
   margin: 13px 0 0 20px;
   width: 30px;
   height: 30px;
   border-radius: 140px;
+}
+section#newspaper .author .house-img {
+  margin: 13px 15px 0 0;
+  width: 30px;
+  height: 30px;
 }
 section#newspaper .head {
   color: rgba(42, 32, 53, 0.8);
@@ -702,6 +767,13 @@ section#category-banner .wrapper .container .right .first-btn:hover,
 section#category-banner .wrapper .container .right a:hover {
   background-color: white;
   color: black;
+}
+
+section.join-club {
+  margin-top: 200px;
+}
+section.join-club .join-class-banner img.club-banner-img {
+  width: 30%;
 }
 
 .slider {
