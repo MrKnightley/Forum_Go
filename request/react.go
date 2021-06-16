@@ -14,7 +14,12 @@ func Reaction(w http.ResponseWriter, r *http.Request, user database.User) {
 
 	pathArray := strings.Split(r.URL.Path[1:], "/") // Par exemple, pathArray = ["reaction", "like", "post", "13"]
 	if len(pathArray) != 4 {
-		http.Error(w, "404 PAGE NOT FOUND", http.StatusNotFound)
+		err := MyTemplates.ExecuteTemplate(w, "404", user)
+		if err != nil {
+			MyTemplates.ExecuteTemplate(w, "500", user)
+			return
+		}
+		// http.Error(w, "404 NOT FOUND", http.StatusNotFound)
 		return
 	}
 
@@ -23,8 +28,14 @@ func Reaction(w http.ResponseWriter, r *http.Request, user database.User) {
 	ID, err := strconv.Atoi(pathArray[3]) // ID du post ou commentaire auquel réagir
 
 	if err != nil || ID < 1 || (reactType != "like" && reactType != "dislike") || (receiverType != "post" && receiverType != "comment") {
-		http.Error(w, "400 Bad Request", http.StatusBadRequest)
+		err := MyTemplates.ExecuteTemplate(w, "400", user)
+		if err != nil {
+			MyTemplates.ExecuteTemplate(w, "500", user)
+			return
+		}
 		return
+		// http.Error(w, "400 Bad Request", http.StatusBadRequest)
+		// return
 	}
 
 	switch receiverType {
@@ -72,7 +83,7 @@ func Reaction(w http.ResponseWriter, r *http.Request, user database.User) {
 			}
 		}
 		if err != nil {
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			return
 		}
 		// Redirection vers la page du post :
@@ -124,7 +135,7 @@ func Reaction(w http.ResponseWriter, r *http.Request, user database.User) {
 			}
 		}
 		if err != nil {
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			return
 		}
 		// Redirection vers la page du post :

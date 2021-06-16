@@ -49,21 +49,26 @@ func ProfilePage(w http.ResponseWriter, r *http.Request, user database.User) {
 		data.LikedComments, err5 = database.GetCommentsLikedByUser(data.Profile.ID)
 
 		if err1 != nil || err2 != nil || err3 != nil || err4 != nil || err5 != nil {
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			log.Println("❌ ERREUR | Impossible de récupérer l'utilisateur pour la page Profile")
 			fmt.Println(err1, err2, err3)
 			return
 		}
 
 		if data.Profile.ID == 0 {
-			http.Error(w, "404 NOT FOUND", http.StatusNotFound)
+			err := MyTemplates.ExecuteTemplate(w, "404", user)
+			if err != nil {
+				MyTemplates.ExecuteTemplate(w, "500", user)
+				return
+			}
+			// http.Error(w, "404 NOT FOUND", http.StatusNotFound)
 			log.Println("❌ ERREUR | Impossible de récupérer l'utilisateur n°", data.Profile.ID, " pour la page Profile")
 			return
 		}
 
 		err := profileTmpl.ExecuteTemplate(w, "profile", data)
 		if err != nil {
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			return
 		}
 

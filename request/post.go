@@ -16,7 +16,12 @@ func Post(w http.ResponseWriter, r *http.Request, user database.User) {
 	ID, err := toolbox.ParseURL(w, r)
 
 	if err != nil || ID < 1 {
-		http.Error(w, "404 PAGE NOT FOUND", http.StatusNotFound)
+		err := MyTemplates.ExecuteTemplate(w, "404", user)
+		if err != nil {
+			MyTemplates.ExecuteTemplate(w, "500", user)
+			return
+		}
+		// http.Error(w, "404 NOT FOUND", http.StatusNotFound)
 		return
 	}
 	switch r.Method {
@@ -38,14 +43,14 @@ func Post(w http.ResponseWriter, r *http.Request, user database.User) {
 		if dataForPost.Post.State == 0 {
 			dataForPost.Comments, err = database.GetCommentsByPostID(ID, user.ID)
 			if err != nil {
-				http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+				MyTemplates.ExecuteTemplate(w, "500", user)
 				log.Println("❌ ERREUR | Impossible de récupérer le post ou les commentaires du post dont l'ID est ", ID)
 				return
 			}
 		}
 		err = MyTemplates.ExecuteTemplate(w, "post", dataForPost)
 		if err != nil {
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			log.Println("❌ ERREUR | Impossible d'exécuter le template “post”.")
 			fmt.Println(err)
 			return
@@ -66,10 +71,15 @@ func Post(w http.ResponseWriter, r *http.Request, user database.User) {
 
 		// (3) Vérification de la validité du commentaire :
 		if toolbox.IsEmptyString(content) || len(content) < 3 {
-			http.Error(w, "404 BAD REQUEST\nYour reply must be at least 3 characters.", http.StatusBadRequest)
-			log.Println("❌ POST | Publication d'un commentaire refusée. Le contenu du commentaire est invalide.")
-			log.Println("Contenu du commentaire : “", content, "”")
+			err := MyTemplates.ExecuteTemplate(w, "404", user)
+			if err != nil {
+				MyTemplates.ExecuteTemplate(w, "500", user)
+				return
+			}
 			return
+			// http.Error(w, "404 BAD REQUEST\nYour reply must be at least 3 characters.", http.StatusBadRequest)
+			// log.Println("❌ POST | Publication d'un commentaire refusée. Le contenu du commentaire est invalide.")
+			// log.Println("Contenu du commentaire : “", content, "”")
 		}
 
 		// (4) Récupération du GIF :
@@ -89,7 +99,7 @@ func Post(w http.ResponseWriter, r *http.Request, user database.User) {
 
 		err = comment.InsertIntoDatabase()
 		if err != nil {
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			return
 		}
 

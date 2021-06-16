@@ -26,7 +26,7 @@ func Account(w http.ResponseWriter, r *http.Request, user database.User) {
 		err := profileTmpl.ExecuteTemplate(w, "account", dataForSettings)
 		if err != nil {
 			log.Println("❌ ERREUR | Impossible d'afficher le template Account")
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			return
 		}
 
@@ -41,8 +41,13 @@ func Account(w http.ResponseWriter, r *http.Request, user database.User) {
 		imagePath, err := toolbox.UploadImage(r, user.ID, "avatar")
 		if err != nil && err.Error() != "http: no such file" {
 			log.Println("❌ EDIT AVATAR | Impossible de récupérer le path de l'image uploadée.")
-			http.Error(w, "400 Bad Request\n"+err.Error(), http.StatusBadRequest)
+			err := MyTemplates.ExecuteTemplate(w, "400", user)
+			if err != nil {
+				MyTemplates.ExecuteTemplate(w, "500", user)
+				return
+			}
 			return
+			// http.Error(w, "400 Bad Request\n"+err.Error(), http.StatusBadRequest)
 		}
 
 		// (2) J'ajoute ces valeurs dans une struct userUpdated :
@@ -83,7 +88,7 @@ func Account(w http.ResponseWriter, r *http.Request, user database.User) {
 		err2 := profileTmpl.ExecuteTemplate(w, "account-success", user)
 		if err2 != nil {
 			log.Println("❌ ERREUR | Impossible d'afficher le template Account-Success")
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			return
 		}
 	}

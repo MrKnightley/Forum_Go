@@ -18,7 +18,7 @@ func Login(w http.ResponseWriter, r *http.Request, user database.User) {
 	case "GET":
 		err := MyTemplates.ExecuteTemplate(w, "login", nil)
 		if err != nil {
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			return
 		}
 
@@ -30,14 +30,20 @@ func Login(w http.ResponseWriter, r *http.Request, user database.User) {
 
 		// Je vérifie que les identifiants saisis ne sont pas vides :
 		if toolbox.IsEmptyString(identifier) || toolbox.IsEmptyString(password) {
-			http.Error(w, "400 BAD REQUEST\nTHE TEXT YOU ENTERED IS EMPTY.", http.StatusBadRequest)
+			err := MyTemplates.ExecuteTemplate(w, "400", user)
+			if err != nil {
+				MyTemplates.ExecuteTemplate(w, "500", user)
+				return
+			}
 			return
+			// http.Error(w, "400 BAD REQUEST\nTHE TEXT YOU ENTERED IS EMPTY.", http.StatusBadRequest)
+			// return
 		}
 
 		// Je récupère l'utilisateur grâce à ses identifiants (s'il n'existe pas dans la base de données, user.ID == 0) :
 		user, err := database.GetUserByUsernameOrEmail(identifier)
 		if err != nil {
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			return
 		}
 
@@ -60,7 +66,7 @@ func Login(w http.ResponseWriter, r *http.Request, user database.User) {
 		AddBadgeIfUnlocked(user)
 		err = database.AddSessionToDatabase(w, r, user)
 		if err != nil {
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			return
 		}
 		// Après s'être identifié, on est redirigé vers la page index :

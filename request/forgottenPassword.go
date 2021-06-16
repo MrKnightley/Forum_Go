@@ -20,7 +20,7 @@ func ForgottenPassword(w http.ResponseWriter, r *http.Request, user database.Use
 	case "GET":
 		err := MyTemplates.ExecuteTemplate(w, "forgotten-password", "")
 		if err != nil {
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			return
 		}
 
@@ -32,7 +32,7 @@ func ForgottenPassword(w http.ResponseWriter, r *http.Request, user database.Use
 		// (2) Je recherche l'utilisateur grâce à son email :
 		user, err := database.GetUserByUsernameOrEmail(email)
 		if err != nil {
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			return
 		}
 
@@ -52,14 +52,14 @@ func ForgottenPassword(w http.ResponseWriter, r *http.Request, user database.Use
 
 		err = user.UpdateInDatabase("password")
 		if err != nil {
-			http.Error(w, "500 Internal Server Error\n(func UpdateInDatabase)", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			return
 		}
 
 		// (5) J'envoie un e-mail à l'utilisateur avec son nouveau mot de passe :
 		err = SendEmail(email, user.Username, newPassword)
 		if err != nil {
-			http.Error(w, "500 Internal Server Error\n(func SendEmail)", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			return
 		}
 

@@ -17,7 +17,12 @@ func Category(w http.ResponseWriter, r *http.Request, user database.User) {
 		// (1) Récupération de l'ID de la catégorie depuis l'URL :
 		ID, err := toolbox.ParseURL(w, r)
 		if err != nil || ID < 1 {
-			http.Error(w, "404 PAGE NOT FOUND", http.StatusNotFound)
+			err := MyTemplates.ExecuteTemplate(w, "404", user)
+			if err != nil {
+				MyTemplates.ExecuteTemplate(w, "500", user)
+				return
+			}
+			// http.Error(w, "404 NOT FOUND", http.StatusNotFound)
 			return
 		}
 
@@ -34,7 +39,7 @@ func Category(w http.ResponseWriter, r *http.Request, user database.User) {
 
 		myCategory, err := database.GetCategoryByID(ID) // Récupération du nom de la catégorie
 		if err != nil {
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			log.Println("❌ ERREUR | Impossible de récupérer la catégorie depuis l'ID : ", ID)
 			return
 		}
@@ -45,19 +50,24 @@ func Category(w http.ResponseWriter, r *http.Request, user database.User) {
 
 		dataForCategory.Name = myCategory.Name // Nom de la catégorie
 		if dataForCategory.Name == "" {
-			http.Error(w, "404 PAGE NOT FOUND", http.StatusNotFound)
+			err := MyTemplates.ExecuteTemplate(w, "404", user)
+			if err != nil {
+				MyTemplates.ExecuteTemplate(w, "500", user)
+				return
+			}
+			// http.Error(w, "404 NOT FOUND", http.StatusNotFound)
 			log.Println("❌ ERREUR | Le nom de la catégorie n°", ID, " est une string vide.")
 			return
 		}
 		dataForCategory.Posts, err = database.GetPostsByCategoryID(ID) // Récupération de tous les posts appartenant à la catégorie
 		if err != nil {
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			return
 		}
 		// (3) Exécution du template 'category' avec la Data :
 		err = MyTemplates.ExecuteTemplate(w, "category", dataForCategory)
 		if err != nil {
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			return
 		}
 	case "POST":

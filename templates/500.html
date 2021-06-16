@@ -1,0 +1,24 @@
+{{define "500"}}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/500.css">
+    <title>500 INTERNAL SERVER ERROR</title>
+</head>
+
+<body>
+
+    {{template "header" .}}
+    <div class="container">
+        <div>500 Internal Server Error</div>
+        <img src="../static/images/error/500.png" class="img">
+        <div class="msg">We're experiencing trouble.<br><a href="/">Home</a></div>
+    </div>
+
+</body>
+</html>
+{{end}}

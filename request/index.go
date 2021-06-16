@@ -9,8 +9,13 @@ import (
 
 func Index(w http.ResponseWriter, r *http.Request, user database.User) {
 	if r.URL.Path != "/" {
-		http.Error(w, "404 NOT FOUND", http.StatusNotFound)
+		err := MyTemplates.ExecuteTemplate(w, "400", user)
+		if err != nil {
+			MyTemplates.ExecuteTemplate(w, "500", user)
+			return
+		}
 		return
+		// http.Error(w, "404 NOT FOUND", http.StatusNotFound)
 	}
 
 	// Remplissage d'une struct Data pour la page d'accueil :
@@ -43,7 +48,7 @@ func Index(w http.ResponseWriter, r *http.Request, user database.User) {
 	dataForIndex.PromotedPost.Author, _ = database.GetUserByID(dataForIndex.PromotedPost.AuthorID)
 
 	if err != nil || err2 != nil || err3 != nil || err4 != nil {
-		http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+		MyTemplates.ExecuteTemplate(w, "500", user)
 		log.Println("❌ ERREUR | Impossible de récupérer les 3 ou l'un des 3 posts pour la page Index")
 		fmt.Println(err, err2, err3)
 		return
@@ -53,7 +58,7 @@ func Index(w http.ResponseWriter, r *http.Request, user database.User) {
 
 	err5 := MyTemplates.ExecuteTemplate(w, "index", dataForIndex)
 	if err5 != nil {
-		http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+		MyTemplates.ExecuteTemplate(w, "500", user)
 		return
 	}
 }

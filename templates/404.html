@@ -1,0 +1,24 @@
+{{define "404"}}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/404.css">
+    <title>404 NOT FOUND</title>
+</head>
+
+<body>
+
+    {{template "header" .}}
+    <div class="container">
+        <div>404 NOT FOUND</div>
+        <img src="../static/images/error/perdu.gif" class="img">
+        <div class="msg">You seem lost, return home ?<br><a href="/">Yes</a></div>
+    </div>
+
+</body>
+</html>
+{{end}}

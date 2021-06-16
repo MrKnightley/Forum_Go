@@ -1,0 +1,24 @@
+{{define "400"}}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/400.css">
+    <title>400 BAD REQUEST</title>
+</head>
+
+<body>
+
+    {{template "header" .}}
+    <div class="container">
+        <div>Error 400 Bad Request </div>
+        <img src="../static/images/error/400.gif" class="img">
+        <div class="msg">Bad request.<br><a href="/">Home</a></div>
+    </div>
+
+</body>
+</html>
+{{end}}

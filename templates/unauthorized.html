@@ -1,0 +1,24 @@
+{{define "unauthorized"}}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/unauthorized.css">
+    <title>Unauthorized zone</title>
+</head>
+
+<body>
+
+    {{template "header" .}}
+    <div class="container">
+        <div>You're not welcomed here.</div>
+        <img src="../static/images/error/unauthorized.gif" class="img">
+        <div class="msg" ><a href="/">Home</a></div>
+    </div>
+
+</body>
+</html>
+{{end}}

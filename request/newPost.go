@@ -28,7 +28,7 @@ func NewPost(w http.ResponseWriter, r *http.Request, user database.User) {
 
 		err := MyTemplates.ExecuteTemplate(w, "newpost", dataForNewPost)
 		if err != nil {
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			log.Println("❌ ERREUR | Impossible d'exécuter le template “newpost”.")
 			return
 		}
@@ -41,22 +41,40 @@ func NewPost(w http.ResponseWriter, r *http.Request, user database.User) {
 		categoryID, err := strconv.Atoi(r.FormValue("category"))
 		if err != nil {
 			log.Println("❌ POST | Impossible de récupérer l'ID de la catégorie du post à publier.")
-			http.Error(w, "400 Bad Request", http.StatusBadRequest)
+			err := MyTemplates.ExecuteTemplate(w, "400", user)
+			if err != nil {
+				MyTemplates.ExecuteTemplate(w, "500", user)
+				return
+			}
 			return
+			// http.Error(w, "400 Bad Request", http.StatusBadRequest)
+			// return
 		}
 
 		if toolbox.IsEmptyString(title) || toolbox.IsEmptyString(content) {
 			log.Println("❌ POST | Impossible de publier le post : le titre ou le contenu est vide.")
-			http.Error(w, "400 Bad Request\nThe text you added is empty.", http.StatusBadRequest)
+			err := MyTemplates.ExecuteTemplate(w, "400", user)
+			if err != nil {
+				MyTemplates.ExecuteTemplate(w, "500", user)
+				return
+			}
 			return
+			// http.Error(w, "400 Bad Request\nThe text you added is empty.", http.StatusBadRequest)
+			// return
 		}
 
 		// (2) Récupération de l'image uploadée par l'utilisateur pour son post :
 		imagePath, err := toolbox.UploadImage(r, user.ID, "post")
 		if err != nil && err.Error() != "http: no such file" {
 			log.Println("❌ POST | Impossible de récupérer le path de l'image uploadée.")
-			http.Error(w, "400 Bad Request\n"+err.Error(), http.StatusBadRequest)
+			err := MyTemplates.ExecuteTemplate(w, "400", user)
+			if err != nil {
+				MyTemplates.ExecuteTemplate(w, "500", user)
+				return
+			}
 			return
+			// http.Error(w, "400 Bad Request\n"+err.Error(), http.StatusBadRequest)
+			// return
 		}
 
 		// (3) Remplissage d'une struct 'Post' pour le post à publier :
@@ -73,7 +91,7 @@ func NewPost(w http.ResponseWriter, r *http.Request, user database.User) {
 		// (4) Insertion du post dans la base de données :
 		postID, err := post.InsertIntoDatabase() // La méthode d'insertion dans la DB renvoie l'ID du post qui vient d'être inséré
 		if err != nil || postID < 1 {
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			MyTemplates.ExecuteTemplate(w, "500", user)
 			return
 		}
 

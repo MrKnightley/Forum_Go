@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap");
+body{
+    background-image: url("../images/profile/dark_sky1.webp");
+    background-size: cover;
+    overflow: hidden;
+}
+.img{
+    border: 10px solid;
+    border-radius:50px;
+    width: 40%;
+    height: 100%;
+}
+.container{
+    margin-top:15vh;
+    text-align: center;
+}
+.container div{
+    font-family: 'Crimson Text', serif;
+    font-size:5em;
+    font-weight:900;
+    color: rgb(158, 142, 142);
+}
+.container .msg{
+    font-size:3em;
+}
+div a{
+    margin-left: 0.33em;
+    font-size:0.7em;
+    padding-left:1em;
+    text-decoration: none;
+    color:rgb(207, 206, 206);
+    background: #7269c0;
+    text-decoration: none;
+    padding: 0px 10px;
+    color: white;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+}
+div a:hover {
+    background: #57509b;
+}
