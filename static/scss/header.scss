@@ -33,7 +33,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 20px 30px; // Haut, bas
+    padding: 17px 17px; // Haut, bas
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -54,6 +54,11 @@ header {
             text-transform: uppercase;
             letter-spacing: 2px;
             padding-right: 12vw;
+        }
+        .ticket {
+            img {
+                width: 40px;
+            }
         }
     }
     .columnCenter {
@@ -136,7 +141,6 @@ header {
 }
 
 //Menu hamburger
-
 // OLD AGAIN :
 
 /*

@@ -2,8 +2,12 @@
 
 <header>
     <div class="columnLeft">
-        <a class="menu">
+        <a class="menu"></a>
+        {{ if gt .Role 0 }}
+        <a class="ticket" href="/ticket">
+            <img id="ticket-img" src="/static/images/ticket.png" title="Contact us">
         </a>
+        {{ end }}
     </div>
 
     <div class="columnCenter">
