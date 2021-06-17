@@ -1,2 +1,2 @@
 # Ignorer la base de données :
-/database/*.db
+# /database/*.db

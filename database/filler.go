@@ -47,7 +47,7 @@ func FillHouses() {
 
 // Ajout d'un utilisateur dans la base de données :
 func FillUser(username string, password string, email string, role int, state int, houseID int) {
-	statement, err := Db.Prepare("INSERT INTO users (username, password, email, role, date, state, avatar, secretQuestion, secretAnswer, house_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
+	statement, err := Db.Prepare("INSERT OR IGNORE INTO users (username, password, email, role, date, state, avatar, secretQuestion, secretAnswer, house_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
 	if err != nil {
 		log.Println("❌ ERREUR | Impossible de remplir la table “users” dans la base de données.")
 		panic(err)
@@ -207,4 +207,27 @@ func FillBadge() {
 	statement_badge.Exec("10like", "/images/badges/silver.png")
 	statement_badge.Exec("15like", "/images/badges/gold.png")
 	statement_badge.Exec("20like", "/images/badges/platinum.png")
+}
+
+// Ajout de toute une collection d'utilisateurs dans la base de données :
+
+func FillAllUsers() {
+
+	// Username, Password, Email, Role, Statut, HouseID
+	FillUser("Tenebros", "Abc123", "virgil.nauleau@ynov.com", ADMIN, NORMAL, KRAKENS)
+	FillUser("Nicolas L.", "Abc123", "nicolas.lepinay@ynov.com", MODERATOR, NORMAL, VIPERS)
+	FillUser("Alice Kepler", "Abc123", "alice.kepler@outlook.com", MEMBER, NORMAL, GRIPHONS)
+	FillUser("James L. Wright", "Abc123", "james.wright@outlook.com", MEMBER, NORMAL, WILDCATS)
+	FillUser("Lily Cavendish", "Abc123", "lily.cavendish@outlook.com", MEMBER, NORMAL, KRAKENS)
+	FillUser("Donnie Bryant", "Abc123", "donnie.bryant@outlook.com", MEMBER, NORMAL, VIPERS)
+	FillUser("Alin Mela", "Abc123", "alin.mela@outlook.com", MEMBER, NORMAL, GRIPHONS)
+	FillUser("Cyprus S.", "Abc123", "cyprus.s@outlook.com", MEMBER, NORMAL, WILDCATS)
+	FillUser("Mari Hashiba", "Abc123", "mari.hashiba@outlook.com", MEMBER, NORMAL, KRAKENS)
+	FillUser("Giulio Favaro", "Abc123", "giulio.favaro@outlook.com", MEMBER, NORMAL, VIPERS)
+	FillUser("Anna Kaufmann", "Abc123", "anna.kaufmann@outlook.com", MEMBER, NORMAL, GRIPHONS)
+	FillUser("Rafaelo Neixeira", "Abc123", "rafaelo.neixeira@outlook.com", MEMBER, NORMAL, WILDCATS)
+	FillUser("Joy Woodley", "Abc123", "joy.woodley@outlook.com", MEMBER, NORMAL, KRAKENS)
+	FillUser("Jensen Acker", "Abc123", "jensen.acker@outlook.com", MEMBER, NORMAL, VIPERS)
+	FillUser("Betty L. Berrie", "Abc123", "betty.berrie@outlook.com", MEMBER, NORMAL, GRIPHONS)
+	FillUser("Jeanne Dulcy", "Abc123", "jeanne.dulcy@outlook.com", MEMBER, NORMAL, WILDCATS)
 }

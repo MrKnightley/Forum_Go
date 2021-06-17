@@ -811,6 +811,10 @@ section#main .wrapper .column.left .content a .user p.role {
 section#main .wrapper .column.left .content a .user .trophies {
   padding-top: 10px;
 }
+section#main .wrapper .column.left .content p#main-text {
+  text-align: justify;
+  text-align-last: left;
+}
 section#main .wrapper .column.left .content p#main-text:first-letter {
   float: left;
   font-family: "Crimson Text", serif;
