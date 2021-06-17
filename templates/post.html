@@ -41,11 +41,13 @@
                     <div class="avatar"><img src="{{ .Post.Author.Avatar }}"></div>
                 </a>
 
-                {{ range .Post.Author.Badges }}
+                
                 <div class="trophies">
+                    {{ range .Post.Author.Badges }}
                     <img src="{{ .Image }}">
+                    {{end}}
                 </div>
-                {{end}}
+                
 
                 <div class="reactions">
                     <div class="icons">
