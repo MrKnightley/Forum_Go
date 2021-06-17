@@ -9,7 +9,6 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
-	"golang.org/x/crypto/bcrypt"
 )
 
 // Fonction handleFunc pour la page 'Forgotten Password' :
@@ -47,8 +46,9 @@ func ForgottenPassword(w http.ResponseWriter, r *http.Request, user database.Use
 		// (4) ...Sinon, je mets à jour le mot de passe dans la base de données :
 
 		newPassword := GenerateNewPassword()
-		cryptedPassword, _ := bcrypt.GenerateFromPassword([]byte(newPassword), 14)
-		user.Password = string(cryptedPassword)
+		// fmt.Println("NEW PASSWORD : ")
+		// fmt.Println(newPassword)
+		user.Password = newPassword // Le cryptage se fait dans la fonction UpdateInDatabase !
 
 		err = user.UpdateInDatabase("password")
 		if err != nil {
