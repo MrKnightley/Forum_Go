@@ -166,8 +166,8 @@
                     <p id="main-text">
                         {{.Post.Content}}
                     </p>
-                    <!-- Si le user est l'auteur du post : -->
-                    {{ if eq .Post.Author.ID .User.ID}}
+                    <!-- Si le user est l'auteur du post ou un modo/admin : -->
+                    {{ if or (eq .Post.Author.ID .User.ID) (gt .User.Role 1)}}
                     <textarea class="Invisible" id="EditArea">{{.Post.Content}}</textarea> {{end}}
 
                     <!-- Si la longueur du nom de l'image > 5, c'est qu'elle existe : -->
