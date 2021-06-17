@@ -154,11 +154,11 @@
                             <p class="role">Administrator</p>
                             {{ end }} {{ if eq .Post.Author.Role 4}}
                             <p class="role">Developer</p>
-                            {{ end }} {{ range .Post.Author.Badges }}
+                            {{ end }}
                             <div class="trophies">
-                                <img src="{{ .Image }}">
+                                {{ range .Post.Author.Badges }}
+                                <img src="{{ .Image }}"> {{end}}
                             </div>
-                            {{end}}
 
                         </div>
                     </a>
@@ -216,11 +216,11 @@
                         <div class="house">
                             <img src="{{ .Author.House.Image }}">
                         </div>
-                        {{end}} {{ range .Author.Badges }}
-                        <div class="trophies">
-                            <img src="{{ .Image }}">
-                        </div>
                         {{end}}
+                        <div class="trophies">
+                            {{ range .Author.Badges }}
+                            <img src="{{ .Image }}"> {{end}}
+                        </div>
 
                         <div class="date">{{ .Date }}</div>
                     </div>

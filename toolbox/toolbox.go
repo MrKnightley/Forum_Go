@@ -73,7 +73,7 @@ func UploadImage(r *http.Request, userID int, postOrAvatar string) (string, erro
 
 	// (5) Vérification qu'il s'agit bien d'un fichier image 𝗮𝘃𝗲𝗰 𝘂𝗻𝗲 𝗲𝘅𝘁𝗲𝗻𝘀𝗶𝗼𝗻 𝘃𝗮𝗹𝗶𝗱𝗲 :
 	var fileExtension string
-	extensions := []string{".jpg", ".jpeg", ".jpe", ".png", ".gif", ".jif", ".webp", ".ico"}
+	extensions := []string{".jpg", ".JPG", ".JPEG", ".jpeg", ".jpe", ".png", ".PNG", ".gif", ".jif", ".webp", ".ico"}
 
 	for _, value := range extensions {
 		if strings.HasSuffix(myFileHeader.Filename, value) {
