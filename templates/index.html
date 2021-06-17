@@ -135,16 +135,18 @@
 
 
                 {{ if ne .PromotedPost.ID 0 }}
-                <div class="column full-page">
+                <div class="column">
                     <div class="icon">
                         <h1 title="This post has been highlighted by our team">⭐</h1>
                     </div>
 
-                    <div class="head"><a href="/post/{{ .PromotedPost.ID }}"><span class="headline hl">{{ .PromotedPost.Title }}</span></a> {{ if ne .PromotedPost.Author.House.ID 0 }}
-                        <img class="house-img" src="{{ .PromotedPost.Author.House.Image}}"> {{ end }}
+                    <div class="head"><a href="/post/{{ .PromotedPost.ID }}"><span class="headline hl">{{ .PromotedPost.Title }}</span></a>
                         <a class="author" href="/Profile?user={{ .PromotedPost.Author.Username }}">
+                            {{ if ne .PromotedPost.Author.House.ID 0 }}
+                        <img class="house-img" src="{{ .PromotedPost.Author.House.Image}}"> 
+                        {{ end }}
                             <p><span class="headline hl1-author">by {{ .PromotedPost.Author.Username }}</span></p>
-                            <img src="{{ .PromotedPost.Author.Avatar}}">
+                            <img class="avatar-img" src="{{ .PromotedPost.Author.Avatar}}">
                         </a>
                     </div>
                     <p class="content">
