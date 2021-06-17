@@ -2,7 +2,8 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:400|Raleway:400,700,400italic,700italic);
 html {
   background-image: url("../images/profile/dark_sky1.webp");
-  background-size: cover;
+  background-size: contain;
+  background-repeat: repeat-y;
   overflow-x: hidden;
 }
 
@@ -13,11 +14,14 @@ div {
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
+  -ms-user-select: none;  
   user-select: none;
   table-layout: fixed;
 }
-
+td div{
+  max-height: 50vh;
+  overflow-y:auto;
+}
 .selected {
   background-color: rgba(255, 255, 255, 0.2);
 }
