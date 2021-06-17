@@ -22,6 +22,7 @@ func main() {
 	// database.FillHouses()
 	// database.FillBadge()
 	// database.FillAllUsers()
+	// database.FillAllPosts()
 
 	// database.FillUser("Tenebros", "Abc123", "virgil.nauleau@ynov.com", database.ADMIN, database.NORMAL, database.KRAKENS) // Username, Password, Email, Role, Statut, HouseID
 	// database.FillUser("Tenebros2", "Abc123", "virgil2.nauleau@ynov.com", 1, database.NORMAL, database.GRIPHONS)           // Username, Password, Email, Role, Statut, HouseID
