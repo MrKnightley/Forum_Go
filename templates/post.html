@@ -181,7 +181,7 @@
                 </div>
 
                 <!-- Si le user est l'auteur du post : -->
-                {{ if eq .Post.Author.ID .User.ID }}
+                {{ if or (eq .Post.Author.ID .User.ID) (gt .User.Role 1) }}
                 <input type="button" value="Edit" class="white" id=edit onclick="Edit('')" />
                 <input type="button" value="Edit Fax" id=validate class="Invisible white" onclick="Validate('posts', {{ .Post.ID }} , document.getElementById('main-text'))" />
                 <input type="button" value="Delete Fax" id=delete class="Invisible white" onclick="Delete('posts', {{ .Post.ID }} , document.getElementById('main-text'))" /> {{end}}
