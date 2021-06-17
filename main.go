@@ -7,65 +7,40 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-	"os"
-	"time"
 )
 
 var tmpl *template.Template
 
 func main() {
 
-	os.Remove("./database/database.db")
+	// os.Remove("./database/database.db")
 
 	// ⭐ Initialisation de la base de données :
 	database.Initialize()
 
-	database.FillCategories()
-	database.FillHouses()
-	database.FillBadge()
-	database.FillUser("Tenebros", "Abc123", "virgil.nauleau@ynov.com", database.ADMIN, database.NORMAL, database.KRAKENS) // Username, Password, Email, Role, Statut, HouseID
-	database.FillUser("Tenebros2", "Abc123", "virgil2.nauleau@ynov.com", 1, database.NORMAL, database.GRIPHONS)           // Username, Password, Email, Role, Statut, HouseID
-	database.FillUser("John Doe", "Abc123", "john.doe@ynov.com", database.MEMBER, database.NORMAL, database.UNAFFILIATED) // Username, Password, Email, Role, Statut, HouseID
+	// database.FillCategories()
+	// database.FillHouses()
+	// database.FillBadge()
+	// database.FillAllUsers()
 
-	database.FillPost("World wide best post ever done", 1, "This is the content of the best post ever done", 1, database.PUBLISHED) // Titre, AuthorID, Content, CategoryID, Statut
-	database.FillPost("Deleted post", 1, "This post is deleted", 1, database.UNPUBLISHED)
+	// database.FillUser("Tenebros", "Abc123", "virgil.nauleau@ynov.com", database.ADMIN, database.NORMAL, database.KRAKENS) // Username, Password, Email, Role, Statut, HouseID
+	// database.FillUser("Tenebros2", "Abc123", "virgil2.nauleau@ynov.com", 1, database.NORMAL, database.GRIPHONS)           // Username, Password, Email, Role, Statut, HouseID
+	// database.FillUser("John Doe", "Abc123", "john.doe@ynov.com", database.MEMBER, database.NORMAL, database.UNAFFILIATED) // Username, Password, Email, Role, Statut, HouseID
 
-	database.FillComment(1, 1, "Best post ever done", database.PUBLISHED, "https://media.tenor.com/images/fcc716e6b70dc2e8e9839280369952a6/tenor.gif") // PostID, AuthorID, Content, Statut, GIF
-	database.FillComment(2, 1, "I agree with myself", database.PUBLISHED, "")
-	database.FillComment(1, 1, "This one is deleted", database.UNPUBLISHED, "")
+	// database.FillPost("World wide best post ever done", 1, "This is the content of the best post ever done", 1, database.PUBLISHED) // Titre, AuthorID, Content, CategoryID, Statut
+	// database.FillPost("Deleted post", 1, "This post is deleted", 1, database.UNPUBLISHED)
 
-	database.FillPostLike(1, 1, "like")
-	database.FillCommentLike(1, 1, "like")
-	//Ajout de tickets
-	database.FillTicket(2, 1, "Problem", "I have a problem", time.Now(), 0)
-	database.FillTicket(2, 1, "Problem", "I have a problem", time.Now(), 0)
-	database.FillTicket(2, 1, "Problem", "I have a problem", time.Now(), 0)
-	database.FillTicket(2, 1, "Problem", "I have a problem", time.Now(), 0)
-	database.FillTicket(2, 1, "Problem", "I have a problem", time.Now(), 0)
-	database.FillTicket(2, 1, "Problem", "I have a problem", time.Now(), 0)
-	database.FillTicket(2, 1, "Problem", "I have a problem", time.Now(), 0)
-	database.FillTicket(2, 1, "Problem", "I have a problem", time.Now(), 0)
-	database.FillTicket(2, 1, "Problem", "I have a problem", time.Now(), 0)
-	database.FillTicket(2, 1, "Problem", "I have a problem", time.Now(), 0)
-	database.FillTicket(2, 1, "Problem", "I have a problem", time.Now(), 0)
-	database.FillTicket(2, 1, "Problem", "I have a problem", time.Now(), 0)
-	database.FillTicket(2, 1, "Problem", "I have a problem", time.Now(), 0)
-	database.FillTicket(2, 1, "Problem", "I have a problem", time.Now(), 0)
-	database.FillTicket(2, 1, "Problem", "I have a problem", time.Now(), 0)
-	database.FillTicket(2, 1, "Problem", "I have a problem", time.Now(), 0)
+	// database.FillComment(1, 1, "Best post ever done", database.PUBLISHED, "https://media.tenor.com/images/fcc716e6b70dc2e8e9839280369952a6/tenor.gif") // PostID, AuthorID, Content, Statut, GIF
+	// database.FillComment(2, 1, "I agree with myself", database.PUBLISHED, "")
+	// database.FillComment(1, 1, "This one is deleted", database.UNPUBLISHED, "")
 
-	database.FillAnswer(1, 1, "Tenebros", "Answer", time.Now(), 0)
-	// Ajout de posts pour test l'HTML :
-	database.FillPost("Title for post 1", 1, "This is some content for the post 1.", 1, database.PUBLISHED)   // Titre, AuthorID, Content, CategoryID, Statut
-	database.FillPost("Title for post 2", 1, "This is some content for the post 2.", 1, database.PUBLISHED)   // Titre, AuthorID, Content, CategoryID, Statut
-	database.FillPost("Title for post 3", 1, "This is some content for the post 3.", 1, database.PUBLISHED)   // Titre, AuthorID, Content, CategoryID, Statut
-	database.FillPost("Title for post 4", 1, "This is some content for the post 4.", 1, database.PUBLISHED)   // Titre, AuthorID, Content, CategoryID, Statut
-	database.FillPost("Title for post 5", 1, "This is some content for the post 5.", 1, database.PUBLISHED)   // Titre, AuthorID, Content, CategoryID, Statut
-	database.FillPost("Title for post 6", 1, "This is some content for the post 6.", 1, database.PUBLISHED)   // Titre, AuthorID, Content, CategoryID, Statut
-	database.FillPost("Title for post 7", 1, "This is some content for the post 7.", 1, database.PUBLISHED)   // Titre, AuthorID, Content, CategoryID, Statut
-	database.FillPost("Title for post 8", 1, "This is some content for the post 8.", 1, database.PUBLISHED)   // Titre, AuthorID, Content, CategoryID, Statut
-	database.FillPost("Title for post 9", 1, "This is some content for the post 9.", 1, database.PUBLISHED)   // Titre, AuthorID, Content, CategoryID, Statut
-	database.FillPost("Title for post 10", 1, "This is some content for the post 10.", 1, database.PUBLISHED) // Titre, AuthorID, Content, CategoryID, Statut
+	// database.FillPostLike(1, 1, "like")
+	// database.FillCommentLike(1, 1, "like")
+
+	//Ajout de tickets :
+
+	// database.FillTicket(2, 1, "Problem", "I have a problem", time.Now(), 0)
+	// database.FillAnswer(1, 1, "Tenebros", "Answer", time.Now(), 0)
 
 	// ⭐ Serving files to the server :
 	images := http.FileServer(http.Dir("./database/images"))

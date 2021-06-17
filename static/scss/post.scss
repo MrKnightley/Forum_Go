@@ -380,6 +380,10 @@ section#main {
                         }
                     }
                 }
+                p#main-text {
+                    text-align: justify;
+                    text-align-last: left;
+                }
                 p#main-text:first-letter {
                     float: left;
                     font-family: 'Crimson Text', serif;
