@@ -2,7 +2,51 @@
 
 <header>
     <div class="columnLeft">
-        <a class="menu"></a>
+        <div class="menu">
+            <nav role="navigation">
+                <div id="menuToggle">
+                    <input type="checkbox" />
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <ul id="menu">
+                        <a href="/category/1">
+                            <li>Café</li>
+                        </a>
+                        <a href="/category/2">
+                            <li>Men's Club</li>
+                        </a>
+                        <a href="/category/3">
+                            <li>Women's Club</li>
+                        </a>
+                        <a href="/category/4">
+                            <li>Theater</li>
+                        </a>
+                        <a href="/category/5">
+                            <li>Arcade</li>
+                        </a>
+                        <a href="/category/6">
+                            <li>Library</li>
+                        </a>
+                        <a href="/category/7">
+                            <li>Vinyl Shop</li>
+                        </a>
+                        <a href="/category/8">
+                            <li>Museum</li>
+                        </a>
+                        <a href="/category/9">
+                            <li>Academy</li>
+                        </a>
+                        <a href="/category/10">
+                            <li>Stadium</li>
+                        </a>
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+
         {{ if gt .Role 0 }}
         <a class="ticket" href="/ticket">
             <img id="ticket-img" src="/static/images/ticket.png" title="Contact us">

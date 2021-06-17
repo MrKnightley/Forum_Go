@@ -33,7 +33,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 17px 17px; // Haut, bas
+    padding: 20px 20px; // Haut, bas
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -107,6 +107,152 @@ header {
     }
 }
 
+// MENU HAMBURGER :
+#menuToggle {
+    display: block;
+    position: relative;
+    top: 4px;
+    left: 30px;
+    z-index: 1;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#menuToggle a {
+    text-decoration: none;
+    color: #232323;
+    transition: color 0.3s ease;
+}
+
+#menuToggle a:hover {
+    color: tomato;
+}
+
+#menuToggle input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
+    cursor: pointer;
+    opacity: 0;
+    /* hide this */
+    z-index: 2;
+    /* and place it over the hamburger */
+    -webkit-touch-callout: none;
+}
+
+
+/*
+* Just a quick hamburger
+*/
+
+#menuToggle span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    background: #f0f0f0;
+    border-radius: 3px;
+    z-index: 1;
+    transform-origin: 4px 0px;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), opacity 0.55s ease;
+}
+
+#menuToggle span:first-child {
+    transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2) {
+    transform-origin: 0% 100%;
+}
+
+
+/* 
+* Transform all the slices of hamburger
+* into a crossmark.
+*/
+
+#menuToggle input:checked~span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background-image: radial-gradient(circle, rgba(222, 208, 160, 1) 0%, rgba(167, 150, 102, 1) 100%);
+    background-image: -webkit-radial-gradient(circle, rgba(222, 208, 160, 1) 0%, rgba(167, 150, 102, 1) 100%);
+    background-image: -moz-radial-gradient(circle, rgba(222, 208, 160, 1) 0%, rgba(167, 150, 102, 1) 100%);
+    background-image: -ms-radial-gradient(circle, rgba(222, 208, 160, 1) 0%, rgba(167, 150, 102, 1) 100%);
+    background-image: -o-radial-gradient(circle, rgba(222, 208, 160, 1) 0%, rgba(167, 150, 102, 1) 100%);
+}
+
+
+/*
+* But let's hide the middle one.
+*/
+
+#menuToggle input:checked~span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+
+/*
+* Ohyeah and the last one should go the other direction
+*/
+
+#menuToggle input:checked~span:nth-last-child(2) {
+    transform: rotate(-45deg) translate(0, -1px);
+}
+
+
+/*
+* Make this absolute positioned
+* at the top left of the screen
+*/
+
+#menu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: calc(100vw + 65px);
+    height: calc(100vh + 100px);
+    margin: -100px 0 0 -65px;
+    padding: 50px;
+    padding-top: 125px;
+    background: #202335;
+    list-style-type: none;
+    -webkit-font-smoothing: antialiased;
+    /* to stop flickering of text in safari */
+    transform-origin: 0% 0%;
+    transform: translate(0%, -100%);
+    transition: transform 0.6s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+}
+
+#menu li {
+    padding: 10px 0;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 3px;
+    color: white;
+    font-weight: 200;
+    transition: 0.2s ease-in-out;
+    &:hover {
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+    }
+}
+
+
+/*
+* And let's slide it in from the left
+*/
+
+#menuToggle input:checked~ul {
+    transform: none;
+}
+
 @media only all and (max-width: 790px) {
     header {
         .columnRight {
@@ -139,157 +285,3 @@ header {
         }
     }
 }
-
-//Menu hamburger
-// OLD AGAIN :
-
-/*
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    padding: 13px 65px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999999;
-    background: #202335;
-    border-bottom: solid 1px #434343;
-    .left {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 50%;
-        .menu {
-            color: white;
-            font-weight: 700;
-            text-decoration: none;
-            font-size: 2em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-left: -40px;
-        }
-        .manage {}
-        #logo {
-            width: 48px;
-            &:hover {
-                -webkit-filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.8));
-                filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.8));
-                transition: 0.5s ease-in-out;
-            }
-        }
-    }
-    .right {
-        display: flex;
-        justify-content: flex-end;
-        width: 50%;
-    }
-}
-*/
-
-// OLD :
-
-/*
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 13px 65px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 999999;
-    background: #202335;
-    border-bottom: solid 1px #434343;
-    a {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        &.active {
-            margin-left: 25px;
-            position: absolute;
-            top: 50%;
-            left: 20%;
-            transform: translate(-100%, -50%);
-            padding: 7px 25px;
-            // margin: 0 0 0 3vw;
-            background: #6b63b5;
-            color: #ffffff;
-            text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
-            text-transform: uppercase;
-            font-size: 70%;
-            border-radius: 3px;
-            transition: 0.3s ease-in-out;
-            &:hover {
-                background: #514a92;
-            }
-        }
-    }
-    .menu {
-        color: white;
-        font-weight: 700;
-        text-decoration: none;
-        font-size: 2em;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        float: left;
-    }
-    img#logo {
-        width: 48px;
-        margin-left: 25px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-100%, -50%);
-        &:hover {
-            -webkit-filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.8));
-            filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.8));
-            transition: 0.5s ease-in-out;
-        }
-    }
-    ul {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        li {
-            list-style: none;
-            // margin-left: 20px;
-            a {
-                display: flex;
-                align-items: center;
-                text-decoration: none;
-                &.active {
-                    padding: 7px 25px;
-                    margin: 0 0 0 3vw;
-                    background: #6b63b5;
-                    color: #ffffff;
-                    text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
-                    text-transform: uppercase;
-                    font-size: 70%;
-                    border-radius: 3px;
-                    transition: 0.3s ease-in-out;
-                    &:hover {
-                        background: #514a92;
-                    }
-                }
-                &.avatar {
-                    img {
-                        // width: 25px;
-                        // border-radius: 100px;
-                        width: 100%;
-                    }
-                }
-                &.new-post {
-                    img {
-                        width: 25px;
-                        margin-right: 2vw;
-                    }
-                }
-            }
-        }
-    }
-}
-*/

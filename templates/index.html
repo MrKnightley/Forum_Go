@@ -114,7 +114,7 @@
                     <div class="head"><a href="/post/{{ .MostRecentPost.ID }}"><span class="headline hl">{{ .MostRecentPost.Title }}</span></a>
                         <a class="author" href="/Profile?user={{ .MostRecentPost.Author.Username }}">
                             {{ if ne .MostRecentPost.Author.House.ID 0 }}
-                            <img class="house-img" src="{{ .MostLikedPost.Author.House.Image}}">
+                            <img class="house-img" src="{{ .MostRecentPost.Author.House.Image}}">
                             {{ end }}
                             <p><span class="headline hl1-author">by {{ .MostRecentPost.Author.Username }}</span></p>
                             <img class="avatar-img" src="{{ .MostRecentPost.Author.Avatar}}">
