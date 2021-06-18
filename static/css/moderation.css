@@ -27,7 +27,7 @@ td div{
 }
 
 .tableList {
-  margin-top: 4.5em;
+  margin-top: 5.5em;
 }
 
 .selectOption {
@@ -37,7 +37,7 @@ td div{
 .right {
   position: absolute;
   left: 85%;
-  top: 4.75em;
+  top: 5.75em;
   background-image: radial-gradient(circle, #ded0a0 0%, #a79666 100%);
   background-image: -webkit-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
   background-image: -moz-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
