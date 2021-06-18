@@ -1,7 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
 .row-container {
     display: flex;
     flex-direction: row;
 }
+
 td {
     width: 6.66%;
     border: 1px solid grey;

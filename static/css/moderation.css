@@ -2,8 +2,7 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:400|Raleway:400,700,400italic,700italic);
 html {
   background-image: url("../images/profile/dark_sky1.webp");
-  background-size: contain;
-  background-repeat: repeat-y;
+  background-size: cover;
   overflow-x: hidden;
 }
 
@@ -14,20 +13,17 @@ div {
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;  
+  -ms-user-select: none;
   user-select: none;
   table-layout: fixed;
 }
-td div{
-  max-height: 50vh;
-  overflow-y:auto;
-}
+
 .selected {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
 .tableList {
-  margin-top: 4.5em;
+  margin-top: 6.5em;
 }
 
 .selectOption {
@@ -37,7 +33,7 @@ td div{
 .right {
   position: absolute;
   left: 85%;
-  top: 4.75em;
+  top: 6.75em;
   background-image: radial-gradient(circle, #ded0a0 0%, #a79666 100%);
   background-image: -webkit-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
   background-image: -moz-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
