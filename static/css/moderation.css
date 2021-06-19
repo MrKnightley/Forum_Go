@@ -1,287 +1,304 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @import url(https://fonts.googleapis.com/css?family=Oswald:400|Raleway:400,700,400italic,700italic);
 html {
-  background-image: url("../images/profile/dark_sky1.webp");
-  background-size: cover;
-  overflow-x: hidden;
+    background-image: url("../images/profile/dark_sky1.webp");
+    background-size: contain;
+    background-repeat: repeat-y;
+    overflow-x: hidden;
 }
 
 div {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  table-layout: fixed;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    table-layout: fixed;
+}
+
+td div {
+    max-height: 50vh;
+    overflow-y: auto;
 }
 
 .selected {
-  background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .tableList {
-  margin-top: 6.5em;
+    margin-top: 5.5em;
 }
 
 .selectOption {
-  margin-top: 0.5em;
+    margin-top: 0.5em;
 }
 
 .right {
-  position: absolute;
-  left: 85%;
-  top: 6.75em;
-  background-image: radial-gradient(circle, #ded0a0 0%, #a79666 100%);
-  background-image: -webkit-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
-  background-image: -moz-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
-  background-image: -ms-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
-  background-image: -o-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
-  background-image: -moz-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
-  color: transparent;
-  -webkit-background-clip: text;
+    position: absolute;
+    left: 85%;
+    top: 5.75em;
+    background-image: radial-gradient(circle, #ded0a0 0%, #a79666 100%);
+    background-image: -webkit-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
+    background-image: -moz-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
+    background-image: -ms-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
+    background-image: -o-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
+    background-image: -moz-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
+    color: transparent;
+    -webkit-background-clip: text;
 }
 
 .Invisible,
 .tempInvi {
-  border: none;
-  display: none;
+    border: none;
+    display: none;
 }
 
 table.tempVisi {
-  display: table;
+    display: table;
 }
 
 tr.tempVisi {
-  display: table-row;
+    display: table-row;
 }
 
 td img {
-  height: 100%;
-  width: 100%;
+    height: 100%;
+    width: 100%;
 }
 
 textarea {
-  width: 97.5%;
-  height: auto;
+    width: 97.5%;
+    height: auto;
 }
 
 table {
-  border-spacing: 0;
-  width: 95vw;
-  table-layout: initial;
-  margin-right: 1px;
-  border-collapse: collapse;
-  table-layout: fixed;
-  font-size: 10px;
+    border-spacing: 0;
+    width: 95vw;
+    table-layout: initial;
+    margin-right: 1px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 10px;
 }
 
+
 /*** HEADER ***/
+
 table thead {
-  border-bottom: 2px solid #e5e5e5;
+    border-bottom: 2px solid #e5e5e5;
 }
 
 table th,
 table td {
-  padding: 1em 0.5em;
-  position: relative;
+    padding: 1em 0.5em;
+    position: relative;
 }
 
 table th {
-  font: 400 1.25em/1 "Oswald", sans-serif;
-  letter-spacing: 0.025em;
-  outline: none;
-  padding-right: 2em;
-  text-align: left;
-  text-transform: uppercase;
-  transition: color 0.2s ease-in-out;
+    font: 400 1.25em/1 "Oswald", sans-serif;
+    letter-spacing: 0.025em;
+    outline: none;
+    padding-right: 2em;
+    text-align: left;
+    text-transform: uppercase;
+    transition: color 0.2s ease-in-out;
 }
 
+
 /*** BODY ***/
-table tbody > tr {
-  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+
+table tbody>tr {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
 table tbody tr th div {
-  background-image: radial-gradient(circle, #ded0a0 0%, #a79666 100%);
-  background-image: -webkit-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
-  background-image: -moz-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
-  background-image: -ms-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
-  background-image: -o-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
-  background-image: -moz-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
-  color: transparent;
-  color: transparent;
-  -webkit-background-clip: text;
-  font-size: 1.33em;
+    background-image: radial-gradient(circle, #ded0a0 0%, #a79666 100%);
+    background-image: -webkit-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
+    background-image: -moz-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
+    background-image: -ms-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
+    background-image: -o-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
+    background-image: -moz-radial-gradient(circle, #ded0a0 0%, #a79666 100%);
+    color: transparent;
+    color: transparent;
+    -webkit-background-clip: text;
+    font-size: 1.33em;
 }
 
 table tbody tr td div {
-  background-image: radial-gradient(circle, #BFC1C2 0%, #B0B2B3 100%);
-  background-image: -webkit-radial-gradient(circle, #BFC1C2 0%, #B0B2B3 100%);
-  background-image: -moz-radial-gradient(circle, #BFC1C2 0%, #B0B2B3 100%);
-  background-image: -ms-radial-gradient(circle, #BFC1C2 0%, #B0B2B3 100%);
-  background-image: -o-radial-gradient(circle, #BFC1C2 0%, #B0B2B3 100%);
-  background-image: -moz-radial-gradient(circle, #BFC1C2 0%, #B0B2B3 100%);
-  color: transparent;
-  -webkit-background-clip: text;
-  font-size: 1.5em;
-  overflow-x: auto;
+    background-image: radial-gradient(circle, #BFC1C2 0%, #B0B2B3 100%);
+    background-image: -webkit-radial-gradient(circle, #BFC1C2 0%, #B0B2B3 100%);
+    background-image: -moz-radial-gradient(circle, #BFC1C2 0%, #B0B2B3 100%);
+    background-image: -ms-radial-gradient(circle, #BFC1C2 0%, #B0B2B3 100%);
+    background-image: -o-radial-gradient(circle, #BFC1C2 0%, #B0B2B3 100%);
+    background-image: -moz-radial-gradient(circle, #BFC1C2 0%, #B0B2B3 100%);
+    color: transparent;
+    -webkit-background-clip: text;
+    font-size: 1.5em;
+    overflow-x: auto;
 }
 
-table tbody > tr:hover {
-  background-color: rgba(255, 255, 255, 0.25);
-  border-color: white;
-  color: #fff;
+table tbody>tr:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: white;
+    color: #fff;
 }
+
 
 /* Primary Color */
-table tbody > tr:nth-of-type(6n+1) {
-  border-color: rgba(162, 237, 86, 0.5);
+
+table tbody>tr:nth-of-type(6n+1) {
+    border-color: rgba(162, 237, 86, 0.5);
 }
 
-table tbody > tr:nth-of-type(6n+1):hover {
-  background-color: rgba(162, 237, 86, 0.25);
-  border-color: #a2ed56;
+table tbody>tr:nth-of-type(6n+1):hover {
+    background-color: rgba(162, 237, 86, 0.25);
+    border-color: #a2ed56;
 }
+
 
 /* Secondary Color */
-table tbody > tr:nth-of-type(6n+2) {
-  border-color: rgba(131, 228, 226, 0.5);
+
+table tbody>tr:nth-of-type(6n+2) {
+    border-color: rgba(131, 228, 226, 0.5);
 }
 
-table tbody > tr:nth-of-type(6n+2):hover {
-  background-color: rgba(131, 228, 226, 0.25);
-  border-color: #83e4e2;
+table tbody>tr:nth-of-type(6n+2):hover {
+    background-color: rgba(131, 228, 226, 0.25);
+    border-color: #83e4e2;
 }
+
 
 /* Tertiary Color */
-table tbody > tr:nth-of-type(6n+3) {
-  border-color: rgba(253, 100, 112, 0.5);
+
+table tbody>tr:nth-of-type(6n+3) {
+    border-color: rgba(253, 100, 112, 0.5);
 }
 
-table tbody > tr:nth-of-type(6n+3):hover {
-  background-color: rgba(253, 100, 112, 0.25);
-  border-color: #fd6470;
+table tbody>tr:nth-of-type(6n+3):hover {
+    background-color: rgba(253, 100, 112, 0.25);
+    border-color: #fd6470;
 }
+
 
 /* Quaternary Color */
-table tbody > tr:nth-of-type(6n+4) {
-  border-color: rgba(252, 168, 88, 0.5);
+
+table tbody>tr:nth-of-type(6n+4) {
+    border-color: rgba(252, 168, 88, 0.5);
 }
 
-table tbody > tr:nth-of-type(6n+4):hover {
-  background-color: rgba(252, 168, 88, 0.25);
-  border-color: #fca858;
+table tbody>tr:nth-of-type(6n+4):hover {
+    background-color: rgba(252, 168, 88, 0.25);
+    border-color: #fca858;
 }
+
 
 /* Quinary Color */
-table tbody > tr:nth-of-type(6n+5) {
-  border-color: rgba(253, 220, 50, 0.5);
+
+table tbody>tr:nth-of-type(6n+5) {
+    border-color: rgba(253, 220, 50, 0.5);
 }
 
-table tbody > tr:nth-of-type(6n+5):hover {
-  background-color: rgba(253, 220, 50, 0.25);
-  border-color: #fddc32;
+table tbody>tr:nth-of-type(6n+5):hover {
+    background-color: rgba(253, 220, 50, 0.25);
+    border-color: #fddc32;
 }
+
 
 /* Name Cell */
+
 table td[data-label=Name] {
-  font-weight: 700;
-  letter-spacing: 0.05em;
+    font-weight: 700;
+    letter-spacing: 0.05em;
 }
 
+
 /* Check and Cross Marks */
+
 table tr span.yes,
 table tr span.no {
-  transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 table tr:hover span.yes,
 table tr:hover span.no {
-  color: #fff;
+    color: #fff;
 }
 
 table span.yes {
-  color: #a2ed56;
-  font-size: 1.25em;
+    color: #a2ed56;
+    font-size: 1.25em;
 }
 
 table span.no {
-  color: #fd6470;
-  font-size: 0.875em;
+    color: #fd6470;
+    font-size: 0.875em;
 }
 
 @media (max-width: 50em) {
-  /*** TABLE ***/
-  table tr,
-table td {
-    display: block;
-  }
-
-  table tr {
-    padding: 0.75em 0;
-  }
-
-  /* Header */
-  table thead tr {
-    text-align: center;
-  }
-
-  table th {
-    display: block;
-    padding: 0.25em 0.5em;
-  }
-
-  /* Body */
-  table td {
-    padding: 0.25em 0.5em 0.25em 6.5em;
-  }
-
-  table td:before {
-    content: attr(data-label);
-    font: 400 1.125em/1 "Oswald", sans-serif;
-    left: 0.5em;
-    position: absolute;
-    top: 0.125em;
-  }
-
-  /* Check and Cross Marks */
-  table span.yes {
-    line-height: 0.875;
-  }
+    /*** TABLE ***/
+    table tr,
+    table td {
+        display: block;
+    }
+    table tr {
+        padding: 0.75em 0;
+    }
+    /* Header */
+    table thead tr {
+        text-align: center;
+    }
+    table th {
+        display: block;
+        padding: 0.25em 0.5em;
+    }
+    /* Body */
+    table td {
+        padding: 0.25em 0.5em 0.25em 6.5em;
+    }
+    table td:before {
+        content: attr(data-label);
+        font: 400 1.125em/1 "Oswald", sans-serif;
+        left: 0.5em;
+        position: absolute;
+        top: 0.125em;
+    }
+    /* Check and Cross Marks */
+    table span.yes {
+        line-height: 0.875;
+    }
 }
+
 .bottom {
-  margin-top: 0.33em;
+    margin-top: 0.33em;
 }
 
 input[type=button] {
-  cursor: pointer;
-  margin: 10px auto;
-  -webkit-appearance: none;
-  padding: 10px 30px;
-  -webkit-transition: background 0.5s;
-  background: #6b63b5;
-  color: #ffffff;
-  text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
-  text-transform: uppercase;
-  font-size: 9px;
-  letter-spacing: 2px;
-  border-radius: 50px;
-  border: none;
-  outline: inherit;
-  transition: 0.3s ease-in-out;
+    cursor: pointer;
+    margin: 10px auto;
+    -webkit-appearance: none;
+    padding: 10px 30px;
+    -webkit-transition: background 0.5s;
+    background: #6b63b5;
+    color: #ffffff;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    border: none;
+    outline: inherit;
+    transition: 0.3s ease-in-out;
 }
 
 input[type=button]:hover {
-  background: #514a92;
+    background: #514a92;
 }
 
 td {
-  font-family: "Poppins", sans-serif;
-  font-weight: 800;
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
 }
-
-/*# sourceMappingURL=moderation.css.map */
