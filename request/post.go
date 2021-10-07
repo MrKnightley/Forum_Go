@@ -40,6 +40,8 @@ func Post(w http.ResponseWriter, r *http.Request, user database.User) {
 
 		dataForPost.User = user
 		dataForPost.Post, err = database.GetPostByID(ID, user.ID) // (ID du post, ID de l'utilisateur loggé)
+
+		// Si le post est publié, on récupère ses commentaires :
 		if dataForPost.Post.State == 0 {
 			dataForPost.Comments, err = database.GetCommentsByPostID(ID, user.ID)
 			if err != nil {
@@ -48,6 +50,12 @@ func Post(w http.ResponseWriter, r *http.Request, user database.User) {
 				return
 			}
 		}
+
+		// Si le post a été supprimé, redirection vers l'index :
+		if dataForPost.Post.State > 0 {
+			http.Redirect(w, r, "/", http.StatusSeeOther)
+		}
+
 		err = MyTemplates.ExecuteTemplate(w, "post", dataForPost)
 		if err != nil {
 			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
@@ -68,6 +76,7 @@ func Post(w http.ResponseWriter, r *http.Request, user database.User) {
 		}
 		// (2) Récupération du commentaire :
 		content := r.FormValue("comment")
+		content = toolbox.FormatString(content) // Formattage du commentaire
 
 		// (3) Vérification de la validité du commentaire :
 		if toolbox.IsEmptyString(content) || len(content) < 3 {

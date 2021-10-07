@@ -111,3 +111,19 @@ func UploadImage(r *http.Request, userID int, postOrAvatar string) (string, erro
 
 	return imagePath, nil
 }
+
+// Fonction formattant des strings au format HTML (et protection contre les injections d'HTML) :
+func FormatString(str string) string {
+
+	// (1) Je remplace les caractères dangereux par des références HTML :
+	str = strings.ReplaceAll(str, "<", "&lt;")
+	str = strings.ReplaceAll(str, ">", "&gt;")
+	str = strings.ReplaceAll(str, "\"", "&quot;")
+	str = strings.ReplaceAll(str, "'", "&apos;")
+	str = strings.ReplaceAll(str, "&", "&amp;")
+
+	// (2) Je remplace les sauts de ligne par une balise <br> :
+	str = strings.ReplaceAll(str, "\n", "<br>")
+
+	return str
+}
