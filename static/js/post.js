@@ -105,8 +105,11 @@ function grab_data(st) {
 function DeleteGif(id) {
     var params = new Object()
     params.id = id.toString()
-    params.table = "gif"
-    fetch("/edit-post", {
+    params.table = "comments"
+    params.action = "DELETE"
+    params.What = "gif"
+    params.is="cell"
+    fetch("/fetching", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -119,10 +122,11 @@ function DeleteGif(id) {
             document.getElementById("gif" + id).src = ""
         })
         //gestion erreur
-        .catch(x => console.log(x.json()))
+        .catch(x => console.log(x))
 }
 //Permet de valider les modifications
 function Delete(Table, id, p, textarea) {
+    var params = new Object()
     switch (Table) {
         case "posts":
             var textarea = document.getElementById('EditArea')
@@ -145,10 +149,12 @@ function Delete(Table, id, p, textarea) {
     table.forEach(function(el) {
         el.classList.toggle("Invisible")
     })
-    var params = new Object()
+    params.action="UPDATE"
     params.id = id.toString()
     params.table = Table
-    fetch("/delete-post", {
+    params.What = "state"
+    params.newVal = "1"
+    fetch("/fetching", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -208,17 +214,19 @@ function Validate(Table, id, p, textarea) {
         el.classList.toggle("Invisible")
     })
     var params = new Object()
+    params.action="UPDATE"
+    params.What = "content"
     params.id = id.toString()
     params.newVal = textarea.value
     params.table = Table
-    fetch("/edit-post", {
+    fetch("/fetching", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 Accept: "application/json"
             },
             body: JSON.stringify(params)
-        }).then(x => x.json())
+        }).then(x =>x.json())
         //Réponse qui me dit que la valeur est attribuer dans la base de donnée
         .then(function(x) {
             p.innerHTML = x.newVal

@@ -71,7 +71,7 @@ func Category(w http.ResponseWriter, r *http.Request, user database.User) {
 			return
 		}
 	case "POST":
-		var p receivedData
+		var p database.ReceivedData
 		err := json.NewDecoder(r.Body).Decode(&p)
 		if err != nil {
 			panic(err)

@@ -14,7 +14,7 @@ func AddBadge(w http.ResponseWriter, r *http.Request, user database.User) {
 	switch r.Method {
 	case "POST":
 		var statement_badge *sql.Stmt
-		var received receivedData
+		var received ReceivedData
 		err := json.NewDecoder(r.Body).Decode(&received)
 		if err != nil {
 			panic(err)

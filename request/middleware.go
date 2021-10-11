@@ -2,9 +2,9 @@ package request
 
 import (
 	"forum/database"
+	"html/template"
 	"log"
 	"net/http"
-	"text/template"
 )
 
 type CustomFunc func(http.ResponseWriter, *http.Request, database.User)

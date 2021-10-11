@@ -20,7 +20,7 @@ type Data struct {
 	Self     database.User
 }
 
-type receivedData struct {
+type ReceivedData struct {
 	ID       string `json:"id"`
 	Category string `json:"cat"`
 	Value    string `json:"val"`
@@ -36,7 +36,7 @@ var tmpl *template.Template
 func Moderation(w http.ResponseWriter, r *http.Request, user database.User) {
 	switch r.Method {
 	case "POST":
-		var p receivedData
+		var p ReceivedData
 		err := json.NewDecoder(r.Body).Decode(&p)
 		if err != nil {
 			ERROR, _ := json.Marshal("ERROR")
@@ -71,6 +71,15 @@ func Moderation(w http.ResponseWriter, r *http.Request, user database.User) {
 			panic(err)
 		}
 	}
+}
+func TableExist(table string) bool {
+	query := "SELECT * FROM " + table
+	cols, err := database.Db.Query(query)
+	rows, err := cols.Columns()
+	if err != nil {
+		panic(err)
+	}
+	return len(rows) > 0
 }
 func ColExist(table string, cat string) bool {
 	query := "SELECT * FROM " + table

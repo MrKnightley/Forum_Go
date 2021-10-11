@@ -127,3 +127,13 @@ func FormatString(str string) string {
 
 	return str
 }
+
+//
+func Contain(arr []string, str string) bool {
+	for x := 0; x < len(arr); x++ {
+		if arr[x] == str {
+			return true
+		}
+	}
+	return false
+}

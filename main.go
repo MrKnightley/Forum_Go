@@ -65,8 +65,10 @@ func main() {
 	// ⭐ Accès aux stats :
 	http.HandleFunc("/stats", request.Auth(request.Stats, "everybody"))
 
+	// ⭐ Fetch sur la bdd :
+	http.HandleFunc("/fetching", request.Auth(request.Fetching, "active members only"))
 	// ⭐ Suppression de post ou commentaire :
-	http.HandleFunc("/delete-post", request.Auth(request.DeletePost, "active members only"))
+	// http.HandleFunc("/delete-post", request.Auth(request.DeletePost, "active members only"))
 
 	// ⭐ AddBadgeToUser :
 	http.HandleFunc("/badge", request.Auth(admin.AddBadge, "everybody"))
@@ -75,10 +77,10 @@ func main() {
 	http.HandleFunc("/Profile", request.Auth(request.ProfilePage, "everybody"))
 
 	// ⭐ Accès à la page de modification du compte :
-	http.HandleFunc("/edit-account", request.Auth(request.Account, "active members only"))
+	// http.HandleFunc("/edit-account", request.Auth(request.Account, "active members only"))
 
 	// ⭐ modification d'un post :
-	http.HandleFunc("/edit-post", request.Auth(request.EditPost, "active members only"))
+	// http.HandleFunc("/edit-post", request.Auth(request.EditPost, "active members only"))
 
 	// ⭐ Accès aux pages d'inscription, de connexion et déconnexion :
 	http.HandleFunc("/register", request.Auth(request.Register, "guests only"))

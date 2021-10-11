@@ -198,3 +198,15 @@ type ErrorData struct {
 	Username error
 	Email    error
 }
+
+//
+type ReceivedData struct {
+	ID       string `json:"id"`
+	Action   string `json:"action"` //UPDATE/DELETE/CREATE
+	What     string `json:"what"`   //ex:Colonne
+	Value    string `json:"val"`    //Pour chercher une value ou si elle est nécassaire
+	NewValue string `json:"newVal"` //La nouvelle valeur
+	Table    string `json:"table"`  //Ou sa dans la bdd (table)
+	Reason   string `json:"reason"` //Si ya une raison
+	Is       string `json:"is"`     //Si c'est une cellule et non une table
+}

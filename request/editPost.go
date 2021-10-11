@@ -9,7 +9,7 @@ import (
 func EditPost(w http.ResponseWriter, r *http.Request, user database.User) {
 	switch r.Method {
 	case "POST":
-		var p receivedData
+		var p ReceivedData
 		var query string
 		err := json.NewDecoder(r.Body).Decode(&p)
 		if err != nil {

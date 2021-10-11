@@ -91,8 +91,9 @@ function DeleteRow(table) {
     var divVal = document.getElementsByClassName("selected")[0].firstChild;
     var params = new Object();
     params.table = table
+    params.action = "DELETE"
     params.id = divVal.nextElementSibling.id
-    fetch("/delete", {
+    fetch("/fetching", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -101,7 +102,7 @@ function DeleteRow(table) {
             body: JSON.stringify(params)
         }).then(x => x.json())
         //Réponse qui me dit que la valeur est attribuer dans la base de donnée
-        .then(function(x) { divVal.nextElementSibling.innerHTML = x.message })
+        .then(function(x) { divVal.nextElementSibling.innerHTML = "done" })
         //gestion erreur
         .catch(x => console.log(x.json()))
 }
@@ -115,12 +116,13 @@ function PostRequest(role) {
     } else {
         var params = new Object();
         params.table = actualTable
+        params.action = "UPDATE"
         params.id = divVal.nextElementSibling.id
-        params.cat = divVal.nextElementSibling.dataset.name
+        params.What = divVal.nextElementSibling.dataset.name
         params.val = divVal.nextElementSibling.dataset.value
         params.newVal = document.getElementById("newValue").value
         console.log(params)
-        fetch("/moderation", {
+        fetch("/fetching", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -133,9 +135,9 @@ function PostRequest(role) {
                 if(params.cat=="gif"){
                     divVal.nextElementSibling.src=x.message
                 }else if(params.cat=="description"){
-                    divVal.nextElementSibling.value = x.message
+                    divVal.nextElementSibling.value =params.newVal
                 }else{
-                    divVal.nextElementSibling.innerHTML = x.message 
+                    divVal.nextElementSibling.innerHTML = params.newVal
                 }
             })
             //gestion erreur

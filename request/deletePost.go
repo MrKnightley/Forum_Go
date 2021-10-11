@@ -9,7 +9,7 @@ import (
 func DeletePost(w http.ResponseWriter, r *http.Request, user database.User) {
 	switch r.Method {
 	case "POST":
-		var received receivedData
+		var received database.ReceivedData
 		err := json.NewDecoder(r.Body).Decode(&received)
 		if err != nil {
 			ERROR, _ := json.Marshal("ERROR WHILE DECODING JSON")

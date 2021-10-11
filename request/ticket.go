@@ -117,7 +117,7 @@ func NewTicket(w http.ResponseWriter, r *http.Request, user database.User) {
 func Ticket_Answer(w http.ResponseWriter, r *http.Request, user database.User) {
 	switch r.Method {
 	case "POST":
-		var received receivedData
+		var received ReceivedData
 		received.Value = r.FormValue("answer")
 		received.ID = r.FormValue("id")
 		if len(received.Value) > 1 {

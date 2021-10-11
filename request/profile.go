@@ -12,13 +12,14 @@ import (
 
 var profileTmpl = template.Must(template.ParseGlob("./templates/*"))
 
-type receivedData struct {
+type ReceivedData struct {
 	ID       string `json:"id"`
-	Category string `json:"cat"`
-	Value    string `json:"val"`
-	NewValue string `json:"newVal"`
-	Table    string `json:"table"`
-	Reason   string `json:"reason"`
+	Action   string `json:"action"` //update/delete/create
+	What     string `json:"what"`   //ex:Colonne
+	Value    string `json:"val"`    //Pour chercher une value ou si elle est nécassaire
+	NewValue string `json:"newVal"` //La nouvelle valeur
+	Table    string `json:"table"`  //Ou sa dans la bdd (table)
+	Reason   string `json:"reason"` //Si ya une raison
 }
 
 // HandleFunc pour la page profile de l'utilisateur :
@@ -73,7 +74,7 @@ func ProfilePage(w http.ResponseWriter, r *http.Request, user database.User) {
 		}
 
 	case "POST":
-		var p receivedData
+		var p ReceivedData
 		err := json.NewDecoder(r.Body).Decode(&p)
 		if err != nil {
 			w.Write([]byte(`{"message":"ERROR"}`))
@@ -84,7 +85,7 @@ func ProfilePage(w http.ResponseWriter, r *http.Request, user database.User) {
 	}
 }
 
-func deleteAccount(w http.ResponseWriter, r *http.Request, user database.User, p receivedData) {
+func deleteAccount(w http.ResponseWriter, r *http.Request, user database.User, p ReceivedData) {
 	_, err := database.Db.Exec("UPDATE users SET state = 2 WHERE id = ?", p.ID)
 	if err != nil {
 		ERROR, _ := json.Marshal("ERROR WHILE DELETE")
